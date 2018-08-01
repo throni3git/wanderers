@@ -1,0 +1,33 @@
+{
+  "name": "wanderers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode=development --watch",
+    "dist": "webpack --mode=production -p"
+  },
+  "author": "Thomas Thron <throni3@gmx.de>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/html-webpack-plugin": "^3.2.0",
+    "@types/webpack": "^4.4.8",
+    "@types/webpack-dev-server": "^2.9.5",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^7.0.0",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "@types/react": "^16.4.7",
+    "@types/react-dom": "^16.0.6",
+    "@types/three": "^0.92.14",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "styled-components": "^3.3.3",
+    "three": "^0.95.0"
+  }
+}

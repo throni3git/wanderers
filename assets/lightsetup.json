@@ -1,0 +1,47 @@
+{
+	"light0": {
+		"Type": "AmbientLight",
+		"ColorHex": "#ffffff",
+		"Intensity": 0.293
+	},
+	"light1": {
+		"Type": "DirectionalLight",
+		"PositionPolarDeg": {
+			"Azimuth": 45,
+			"Elevation": 40,
+			"Radius": 10
+		},
+		"ColorHex": "#ffffff",
+		"Intensity": 0.5
+	},
+	"light2": {
+		"Type": "DirectionalLight",
+		"PositionPolarDeg": {
+			"Azimuth": -135,
+			"Elevation": 40,
+			"Radius": 10
+		},
+		"ColorHex": "#ffffff",
+		"Intensity": 0.5
+	},
+	"light3": {
+		"Type": "DirectionalLight",
+		"PositionPolarDeg": {
+			"Azimuth": -30,
+			"Elevation": -45,
+			"Radius": 10
+		},
+		"ColorHex": "#ffffff",
+		"Intensity": 0.5
+	},
+	"light4": {
+		"Type": "DirectionalLight",
+		"PositionPolarDeg": {
+			"Azimuth": 150,
+			"Elevation": -45,
+			"Radius": 10
+		},
+		"ColorHex": "#ffffff",
+		"Intensity": 0.5
+	}
+}
