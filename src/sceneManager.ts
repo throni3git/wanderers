@@ -1,13 +1,7 @@
 import * as THREE from "three";
-// import * as UrlPolyfill from "url-polyfill";
 
-// import { OrbitControls } from "./OrbitControls";
 import { OrbitControls } from "./orbitControls/";
-// import { OrbitControls } from "orbit-controls-es6";
-// import { OrbitControls } from "three-orbitcontrols-ts";
-
 import { Artwork } from "./artwork";
-
 
 function detectWebGL(): boolean {
   try {
@@ -16,7 +10,6 @@ function detectWebGL(): boolean {
   } catch (e) {
     return false;
   }
-  return true;
 }
 
 export let DBG_CAMERA = false;

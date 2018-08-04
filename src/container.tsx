@@ -10,14 +10,31 @@ const ArtworkContainer = styled.div`
   background: url(assets/bg_white.jpg);
   background-size: cover;
   background-position: center;
+  overflow: hidden;
 `;
 
 const SiteContainer = styled.div`
-  width: 600px;
-  height: 100%;
+  width: 800px;
+  height: 90%;
+  background: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  box-shadow: #444444 0 0 10px;
   position: absolute;
-  background: rgba(255, 255, 155, 0.6);
-  margin: 0 auto;
+  margin: auto;
+  left:0;
+  right:0;
+  bottom: 0;
+  top: 0;
+`;
+
+const SiteHeading = styled.div`
+  background: url(assets/logo_heading.svg);
+  height: 100px;
+  background-size: auto 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `;
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
@@ -43,7 +60,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
   public render() {
     return <div style={{ width: "100%" }}>
       <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
-      {!this._hideSite && <SiteContainer>BLABLABLA</SiteContainer>}
+      {!this._hideSite && <SiteContainer><SiteHeading /></SiteContainer>}
     </div>;
   }
 }
