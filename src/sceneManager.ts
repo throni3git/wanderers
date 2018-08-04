@@ -8,6 +8,17 @@ import { OrbitControls } from "./orbitControls/";
 
 import { Artwork } from "./artwork";
 
+
+function detectWebGL(): boolean {
+  try {
+    var canvas = document.createElement('canvas');
+    return !!((window as any).WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
 export let DBG_CAMERA = false;
 
 export class SceneManager {
@@ -37,6 +48,11 @@ export class SceneManager {
     const dbgCamera = url.searchParams.get("debugCamera");
     if (dbgCamera != null) {
       DBG_CAMERA = true;
+    }
+
+    const isWebGLAvailable = detectWebGL();
+    if (!isWebGLAvailable) {
+      return;
     }
 
     this._renderer = new THREE.WebGLRenderer({ antialias: true });

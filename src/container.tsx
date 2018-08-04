@@ -7,14 +7,16 @@ const ArtworkContainer = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
+  background: url(assets/bg_white.jpg);
+  background-size: cover;
+  background-position: center;
 `;
 
 const SiteContainer = styled.div`
   width: 600px;
   height: 100%;
   position: absolute;
-  background: rgba(255, 255, 255, 0.6);
-  // display: table;
+  background: rgba(255, 255, 155, 0.6);
   margin: 0 auto;
 `;
 
@@ -39,7 +41,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
   }
 
   public render() {
-    return <div style={{width: "100%"}}>
+    return <div style={{ width: "100%" }}>
       <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
       {!this._hideSite && <SiteContainer>BLABLABLA</SiteContainer>}
     </div>;
