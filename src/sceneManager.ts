@@ -27,7 +27,7 @@ export class SceneManager {
   private _windowHalfX;
   private _windowHalfY;
 
-  private _cameraVelocity = 0.02;
+  private _cameraVelocity = 0.01;
   private _cameraRotationRadius = 0.5;
 
   constructor(containerElement: HTMLDivElement) {
