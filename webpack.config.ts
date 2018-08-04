@@ -26,7 +26,8 @@ const config: webpack.Configuration = {
 		new copyPlugin([{ from: "assets/", to: "assets/" }])
 	],
 	output: {
-		path: path.resolve("dist")
+		path: path.resolve("dist"),
+		filename: "js/bundle.[chunkhash].js"
 	},
 	mode: isProduction ? "production" : "development",
 	devtool: isProduction ? false : "source-map",
