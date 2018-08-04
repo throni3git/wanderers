@@ -3,6 +3,8 @@ import * as webpackDevServer from "webpack-dev-server";
 import * as htmlPlugin from "html-webpack-plugin";
 import * as path from "path";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const config: webpack.Configuration = {
 	entry: "./src/index.ts",
 	resolve: {
@@ -20,7 +22,7 @@ const config: webpack.Configuration = {
 	output: {
 		path: path.resolve("dist")
 	},
-	devtool: "source-map",
+	devtool: isProduction ? false : "source-map",
 	devServer: {
 		port: 3000
 	} as webpackDevServer.Configuration

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { SceneManager } from "./SceneManager";
+import { SceneManager } from "./sceneManager";
 
 const ContainerDiv = styled.div`
   width: 100%;
