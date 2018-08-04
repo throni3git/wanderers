@@ -32,14 +32,12 @@ export class SceneManager {
 
   constructor(containerElement: HTMLDivElement) {
 
+    // TODO 2018-08-04 check for browser compatibility
     const url = new URL(window.location.href);
     const dbgCamera = url.searchParams.get("debugCamera");
     if (dbgCamera != null) {
       DBG_CAMERA = true;
     }
-    // console.log(url.toString()); // print: "https://www.yahoo.com/?fr=yset_ie_syc_oracle&type=orcl_hpset&page=0#page0"
-    // console.log(dbgCamera); // print: "https://www.yahoo.com/?fr=yset_ie_syc_oracle&type=orcl_hpset&page=0#page0"
-
 
     this._renderer = new THREE.WebGLRenderer({ antialias: true });
     this._renderer.setClearColor(new THREE.Color(0xffffff));
@@ -49,8 +47,6 @@ export class SceneManager {
     containerElement.appendChild(this._renderer.domElement);
 
     this._canvas = this._renderer.domElement;
-    // this._canvas.style.width = "100%";
-    // this._canvas.style.height = "100%";
 
     window.addEventListener("resize", this.resizeCanvas, false);
     document.addEventListener("mousemove", this.onDocumentMouseMove, false);
@@ -133,7 +129,6 @@ export class SceneManager {
     requestAnimationFrame(this.render);
 
     this._camera.position.x += (this._mouseX - this._camera.position.x) * this._cameraVelocity;
-    // console.log(this._camera.position.x);
     this._camera.position.y += (- this._mouseY - this._camera.position.y) * this._cameraVelocity;
 
     const MAX_CAM_OFFSET = 3;

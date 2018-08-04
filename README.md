@@ -1,6 +1,6 @@
 # wanderers
 
-project by thomas thron @ SOJUS3000 based on artwork form nate hill
+project by thomas thron @ SOJUS3000 based on artwork from nate hill
 
 2018
 
@@ -10,6 +10,10 @@ install
 
 `npm i`
 
-run
+run locally
 
 `npm run start`
+
+build
+
+`npm run dist`

@@ -1,5 +1,7 @@
 import * as webpack from "webpack";
 import * as webpackDevServer from "webpack-dev-server";
+import * as copyPlugin from "copy-webpack-plugin";
+import * as cleanPlugin from "clean-webpack-plugin";
 import * as htmlPlugin from "html-webpack-plugin";
 import * as path from "path";
 
@@ -18,10 +20,15 @@ const config: webpack.Configuration = {
 			}
 		]
 	},
-	plugins: [new htmlPlugin()],
+	plugins: [
+		new htmlPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
+		new cleanPlugin(["dist/"]),
+		new copyPlugin([{ from: "assets/", to: "assets/" }])
+	],
 	output: {
 		path: path.resolve("dist")
 	},
+	mode: isProduction ? "production" : "development",
 	devtool: isProduction ? false : "source-map",
 	devServer: {
 		port: 3000
