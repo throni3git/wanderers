@@ -53,7 +53,36 @@ varying vec4 vPosition;
 uniform float lineWidth;
 uniform float lineDistance;
 
+#define SQRT2 1.41421356
+#define PI 3.14159
 #define SKEWNESS 4.0
+
+
+float isPointOnLine(float position,float differentialLength) {
+	float fractionPartOfPosition=position-floor(position+0.5); 
+	fractionPartOfPosition/=differentialLength; 
+	fractionPartOfPosition=clamp(fractionPartOfPosition,-1.,1.);
+  float result=0.5+0.5*cos(fractionPartOfPosition*PI);
+  result = sqrt(result);
+	return result; 
+}
+
+float getAnisotropicAttenuation(float differentialLength) {
+  const float maxNumberOfLines=10.0;
+  return clamp(1.0/(differentialLength+1.0)-1.0/maxNumberOfLines, 0.0, 1.0);
+}
+
+float contributeOnAxis(float position) {
+	float differentialLength=length(vec2(dFdx(position),dFdy(position)));
+	differentialLength*=SQRT2;
+
+  float result=isPointOnLine(position,differentialLength);
+
+	float anisotropicAttenuation=getAnisotropicAttenuation(differentialLength);
+	result*=anisotropicAttenuation;
+  
+  return result;
+}
 
 void main() {
   // color is RGBA: u, v, 0, 1
@@ -63,12 +92,20 @@ void main() {
   // float moddedX = mod(vPosition.x, lineDistance);
   float moddedX = vPosition.x / lineDistance - floor(vPosition.x / lineDistance + 0.5);
   if (abs(moddedX) <= lineWidth) {
-    float normalizedX = SKEWNESS * (moddedX - 1.0) / lineWidth;
+    float normalizedX = SKEWNESS * moddedX / lineWidth;
     opacity = min(min(normalizedX, SKEWNESS-normalizedX), 1.0);
   }
+
+  // from babylonjs
+  moddedX = vPosition.x / lineDistance;
+  opacity = contributeOnAxis(moddedX);
+
   gl_FragColor = vec4(0.0, 0.0, 0.0, opacity);
 }
 `;
+
+/*
+*/
 
 export const gridShader = `
 precision mediump float;

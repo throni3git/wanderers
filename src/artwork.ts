@@ -245,8 +245,9 @@ export class Artwork {
     const meshLandscape = new THREE.Mesh(geoLandscape, this._matLandscape);
     meshLandscape.position.set(-2, -1, 2);
     meshLandscape.rotation.x = -Math.PI / 2;
-    meshLandscape.scale.set(10, 8, 2);
-    meshLandscape.position.set(0, -0.5, 6);
+    meshLandscape.rotation.z = 0.1;
+    meshLandscape.scale.set(10, 10, 2);
+    meshLandscape.position.set(0, -0.25, 5.5);
     // meshLandscape.rotation.x = 0.1;
     this._scene.add(meshLandscape);
 
@@ -281,6 +282,7 @@ export class Artwork {
     // meshAllLines.rotation.y = 0.3;
     // this._scene.add(meshAllLines);
 
+    /*
     let geoLineLandscape = new THREE.Geometry();
     for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
       let oldHeight = 0;
@@ -301,6 +303,7 @@ export class Artwork {
         geoLineLandscape.vertices.push(v);
       }
     }
+*/
 
     // var meshLineLandscape = new MeshLine();
     // meshLineLandscape.setGeometry(geoLineLandscape);
@@ -316,10 +319,12 @@ export class Artwork {
     // meshMeshLineLandscape.scale.set(10, 0.5, 8);
     // this._scene.add(meshMeshLineLandscape);
 
+    /*
     const meshAllLines = new THREE.LineSegments(geoLineLandscape, matOrbit);
     meshAllLines.scale.set(10, 0.5, 8);
     meshAllLines.position.set(-5, -0.5, 2);
     meshAllLines.rotation.x = 0.1;
+    */
     // meshAllLines.rotation.y = 0.3;
     // this._scene.add(meshAllLines);
   }
@@ -364,9 +369,9 @@ export class Artwork {
     }
     this._lastUpdateTime = now;
 
-    // if (this._matLandscape) {
-    //   this._matLandscape.uniforms["time"].value =
-    //     (0.025 * (Date.now() - this._startTime)) / 1000;
-    // }
+    if (this._matLandscape) {
+      this._matLandscape.uniforms["time"].value =
+        (0.005 * (Date.now() - this._startTime)) / 1000;
+    }
   }
 }

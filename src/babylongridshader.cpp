@@ -55,11 +55,13 @@ float getVisibility(float position)
 	}
 	return gridControl.z;
 }
+
 float getAnisotropicAttenuation(float differentialLength)
 {
 	const float maxNumberOfLines = 10.0;
 	return clamp(1.0 / (differentialLength + 1.0) - 1.0 / maxNumberOfLines, 0.0, 1.0);
 }
+
 float isPointOnLine(float position, float differentialLength)
 {
 	float fractionPartOfPosition = position - floor(position + 0.5);
@@ -68,6 +70,7 @@ float isPointOnLine(float position, float differentialLength)
 	float result = 0.5 + 0.5 * cos(fractionPartOfPosition * PI);
 	return result;
 }
+
 float contributionOnAxis(float position)
 {
 	float differentialLength = length(vec2(dFdx(position), dFdy(position)));
@@ -82,11 +85,13 @@ float contributionOnAxis(float position)
 	result *= anisotropicAttenuation;
 	return result;
 }
+
 float normalImpactOnAxis(float x)
 {
 	float normalImpact = clamp(1.0 - 3.0 * abs(x * x * x), 0.0, 1.0);
 	return normalImpact;
 }
+
 void main(void)
 {
 
@@ -106,16 +111,16 @@ void main(void)
 
 	vec3 color = mix(mainColor, lineColor, grid);
 #ifdef FOG
-#include <fogFragment>
+  #include <fogFragment>
 #endif
 #ifdef TRANSPARENT
 	float distanceToFragment = length(vCameraSpacePosition.xyz);
 	float cameraPassThrough = clamp(distanceToFragment - 0.25, 0.0, 1.0);
 	float opacity = clamp(grid, 0.08, cameraPassThrough * gridControl.w * grid);
 	gl_FragColor = vec4(color.rgb, opacity);
-#ifdef PREMULTIPLYALPHA
-	gl_FragColor.rgb *= opacity;
-#endif
+	#ifdef PREMULTIPLYALPHA
+		gl_FragColor.rgb *= opacity;
+	#endif
 #else
 
 	gl_FragColor = vec4(color.rgb, 1.0);
