@@ -1,7 +1,11 @@
 import * as THREE from "three";
 
 import * as LightSetup from "./LightSetup";
-import { displacmentVertexShader, gridShader, displacmentFragmentShader } from "./shaders";
+import {
+  displacmentVertexShader,
+  gridShader,
+  displacmentFragmentShader
+} from "./shaders";
 
 import { MeshLine, MeshLineMaterial } from "./meshline/THREE.MeshLine";
 
@@ -13,15 +17,19 @@ async function loadTexture(url: string): Promise<THREE.Texture> {
   const result = new Promise<THREE.Texture>((resolve, reject) => {
     textureLoader.load(
       url,
-      texture => { resolve(texture) },
-      error => { reject(error) }
-    )
-  })
+      texture => {
+        resolve(texture);
+      },
+      error => {
+        reject(error);
+      }
+    );
+  });
   return result;
 }
 
 export class Artwork {
-  private _orbits: { speed: number, lineObject: THREE.Object3D }[] = [];
+  private _orbits: { speed: number; lineObject: THREE.Object3D }[] = [];
   private _lastUpdateTime = Date.now();
   private _startTime = Date.now();
   private _matLandscape: THREE.ShaderMaterial;
@@ -43,17 +51,24 @@ export class Artwork {
     const planetSize = 0.08;
     const extraPlanetSize = 0.03;
     const LINE_RESOLUTION = 50;
-    const LINE_AMOUNT = 100;
+    const LINE_AMOUNT = 200;
     const LINE_WIDTH = 0.01;
 
-    const matWireframe = new THREE.MeshBasicMaterial({ color: 0x444444, wireframe: true });
+    const matWireframe = new THREE.MeshBasicMaterial({
+      color: 0x444444,
+      wireframe: true
+    });
 
     // add background of white grain
     const texWhiteGrain = await loadTexture("assets/black/grain2.jpg");
     texWhiteGrain.repeat.set(3, 3);
     texWhiteGrain.wrapS = texWhiteGrain.wrapT = THREE.RepeatWrapping;
     const geoGrain = new THREE.PlaneGeometry(32, 32);
-    const matWhiteGrain = new THREE.MeshBasicMaterial({ color: 0x000000, alphaMap: texWhiteGrain, transparent: true });
+    const matWhiteGrain = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      alphaMap: texWhiteGrain,
+      transparent: true
+    });
     const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
     this._scene.add(meshWhiteGrain);
     meshWhiteGrain.position.z = -2;
@@ -68,7 +83,11 @@ export class Artwork {
     texWhiteGrain2.rotation = 1; // avoid correlation between noise textures
     texWhiteGrain2.wrapS = texWhiteGrain2.wrapT = THREE.RepeatWrapping;
     texWhiteGrain2.needsUpdate = true;
-    const matWhiteGrain2 = new THREE.MeshBasicMaterial({ color: 0x000000, alphaMap: texWhiteGrain2, transparent: true });
+    const matWhiteGrain2 = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      alphaMap: texWhiteGrain2,
+      transparent: true
+    });
     const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
     this._scene.add(meshWhiteGrain2);
     meshWhiteGrain2.position.z = -6;
@@ -81,7 +100,11 @@ export class Artwork {
     const texMapSun = await loadTexture("assets/white/sun_map.jpg");
     const texAlphaSun = await loadTexture("assets/white/sun_alpha.jpg");
     const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
-    const matSun = new THREE.MeshPhongMaterial({ map: texMapSun, alphaMap: texAlphaSun, transparent: true });
+    const matSun = new THREE.MeshPhongMaterial({
+      map: texMapSun,
+      alphaMap: texAlphaSun,
+      transparent: true
+    });
     const meshSun = new THREE.Mesh(geoSun, matSun);
     this._scene.add(meshSun);
 
@@ -89,43 +112,73 @@ export class Artwork {
 
     // inner orbit
     const matOrbit = new THREE.LineBasicMaterial({ color: 0x000000 });
-    const innerOrbit = this.createOrbitLine(orbitSize * orbitFactor, orbitResolution, matOrbit);
+    const innerOrbit = this.createOrbitLine(
+      orbitSize * orbitFactor,
+      orbitResolution,
+      matOrbit
+    );
     innerOrbit.rotation.z = Math.random() * Math.PI * 2;
     this._orbits.push({ speed: 1 / 20, lineObject: innerOrbit });
     this._scene.add(innerOrbit);
 
-    const matPlanet = new THREE.MeshBasicMaterial({ color: 0x000000, side: THREE.DoubleSide });
+    const matPlanet = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      side: THREE.DoubleSide
+    });
     const geoInnerPlanet = new THREE.CircleBufferGeometry(planetSize, 20);
     const meshInnerPlanet = new THREE.Mesh(geoInnerPlanet, matPlanet);
     meshInnerPlanet.position.y = orbitSize * orbitFactor;
     innerOrbit.add(meshInnerPlanet);
 
     // middle orbit
-    const middleOrbit = this.createOrbitLine(orbitSize * orbitFactor * orbitFactor, orbitResolution, matOrbit);
+    const middleOrbit = this.createOrbitLine(
+      orbitSize * orbitFactor * orbitFactor,
+      orbitResolution,
+      matOrbit
+    );
     middleOrbit.rotation.z = Math.random() * Math.PI * 2;
     this._orbits.push({ speed: -1 / 30, lineObject: middleOrbit });
     this._scene.add(middleOrbit);
 
-    const geoMiddlePlanet = new THREE.CircleBufferGeometry(planetSize * orbitFactor, 20);
+    const geoMiddlePlanet = new THREE.CircleBufferGeometry(
+      planetSize * orbitFactor,
+      20
+    );
     const meshMiddlePlanet = new THREE.Mesh(geoMiddlePlanet, matPlanet);
     meshMiddlePlanet.position.y = orbitSize * orbitFactor * orbitFactor;
     middleOrbit.add(meshMiddlePlanet);
 
     // outer orbit
     const outerOrbitSpeed = 1 / 24;
-    const outerOrbit = this.createOrbitLine(orbitSize * orbitFactor * orbitFactor * orbitFactor, orbitResolution, matOrbit);
+    const outerOrbit = this.createOrbitLine(
+      orbitSize * orbitFactor * orbitFactor * orbitFactor,
+      orbitResolution,
+      matOrbit
+    );
     outerOrbit.rotation.z = Math.random() * Math.PI * 2;
     this._orbits.push({ speed: outerOrbitSpeed, lineObject: outerOrbit });
     this._scene.add(outerOrbit);
 
-    const geoOuterPlanet = new THREE.CircleBufferGeometry(planetSize * orbitFactor * orbitFactor, 20);
+    const geoOuterPlanet = new THREE.CircleBufferGeometry(
+      planetSize * orbitFactor * orbitFactor,
+      20
+    );
     const meshOuterPlanet = new THREE.Mesh(geoOuterPlanet, matPlanet);
-    meshOuterPlanet.position.y = orbitSize * orbitFactor * orbitFactor * orbitFactor;
+    meshOuterPlanet.position.y =
+      orbitSize * orbitFactor * orbitFactor * orbitFactor;
     outerOrbit.add(meshOuterPlanet);
 
     // extra orbit in outer orbit
-    const matMoonOrbit = new THREE.LineDashedMaterial({ color: 0x000000, gapSize: 0.02, dashSize: 0.03 });
-    const outerMoonOrbit = this.createOrbitLine(extraOrbitSize, orbitResolution, matMoonOrbit);
+    const matMoonOrbit = new THREE.LineDashedMaterial({
+      color: 0x000000,
+      gapSize: 0.02,
+      dashSize: 0.03
+    });
+    const outerMoonOrbit = this.createOrbitLine(
+      extraOrbitSize,
+      orbitResolution,
+      matMoonOrbit
+    );
     outerMoonOrbit.rotation.z = Math.random();
     outerMoonOrbit.position.y = meshOuterPlanet.position.y;
     this._orbits.push({ speed: -outerOrbitSpeed, lineObject: outerMoonOrbit });
@@ -137,7 +190,10 @@ export class Artwork {
     this._orbits.push({ speed: 1 / 5, lineObject: outerMoonSupport });
     outerOrbit.add(outerMoonSupport);
 
-    const geoOuterExtraPlanet = new THREE.CircleBufferGeometry(extraPlanetSize, 20);
+    const geoOuterExtraPlanet = new THREE.CircleBufferGeometry(
+      extraPlanetSize,
+      20
+    );
     const meshOuterExtraPlanet = new THREE.Mesh(geoOuterExtraPlanet, matPlanet);
     meshOuterExtraPlanet.position.y = extraOrbitSize;
     outerMoonSupport.add(meshOuterExtraPlanet);
@@ -166,28 +222,40 @@ export class Artwork {
           type: "v2",
           value: new THREE.Vector2(50, 50)
         },
+        lineWidth: {
+          type: "f",
+          value: 0.02
+        },
+        lineDistance: {
+          type: "f",
+          value: 0.1
+        }
       },
       vertexShader: displacmentVertexShader,
-      fragmentShader: gridShader,
-      // fragmentShader: displacmentFragmentShader,
+      // fragmentShader: gridShader,
+      fragmentShader: displacmentFragmentShader,
       transparent: true,
       side: THREE.DoubleSide
     });
+    this._matLandscape.extensions.derivatives = true;
     // const geoLandscape = new THREE.BoxBufferGeometry(2, 2, 2, 12, 12, 12);
-    const geoLandscape = new THREE.PlaneBufferGeometry(2, 2, 120, 120);
+    const geoLandscape = new THREE.PlaneBufferGeometry(1, 1, 120, 120);
     // const geoLandscape = new THREE.IcosahedronBufferGeometry(1, 2);
 
     const meshLandscape = new THREE.Mesh(geoLandscape, this._matLandscape);
     meshLandscape.position.set(-2, -1, 2);
-    meshLandscape.rotation.x = (-Math.PI / 2);
-    // this._scene.add(meshLandscape);
+    meshLandscape.rotation.x = -Math.PI / 2;
+    meshLandscape.rotation.z = 0.1;
+    meshLandscape.scale.set(10, 10, 2);
+    meshLandscape.position.set(0, -0.25, 5.5);
+    // meshLandscape.rotation.x = 0.1;
+    this._scene.add(meshLandscape);
 
     // const helperLandscapeNormals = new THREE.VertexNormalsHelper( meshLandscape, 2, 0x00ff00, 1 );
     // this._scene.add(helperLandscapeNormals);
 
     // const meshAllLines = new THREE.Object3D();
     // for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
-
 
     //   let geoLineLandscape = new THREE.Geometry();
     //   let oldHeight = 0;
@@ -214,23 +282,20 @@ export class Artwork {
     // meshAllLines.rotation.y = 0.3;
     // this._scene.add(meshAllLines);
 
-
-
-
-
-
-
+    /*
     let geoLineLandscape = new THREE.Geometry();
     for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
-
-
       let oldHeight = 0;
       const alpha = 0.1;
 
       for (let j = 0; j < LINE_RESOLUTION; j++) {
         const height = -j / LINE_RESOLUTION + Math.random();
         const filteredHeight = height * alpha + (1 - alpha) * oldHeight;
-        const v = new THREE.Vector3(lineIdx / LINE_AMOUNT, filteredHeight, j / LINE_RESOLUTION);
+        const v = new THREE.Vector3(
+          lineIdx / LINE_AMOUNT,
+          filteredHeight,
+          j / LINE_RESOLUTION
+        );
         oldHeight = filteredHeight;
         if (j !== 0 && j !== LINE_RESOLUTION - 1) {
           geoLineLandscape.vertices.push(v);
@@ -238,27 +303,46 @@ export class Artwork {
         geoLineLandscape.vertices.push(v);
       }
     }
+*/
 
     // var meshLineLandscape = new MeshLine();
     // meshLineLandscape.setGeometry(geoLineLandscape);
-    // const matMeshLineLandscape = new MeshLineMaterial({ color: new THREE.Color(0x0), lineWidth: LINE_WIDTH, sizeAttenuation: 1 });
-    // const meshMeshLineLandscape = new THREE.Mesh(meshLineLandscape.geometry, matMeshLineLandscape);
-    // meshAllLines.add(meshMeshLineLandscape);
+    // const matMeshLineLandscape = new MeshLineMaterial({
+    //   color: new THREE.Color(0x0),
+    //   lineWidth: LINE_WIDTH,
+    //   sizeAttenuation: 1
+    // });
+    // const meshMeshLineLandscape = new THREE.Mesh(
+    //   meshLineLandscape.geometry,
+    //   matMeshLineLandscape
+    // );
+    // meshMeshLineLandscape.scale.set(10, 0.5, 8);
+    // this._scene.add(meshMeshLineLandscape);
 
+    /*
     const meshAllLines = new THREE.LineSegments(geoLineLandscape, matOrbit);
-    meshAllLines.scale.set(5, 0.5, 8);
+    meshAllLines.scale.set(10, 0.5, 8);
     meshAllLines.position.set(-5, -0.5, 2);
     meshAllLines.rotation.x = 0.1;
-    meshAllLines.rotation.y = 0.3;
-    this._scene.add(meshAllLines);
+    */
+    // meshAllLines.rotation.y = 0.3;
+    // this._scene.add(meshAllLines);
   }
 
-  private createOrbitLine(radius: number, resolution: number, material: THREE.LineBasicMaterial | THREE.LineDashedMaterial): THREE.Line {
+  private createOrbitLine(
+    radius: number,
+    resolution: number,
+    material: THREE.LineBasicMaterial | THREE.LineDashedMaterial
+  ): THREE.Line {
     const geometry = new THREE.Geometry();
     for (let i = 0; i <= resolution; i++) {
-      const radian = i / resolution * Math.PI * 2;
+      const radian = (i / resolution) * Math.PI * 2;
       geometry.vertices.push(
-        new THREE.Vector3(radius * Math.cos(radian), radius * Math.sin(radian), 0)
+        new THREE.Vector3(
+          radius * Math.cos(radian),
+          radius * Math.sin(radian),
+          0
+        )
       );
     }
 
@@ -280,12 +364,14 @@ export class Artwork {
     const now = Date.now();
     const deltaT = now - this._lastUpdateTime;
     for (const orbit of this._orbits) {
-      orbit.lineObject.rotation.z += deltaT * orbit.speed * Math.PI / 2 / 1000
+      orbit.lineObject.rotation.z +=
+        (deltaT * orbit.speed * Math.PI) / 2 / 1000;
     }
     this._lastUpdateTime = now;
 
     if (this._matLandscape) {
-      this._matLandscape.uniforms["time"].value = 0.25 * (Date.now() - this._startTime) / 1000;
+      this._matLandscape.uniforms["time"].value =
+        (0.005 * (Date.now() - this._startTime)) / 1000;
     }
   }
 }
