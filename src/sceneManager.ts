@@ -5,8 +5,11 @@ import { Artwork } from "./artwork";
 
 function detectWebGL(): boolean {
   try {
-    var canvas = document.createElement('canvas');
-    return !!((window as any).WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+    var canvas = document.createElement("canvas");
+    return !!(
+      (window as any).WebGLRenderingContext &&
+      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+    );
   } catch (e) {
     return false;
   }
@@ -35,7 +38,6 @@ export class SceneManager {
   private _cameraRotationRadius = 0.5;
 
   constructor(containerElement: HTMLDivElement) {
-
     // TODO 2018-08-04 check for browser compatibility
     const url = new URL(window.location.href);
     const dbgCamera = url.searchParams.get("debugCamera");
@@ -76,10 +78,16 @@ export class SceneManager {
     this.render();
   }
 
-  private onDocumentMouseMove = (event) => {
-    this._mouseX = (event.clientX - this._windowHalfX) / window.innerWidth * 2 * this._cameraRotationRadius;
-    this._mouseY = (event.clientY - this._windowHalfY) / window.innerHeight * 2 * this._cameraRotationRadius;
-  }
+  private onDocumentMouseMove = event => {
+    this._mouseX =
+      ((event.clientX - this._windowHalfX) / window.innerWidth) *
+      2 *
+      this._cameraRotationRadius;
+    this._mouseY =
+      ((event.clientY - this._windowHalfY) / window.innerHeight) *
+      2 *
+      this._cameraRotationRadius;
+  };
 
   private setupCamera(): void {
     this._camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20);
@@ -100,8 +108,14 @@ export class SceneManager {
 
   private resizeCanvas = (): void => {
     const containerStyle = getComputedStyle(this._containerElement);
-    const containerWidth = parseInt(containerStyle.getPropertyValue("width"), 10);
-    const containerHeight = parseInt(containerStyle.getPropertyValue("height"), 10);
+    const containerWidth = parseInt(
+      containerStyle.getPropertyValue("width"),
+      10
+    );
+    const containerHeight = parseInt(
+      containerStyle.getPropertyValue("height"),
+      10
+    );
 
     const width = Math.max(containerWidth, 1);
     const height = Math.max(containerHeight, 1);
@@ -137,12 +151,20 @@ export class SceneManager {
   private render = (): void => {
     requestAnimationFrame(this.render);
 
-    this._camera.position.x += (this._mouseX - this._camera.position.x) * this._cameraVelocity;
-    this._camera.position.y += (- this._mouseY - this._camera.position.y) * this._cameraVelocity;
+    this._camera.position.x +=
+      (this._mouseX - this._camera.position.x) * this._cameraVelocity;
+    this._camera.position.y +=
+      (-this._mouseY - this._camera.position.y) * this._cameraVelocity;
 
     const MAX_CAM_OFFSET = 3;
-    this._camera.position.x = Math.min(MAX_CAM_OFFSET, Math.max(-MAX_CAM_OFFSET, this._camera.position.x));
-    this._camera.position.y = Math.min(MAX_CAM_OFFSET, Math.max(-MAX_CAM_OFFSET, this._camera.position.y));
+    this._camera.position.x = Math.min(
+      MAX_CAM_OFFSET,
+      Math.max(-MAX_CAM_OFFSET, this._camera.position.x)
+    );
+    this._camera.position.y = Math.min(
+      MAX_CAM_OFFSET,
+      Math.max(-MAX_CAM_OFFSET, this._camera.position.y)
+    );
     this._camera.lookAt(this._scene.position);
 
     this._artwork.update();

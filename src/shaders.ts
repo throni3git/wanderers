@@ -1,10 +1,13 @@
-import {classic3DNoise} from "./noiseShader";
+import { classic3DNoise } from "./noiseShader";
 
-export const displacmentVertexShader = classic3DNoise + `
+export const displacmentVertexShader =
+  classic3DNoise +
+  `
 varying vec2 vUv;
 varying float noise;
 uniform float time;
 varying vec3 vNormal;
+varying vec4 vPosition;
 
 float turbulence(vec3 p) {
   float w = 100.0;
@@ -20,6 +23,7 @@ float turbulence(vec3 p) {
 void main() {
   vUv = uv;
   vNormal = normal;
+  // vPosition = position;
 
   // get a turbulent 3d noise using the normal, normal to high frequency
   noise = turbulence( 0.5 * position + time );
@@ -34,19 +38,35 @@ void main() {
 
   // move the position along the normal and transform it
   vec3 newPosition = position + normal * displacement;
+  vPosition = modelMatrix  * vec4(newPosition, 1.0);
   gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
 }
 `;
 
 export const displacmentFragmentShader = `
+
 varying vec2 vUv;
 varying float noise;
 varying vec3 vNormal;
+varying vec4 vPosition;
+
+uniform float lineWidth;
+uniform float lineDistance;
+
+#define SKEWNESS 4.0
 
 void main() {
   // color is RGBA: u, v, 0, 1
   vec2 color = vUv * (1.0-2.0*noise);
-  gl_FragColor = vec4(normalize(vNormal), 1.0);
+  // gl_FragColor = vec4(normalize(vNormal), 1.0);
+  float opacity = 0.0;
+  // float moddedX = mod(vPosition.x, lineDistance);
+  float moddedX = vPosition.x / lineDistance - floor(vPosition.x / lineDistance + 0.5);
+  if (abs(moddedX) <= lineWidth) {
+    float normalizedX = SKEWNESS * (moddedX - 1.0) / lineWidth;
+    opacity = min(min(normalizedX, SKEWNESS-normalizedX), 1.0);
+  }
+  gl_FragColor = vec4(0.0, 0.0, 0.0, opacity);
 }
 `;
 
@@ -76,5 +96,3 @@ void main() {
   }
 }
 `;
-
-
