@@ -2,6 +2,10 @@ import * as React from "react";
 
 import { loadJsonFile } from "../utils";
 
+interface INewsFile {
+  entries: INews[];
+}
+
 interface INews {
   date: number;
   caption: string;
@@ -16,9 +20,9 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     }
 
     try {
-      loadJsonFile<INews[]>("data/news.json").then(news => {
+      loadJsonFile<INewsFile>("data/news.json").then(news => {
         console.log(news);
-        this.setState({ content: news })
+        this.setState({ content: news.entries })
       });
     }
     catch(e) {
