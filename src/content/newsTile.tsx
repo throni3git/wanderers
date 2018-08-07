@@ -1,6 +1,8 @@
 import * as React from "react";
 
 import { loadJsonFile } from "../utils";
+import styled from "../../node_modules/styled-components";
+import { Colors } from "../artwork";
 
 interface INewsFile {
   entries: INews[];
@@ -11,6 +13,20 @@ interface INews {
   caption: string;
   text: string;
 }
+
+const NewsEntryContainer = styled.div`
+padding: 20px;
+`;
+
+const NewsEntryText = styled.div`
+padding: 20px;
+`;
+
+const NewsEntryCaption = styled.div`
+font-size: 1.5em;
+border-bottom: 1px solid ${Colors.DefaultTextColor};
+padding: 20px;
+`;
 
 export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
   constructor(props: NewsTile["props"]) {
@@ -25,12 +41,12 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
         this.setState({ content: news.entries })
       });
     }
-    catch(e) {
+    catch (e) {
       console.log(e);
     }
   }
 
-  private sortLambda = (a: INews, b:INews) => {
+  private sortLambda = (a: INews, b: INews) => {
     if (a.date < b.date) {
       return 1;
     } else if (a.date > b.date) {
@@ -44,14 +60,15 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
     return (
       <div>
-        {sortedEntries.map(newsEntry => (
-          <div>
-            <div>
-              <span>{newsEntry.date}</span>
-              <span>{newsEntry.caption}</span>
-            </div>
-            <div>{newsEntry.text}</div>
-          </div>
+        {sortedEntries.map(entry => (
+          <NewsEntryContainer key={entry.date}>
+            <NewsEntryCaption>
+              <span>{entry.date}</span>
+              <span> - </span>
+              <span>{entry.caption}</span>
+            </NewsEntryCaption>
+            <NewsEntryText>{entry.text}</NewsEntryText>
+          </NewsEntryContainer>
         ))}
       </div>
     );
