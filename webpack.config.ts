@@ -23,7 +23,10 @@ const config: webpack.Configuration = {
 	plugins: [
 		new htmlPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
 		new cleanPlugin(isProduction ? ["dist/**/*"] : []),
-		new copyPlugin([{ from: "assets/", to: "assets/" }])
+		new copyPlugin([
+			{ from: "assets/", to: "assets/" },
+			{ from: "data/", to: "data/" }
+		])
 	],
 	output: {
 		path: path.resolve("dist"),
