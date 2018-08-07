@@ -2,6 +2,8 @@ import * as React from "react";
 import styled from "styled-components";
 import { Colors } from "./artwork";
 
+export const MenuEntryNames = ["News", "Gallery", "Info", "Live", "Contact", "Links"]
+
 const MenuEntry = styled.span`
 font-size: 2em;
 font-weight: bold;
@@ -13,11 +15,11 @@ cursor: pointer;
 `;
 
 const MenuContainer = styled.div`
-padding-top: 10px;
-padding-bottom: 10px;
-display: flex;
-flex-direction: row;
-justify-content: space-evenly;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 `;
 
 export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
@@ -26,14 +28,18 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
   }
 
   public render() {
+    const allContents = MenuEntryNames;
     return (
       <MenuContainer>
-        <MenuEntry>News</MenuEntry>
-        <MenuEntry>Info</MenuEntry>
-        <MenuEntry>Gallery</MenuEntry>
-        <MenuEntry>Live</MenuEntry>
-        <MenuEntry>Contact</MenuEntry>
-        <MenuEntry>Links</MenuEntry>
+        {allContents.map(name => (
+          <MenuEntry
+            onClick={() => this.props.setActiveContent(name)}
+            key={name}
+            style={{color: this.props.activeContent === name ? "green" : "red"}}
+          >
+            {name}
+          </MenuEntry>
+        ))}
       </MenuContainer>
     );
   }
@@ -41,6 +47,9 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
 
 export default SiteMenu;
 
-export interface ISiteMenuProps { }
+export interface ISiteMenuProps {
+  setActiveContent: (name: string) => void;
+  activeContent: string;
+}
 
-interface ISiteMenuState { }
+interface ISiteMenuState {}
