@@ -1,5 +1,11 @@
 import * as React from "react";
 import { SiteMenu, MenuEntryNames } from "./SiteMenu";
+import { ContactTile } from "./content/contactTile";
+import { GalleryTile } from "./content/galleryTile";
+import { InfoTile } from "./content/infoTile";
+import { LinksTile } from "./content/linksTile";
+import { LiveTile } from "./content/liveTile";
+import { NewsTile } from "./content/newsTile";
 
 export class SiteContent extends React.Component<
   ISiteContentProps,
@@ -29,28 +35,22 @@ export class SiteContent extends React.Component<
   private getCurrentContent() {
     switch (this.state.activeContent) {
       case MenuEntryNames.Contact: {
-        return <div>Contact</div>;
-        break;
+        return <ContactTile>Contact</ContactTile>;
       }
       case MenuEntryNames.Gallery: {
-        return <div>Gallery</div>;
-        break;
+        return <GalleryTile>Gallery</GalleryTile>;
       }
       case MenuEntryNames.Info: {
-        return <div>Info</div>;
-        break;
+        return <InfoTile>Info</InfoTile>;
       }
       case MenuEntryNames.Links: {
-        return <div>Links</div>;
-        break;
+        return <LinksTile>Links</LinksTile>;
       }
       case MenuEntryNames.Live: {
-        return <div>Live</div>;
-        break;
+        return <LiveTile>Live</LiveTile>;
       }
       case MenuEntryNames.News: {
-        return <div>News</div>;
-        break;
+        return <NewsTile>News</NewsTile>;
       }
     }
     return <div></div>;

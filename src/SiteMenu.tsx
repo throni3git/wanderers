@@ -2,7 +2,14 @@ import * as React from "react";
 import styled from "styled-components";
 import { Colors } from "./artwork";
 
-export const MenuEntryNames = { News: "News", Gallery: "Gallery", Info: "Info", Live: "Live", Contact: "Contact", Links: "Links" };
+export const MenuEntryNames = {
+  News: "News",
+  Gallery: "Gallery",
+  Info: "Info",
+  Live: "Live",
+  Contact: "Contact",
+  Links: "Links"
+};
 
 const MenuEntry = styled.span`
 font-size: 2em;

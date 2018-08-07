@@ -16,7 +16,7 @@ const ArtworkContainer = styled.div`
 
 const SiteContainer = styled.div`
   width: 900px;
-  height: 90%;
+  height: 95vh;
   background: rgba(255, 255, 255, 0.7);
   overflow: hidden;
   box-shadow: #444444 0 0 10px;
@@ -30,12 +30,8 @@ const SiteContainer = styled.div`
 
 const SiteHeading = styled.div`
   background: url(assets/logo_heading.svg);
-  // height: 100px;
-  // background-size: auto 100px;
   background-position: center;
   background-repeat: no-repeat;
-  // padding-top: 30px;
-  // padding-bottom: 20px;
   height: 8vh;
   background-size: contain;
   margin: 3vh 3vw;
