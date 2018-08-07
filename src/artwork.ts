@@ -3,11 +3,8 @@ import * as THREE from "three";
 import * as LightSetup from "./LightSetup";
 import {
   displacmentVertexShader,
-  gridShader,
   displacmentFragmentShader
-} from "./shaders";
-
-import { MeshLine, MeshLineMaterial } from "./meshline/THREE.MeshLine";
+} from "./shaders/landscapeShader";
 
 import { DBG_CAMERA } from "./sceneManager";
 
@@ -48,7 +45,7 @@ export class Artwork {
     this._setupScene();
   }
 
-  private async _setupScene() {
+  private async _setupScene(): Promise<void> {
     const sunSize = 1.5;
     const orbitSize = sunSize * 0.97;
     const orbitResolution = 256;
@@ -238,16 +235,13 @@ export class Artwork {
         }
       },
       vertexShader: displacmentVertexShader,
-      // fragmentShader: gridShader,
       fragmentShader: displacmentFragmentShader,
       transparent: true,
       side: THREE.DoubleSide
     });
     this._matLandscape.extensions.derivatives = true;
-    // const geoLandscape = new THREE.BoxBufferGeometry(2, 2, 2, 12, 12, 12);
-    const geoLandscape = new THREE.PlaneBufferGeometry(1, 1, 120, 120);
-    // const geoLandscape = new THREE.IcosahedronBufferGeometry(1, 2);
 
+    const geoLandscape = new THREE.PlaneBufferGeometry(1, 1, 120, 120);
     const meshLandscape = new THREE.Mesh(geoLandscape, this._matLandscape);
     meshLandscape.position.set(-2, -1, 2);
     meshLandscape.rotation.x = -Math.PI / 2;
@@ -256,83 +250,6 @@ export class Artwork {
     meshLandscape.position.set(0, -0.25, 5.5);
     // meshLandscape.rotation.x = 0.1;
     this._scene.add(meshLandscape);
-
-    // const helperLandscapeNormals = new THREE.VertexNormalsHelper( meshLandscape, 2, 0x00ff00, 1 );
-    // this._scene.add(helperLandscapeNormals);
-
-    // const meshAllLines = new THREE.Object3D();
-    // for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
-
-    //   let geoLineLandscape = new THREE.Geometry();
-    //   let oldHeight = 0;
-    //   const alpha = 0.1;
-    //   for (let j = 0; j < LINE_RESOLUTION; j++) {
-    //     const height = -j / LINE_RESOLUTION + Math.random();
-    //     const filteredHeight = height*alpha + (1-alpha)*oldHeight;
-    //     const v = new THREE.Vector3(lineIdx / LINE_AMOUNT, filteredHeight, j / LINE_RESOLUTION);
-    //     oldHeight = filteredHeight;
-    //     geoLineLandscape.vertices.push(v);
-    //   }
-
-    //   var meshLineLandscape = new MeshLine();
-    //   meshLineLandscape.setGeometry(geoLineLandscape);
-    //   const matMeshLineLandscape = new MeshLineMaterial({ color: new THREE.Color(0x0), lineWidth: LINE_WIDTH, sizeAttenuation: 1 });
-    //   const meshMeshLineLandscape = new THREE.Mesh(meshLineLandscape.geometry, matMeshLineLandscape);
-    //   // meshAllLines.add(meshMeshLineLandscape);
-
-    //   const u = new THREE.LineSegments(geoLineLandscape);
-    //   meshAllLines.add(u);
-    // }
-    // meshAllLines.scale.set(5, 0.5, 8);
-    // meshAllLines.position.set(-4, -0.5, 3);
-    // meshAllLines.rotation.y = 0.3;
-    // this._scene.add(meshAllLines);
-
-    /*
-    let geoLineLandscape = new THREE.Geometry();
-    for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
-      let oldHeight = 0;
-      const alpha = 0.1;
-
-      for (let j = 0; j < LINE_RESOLUTION; j++) {
-        const height = -j / LINE_RESOLUTION + Math.random();
-        const filteredHeight = height * alpha + (1 - alpha) * oldHeight;
-        const v = new THREE.Vector3(
-          lineIdx / LINE_AMOUNT,
-          filteredHeight,
-          j / LINE_RESOLUTION
-        );
-        oldHeight = filteredHeight;
-        if (j !== 0 && j !== LINE_RESOLUTION - 1) {
-          geoLineLandscape.vertices.push(v);
-        }
-        geoLineLandscape.vertices.push(v);
-      }
-    }
-*/
-
-    // var meshLineLandscape = new MeshLine();
-    // meshLineLandscape.setGeometry(geoLineLandscape);
-    // const matMeshLineLandscape = new MeshLineMaterial({
-    //   color: new THREE.Color(0x0),
-    //   lineWidth: LINE_WIDTH,
-    //   sizeAttenuation: 1
-    // });
-    // const meshMeshLineLandscape = new THREE.Mesh(
-    //   meshLineLandscape.geometry,
-    //   matMeshLineLandscape
-    // );
-    // meshMeshLineLandscape.scale.set(10, 0.5, 8);
-    // this._scene.add(meshMeshLineLandscape);
-
-    /*
-    const meshAllLines = new THREE.LineSegments(geoLineLandscape, matOrbit);
-    meshAllLines.scale.set(10, 0.5, 8);
-    meshAllLines.position.set(-5, -0.5, 2);
-    meshAllLines.rotation.x = 0.1;
-    */
-    // meshAllLines.rotation.y = 0.3;
-    // this._scene.add(meshAllLines);
   }
 
   private createOrbitLine(
