@@ -11,6 +11,12 @@ import { MeshLine, MeshLineMaterial } from "./meshline/THREE.MeshLine";
 
 import { DBG_CAMERA } from "./sceneManager";
 
+export const Colors = {
+  DefaultTextColor: "#000000",
+  LinkHoverColor: "#888888",
+  LinkShadowColor: "#856234"
+}
+
 const textureLoader = new THREE.TextureLoader();
 
 async function loadTexture(url: string): Promise<THREE.Texture> {

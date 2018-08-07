@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { SceneManager } from "./sceneManager";
+import { SiteContent } from "./siteContent";
 
 const ArtworkContainer = styled.div`
   width: 100%;
@@ -14,7 +15,7 @@ const ArtworkContainer = styled.div`
 `;
 
 const SiteContainer = styled.div`
-  width: 800px;
+  width: 900px;
   height: 90%;
   background: rgba(255, 255, 255, 0.7);
   overflow: hidden;
@@ -33,7 +34,7 @@ const SiteHeading = styled.div`
   background-size: auto 100px;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 20px;
+  padding-top: 30px;
   padding-bottom: 20px;
 `;
 
@@ -60,7 +61,12 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
   public render() {
     return <div style={{ width: "100%" }}>
       <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
-      {!this._hideSite && <SiteContainer><SiteHeading /></SiteContainer>}
+      {!this._hideSite &&
+        <SiteContainer>
+          <SiteHeading />
+          <SiteContent />
+        </SiteContainer>
+      }
     </div>;
   }
 }

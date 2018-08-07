@@ -3,6 +3,7 @@ import * as React from "react";
 import { injectGlobal } from "styled-components";
 
 import { Container } from "./container";
+import { Colors } from "./artwork";
 
 const body = document.getElementsByTagName("body")[0];
 
@@ -19,6 +20,8 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	color: ${Colors.DefaultTextColor};
+	font-family: sans-serif;
 }
 `;
 
