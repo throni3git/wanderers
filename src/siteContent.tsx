@@ -4,11 +4,11 @@ import { SiteMenu, MenuEntryNames } from "./SiteMenu";
 export class SiteContent extends React.Component<
   ISiteContentProps,
   ISiteContentState
-> {
+  > {
   constructor(props: SiteContent["props"]) {
     super(props);
     this.state = {
-      activeContent: "News"
+      activeContent: MenuEntryNames.News as keyof typeof MenuEntryNames
     };
   }
 
@@ -28,23 +28,39 @@ export class SiteContent extends React.Component<
 
   private getCurrentContent() {
     switch (this.state.activeContent) {
-      case "Gallery": {
-        return <div>GALLERY</div>;
+      case MenuEntryNames.Contact: {
+        return <div>Contact</div>;
         break;
       }
-      case "Links": {
-        return <div>LINKS</div>;
+      case MenuEntryNames.Gallery: {
+        return <div>Gallery</div>;
+        break;
+      }
+      case MenuEntryNames.Info: {
+        return <div>Info</div>;
+        break;
+      }
+      case MenuEntryNames.Links: {
+        return <div>Links</div>;
+        break;
+      }
+      case MenuEntryNames.Live: {
+        return <div>Live</div>;
+        break;
+      }
+      case MenuEntryNames.News: {
+        return <div>News</div>;
         break;
       }
     }
-    return <div>blaaa</div>;
+    return <div></div>;
   }
 }
 
 export default SiteContent;
 
-export interface ISiteContentProps {}
+export interface ISiteContentProps { }
 
 interface ISiteContentState {
-  activeContent: string;
+  activeContent: keyof typeof MenuEntryNames;
 }

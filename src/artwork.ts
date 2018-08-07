@@ -13,8 +13,8 @@ import { DBG_CAMERA } from "./sceneManager";
 
 export const Colors = {
   DefaultTextColor: "#000000",
-  LinkHoverColor: "#888888",
-  LinkShadowColor: "#856234"
+  LinkHoverColor: "#856234",
+  ActiveMenuColor: "#888888"
 }
 
 const textureLoader = new THREE.TextureLoader();
