@@ -22,7 +22,7 @@ const config: webpack.Configuration = {
 	},
 	plugins: [
 		new htmlPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
-		new cleanPlugin(["dist/**/*"]),
+		new cleanPlugin(isProduction ? ["dist/**/*"] : []),
 		new copyPlugin([{ from: "assets/", to: "assets/" }])
 	],
 	output: {
