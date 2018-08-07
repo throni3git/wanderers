@@ -30,12 +30,15 @@ const SiteContainer = styled.div`
 
 const SiteHeading = styled.div`
   background: url(assets/logo_heading.svg);
-  height: 100px;
-  background-size: auto 100px;
+  // height: 100px;
+  // background-size: auto 100px;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 30px;
-  padding-bottom: 20px;
+  // padding-top: 30px;
+  // padding-bottom: 20px;
+  height: 8vh;
+  background-size: contain;
+  margin: 3vh 3vw;
 `;
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
