@@ -14,6 +14,10 @@ interface INews {
   text: string;
 }
 
+const NewsTileContainer = styled.div`
+padding: 20px;
+`;
+
 const NewsEntryContainer = styled.div`
 padding: 20px;
 `;
@@ -59,7 +63,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     const sortedEntries = this.state.content.sort(this.sortLambda);
 
     return (
-      <div>
+      <NewsTileContainer>
         {sortedEntries.map(entry => (
           <NewsEntryContainer key={entry.date}>
             <NewsEntryCaption>
@@ -70,7 +74,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
             <NewsEntryText>{entry.text}</NewsEntryText>
           </NewsEntryContainer>
         ))}
-      </div>
+      </NewsTileContainer>
     );
   }
 }
