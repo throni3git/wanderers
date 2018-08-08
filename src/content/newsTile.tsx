@@ -24,7 +24,7 @@ padding: 20px;
 
 const NewsEntryCaption = styled.div`
 font-size: 1.5em;
-border-bottom: 1px solid ${Colors.DefaultTextColor};
+border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
 padding: 20px;
 `;
 
