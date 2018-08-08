@@ -47,10 +47,10 @@ export class Artwork {
 
   private async _setupScene(): Promise<void> {
     const sunSize = 1.5;
-    const orbitSize = sunSize * 0.97;
+    const orbitSize = sunSize * 0.98;
     const orbitResolution = 256;
-    const orbitFactor = 1.13;
-    const extraOrbitSize = 0.2;
+    const orbitFactor = 1.16;
+    const extraOrbitSize = 0.17;
     const planetSize = 0.08;
     const extraPlanetSize = 0.03;
     const LINE_RESOLUTION = 50;
@@ -74,7 +74,7 @@ export class Artwork {
     });
     const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
     this._scene.add(meshWhiteGrain);
-    meshWhiteGrain.position.z = -2;
+    meshWhiteGrain.position.z = -4;
     if (DBG_CAMERA) {
       const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
       meshWhiteGrain.add(meshSurrounding);
@@ -93,7 +93,7 @@ export class Artwork {
     });
     const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
     this._scene.add(meshWhiteGrain2);
-    meshWhiteGrain2.position.z = -6;
+    meshWhiteGrain2.position.z = -7;
     if (DBG_CAMERA) {
       const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
       meshWhiteGrain2.add(meshSurrounding);
