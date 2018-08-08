@@ -35,7 +35,7 @@ const config: webpack.Configuration = {
 	mode: isProduction ? "production" : "development",
 	devtool: isProduction ? false : "source-map",
 	devServer: {
-		port: 3000
+		port: 9000
 	} as webpackDevServer.Configuration
 };
 
