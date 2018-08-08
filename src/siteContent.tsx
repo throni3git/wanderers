@@ -1,4 +1,6 @@
 import * as React from "react";
+import styled from "styled-components";
+
 import { SiteMenu, MenuEntryNames } from "./SiteMenu";
 import { ContactTile } from "./content/contactTile";
 import { GalleryTile } from "./content/galleryTile";
@@ -7,10 +9,14 @@ import { LinksTile } from "./content/linksTile";
 import { LiveTile } from "./content/liveTile";
 import { NewsTile } from "./content/newsTile";
 
+const SiteContentContainer = styled.div`
+  height: calc(100% - 14vh);
+`;
+
 export class SiteContent extends React.Component<
   ISiteContentProps,
   ISiteContentState
-  > {
+> {
   constructor(props: SiteContent["props"]) {
     super(props);
     this.state = {
@@ -20,15 +26,15 @@ export class SiteContent extends React.Component<
 
   public render() {
     return (
-      <div>
+      <SiteContentContainer>
         <SiteMenu
           setActiveContent={name => {
             this.setState({ activeContent: name });
           }}
           activeContent={this.state.activeContent}
         />
-        <div>{this.getCurrentContent()}</div>
-      </div>
+        {this.getCurrentContent()}
+      </SiteContentContainer>
     );
   }
 
@@ -53,13 +59,13 @@ export class SiteContent extends React.Component<
         return <NewsTile>News</NewsTile>;
       }
     }
-    return <div></div>;
+    return <div />;
   }
 }
 
 export default SiteContent;
 
-export interface ISiteContentProps { }
+export interface ISiteContentProps {}
 
 interface ISiteContentState {
   activeContent: keyof typeof MenuEntryNames;

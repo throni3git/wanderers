@@ -15,21 +15,27 @@ interface INews {
 }
 
 const NewsTileContainer = styled.div`
-padding: 20px;
+  padding: 20px;
+  height: calc(100% - 97px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-y: overlay;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const NewsEntryContainer = styled.div`
-padding: 20px;
+  padding: 20px;
 `;
 
 const NewsEntryText = styled.div`
-padding: 20px;
+  padding: 20px;
 `;
 
 const NewsEntryCaption = styled.div`
-font-size: 1.5em;
-border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
-padding: 20px;
+  font-size: 1.5em;
+  border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
+  padding: 20px;
 `;
 
 export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
@@ -37,15 +43,14 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     super(props);
     this.state = {
       content: []
-    }
+    };
 
     try {
       loadJsonFile<INewsFile>("data/news.json").then(news => {
         console.log(news);
-        this.setState({ content: news.entries })
+        this.setState({ content: news.entries });
       });
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
     }
   }
@@ -57,7 +62,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
       return -1;
     }
     return 0;
-  }
+  };
 
   public render() {
     const sortedEntries = this.state.content.sort(this.sortLambda);
@@ -81,7 +86,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
 export default NewsTile;
 
-export interface INewsTileProps { }
+export interface INewsTileProps {}
 
 interface INewsTileState {
   content: INews[];
