@@ -9,9 +9,9 @@ interface INewsFile {
 }
 
 interface INews {
-  date: number;
+  date: string;
   caption: string;
-  text: string;
+  description: string;
 }
 
 const NewsTileContainer = styled.div`
@@ -33,9 +33,23 @@ const NewsEntryText = styled.div`
 `;
 
 const NewsEntryCaption = styled.div`
-  font-size: 1.5em;
   border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
   padding: 20px;
+`;
+
+const NewsEntryCaptionText = styled.div`
+font-size: 1.5em;
+&::first-letter {
+  color: ${Colors.HighlightColor};
+  font-weight: bold;
+}
+`;
+
+const NewsEntryCaptionDate = styled.div`
+font-size: 0.8em;
 `;
 
 export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
@@ -56,9 +70,11 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
   }
 
   private sortLambda = (a: INews, b: INews) => {
-    if (a.date < b.date) {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    if (dateA < dateB) {
       return 1;
-    } else if (a.date > b.date) {
+    } else if (dateA > dateB) {
       return -1;
     }
     return 0;
@@ -69,16 +85,20 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
     return (
       <NewsTileContainer>
-        {sortedEntries.map(entry => (
-          <NewsEntryContainer key={entry.date}>
-            <NewsEntryCaption>
-              <span>{entry.date}</span>
-              <span> - </span>
-              <span>{entry.caption}</span>
-            </NewsEntryCaption>
-            <NewsEntryText>{entry.text}</NewsEntryText>
-          </NewsEntryContainer>
-        ))}
+        {sortedEntries.map(entry => {
+          // parse date info
+          const date = new Date(entry.date);
+          const dateInCaption = ("0" + date.getDate()).slice(-2) + "." + ("0" + date.getMonth()).slice(-2) + "." + date.getFullYear();
+          return (
+            <NewsEntryContainer key={entry.date}>
+              <NewsEntryCaption>
+                <NewsEntryCaptionText>{entry.caption}</NewsEntryCaptionText>
+                <NewsEntryCaptionDate>{dateInCaption}</NewsEntryCaptionDate>
+              </NewsEntryCaption>
+              <NewsEntryText><div dangerouslySetInnerHTML={{__html: entry.description}}></div></NewsEntryText>
+            </NewsEntryContainer>
+          )
+        })}
       </NewsTileContainer>
     );
   }
@@ -86,7 +106,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
 export default NewsTile;
 
-export interface INewsTileProps {}
+export interface INewsTileProps { }
 
 interface INewsTileState {
   content: INews[];

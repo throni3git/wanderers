@@ -1,44 +1,274 @@
 {
-	"entries": [{
-			"date": 123,
-			"caption": "Halleluja",
-			"text": "How much wood would a woodchuck chuck if a woodchuck would chuck wood?"
-		}, {
-			"date": 12,
-			"caption": "Spaghetti Forever",
-			"text": "E nom nom nom nom nom nomine Patre, e spaghetti sancti"
-		}, {
-			"date": 202,
-			"caption": "Spaghetti Forever",
-			"text": "Fugiat sunt nisi sunt velit ex excepteur do reprehenderit excepteur culpa esse veniam proident anim. Sint commodo nisi qui nisi consequat eu. Consequat laboris labore mollit aliquip."
-		}, {
-			"date": 200,
-			"caption": "Spaghetti Forever",
-			"text": "Adipisicing qui est minim veniam sunt quis occaecat ex qui anim. Sit esse esse dolor proident fugiat mollit id dolore. Officia reprehenderit quis ad exercitation proident ea est irure aliquip."
-		}, {
-			"date": 100,
-			"caption": "Spaghetti Forever",
-			"text": "Voluptate sunt Lorem consectetur enim proident ut irure est veniam est nostrud consequat ullamco dolor. "
-		}, {
-			"date": 300,
-			"caption": "Spaghetti Forever",
-			"text": "Adipisicing voluptate do et ullamco consequat enim anim id tempor duis reprehenderit enim dolore irure."
-		}, {
-			"date": 21,
-			"caption": "Spaghetti Forever",
-			"text": "Sit esse esse dolor proident fugiat mollit id dolore. Officia reprehenderit quis ad exercitation proident ea est irure aliquip."
-		}, {
-			"date": 32,
-			"caption": "Spaghetti Forever",
-			"text": "Quis ex aute officia sint magna nisi nulla et laboris incididunt pariatur pariatur nulla commodo. Nulla adipisicing dolore cupidatat culpa laboris aliquip consequat incididunt esse eiusmod aliqua aliquip tempor."
-		}, {
-			"date": 43,
-			"caption": "Spaghetti Forever",
-			"text": "Nulla adipisicing dolore cupidatat culpa laboris aliquip consequat incididunt esse eiusmod aliqua aliquip tempor."
-		}, {
-			"date": 54,
-			"caption": "Spaghetti Forever",
-			"text": "Et anim velit sint sit laboris irure nulla ex ullamco dolore."
+	"entries": [
+		{
+			"caption": "Party on Wayne! Party on Garth!",
+			"date": "2018-07-06T16:15:00",
+			"description": "<p>Die Herren <a target=\"_blank\" href=\"http://www.thehirscheffekt.de/\">The Hirsch Effekt</a> haben zum Fest geladen. Und zwar ins <a target=\"_blank\" href=\"http://www.f-haus.de/cms/Veranstaltung/thehirscheffekt-280918/?instance_id=2995\">F-Haus Jena</a> am 28.09.2018. Da sagen wir natürlich nicht nein!</p><p>Und wenn wir einmal am Feiern sind machen wir am 17.11.2018 gleich weiter und laden euch alle zu unserer Record-Release-Party in der <a target=\"_blank\" href=\"https://www.baracke5.de/\">Baracke5</a> ein</p><p>Schwiiiing!</p>"
+		},
+		{
+			"caption": "Album und Video sind im Kasten!",
+			"date": "2018-06-25T22:15:00",
+			"description": "<p>Im Mai haben wir die Drums fürs neue Album im <a target=\"_blank\" href=\"https://atomino-studio.de/\">Atomino Studio</a> in Erfurt aufgenommen. Das ganze muss jetzt noch gemixt und gemastert werden um es euch am 17.11.2018 in der <a target=\"_blank\" href=\"https://www.baracke5.de/\">Baracke5</a> präsentieren zu können.</p><p>Und einfach weil´s Spaß macht haben wir in Zusammenarbeit mit Erik vom <a target=\"_blank\" href=\"https://erikswiatloch.de/coldskinstudio/\">Cold Skin Studio</a>, Steffen von <a target=\"_blank\" href=\"https://www.ponkpictures.de/\">Ponk Pictures</a> und Andi Winterling ein paar Sessionvideos aufgenommen. Vielen Dank an diese nicen Dudes!</p><p>Stay Tuned!</p>"
+		},
+		{
+			"caption": "Und weiter geht die wilde Fahrt...",
+			"date": "2018-02-07T02:15:00",
+			"description": "<p>Der Gig mit <a target=\"_blank\" href=\"http://www.thehirscheffekt.de/\">The Hirsch Effekt</a> in der <a target=\"_blank\" href=\"http://engelsburg.club/program-punkt/the-hirsch-effekt-live/\">E-Burg</a> war <a target=\"_blank\" href=\"https://www.duden.de/_media_/full/H/Hammer-201100278291.jpg\">der Hammer</a>! Danke an alle die da waren, wir hatten sehr viel Spaß!</p><p>Weiter geht´s dann im <a target=\"_blank\" href=\"http://www.zapata-jena.de/\">Zapata</a> in Jena um den fünften Geburtstag unserer Tabaktaschendealerin <a target=\"_blank\" href=\"https://de.dawanda.com/shop/batkitty\">Bat-Kitty</a> zu feiern.</p><p>Also wir freuen uns.</p>"
+		},
+		{
+			"caption": "Der Weihnachtsmann kam dieses Jahr etwas eher",
+			"date": "2017-12-18T02:15:00",
+			"description": "<p>Und hat uns einen Support Gig für <a target=\"_blank\" href=\"http://www.thehirscheffekt.de/\">The Hirsch Effekt</a> in der Erfurter <a target=\"_blank\" href=\"http://engelsburg.club/program-punkt/the-hirsch-effekt-live/\">Engelsburg</a> unters Bäumchen gepackt. Netter Tüp.</p><p>Bis dahin, frohes Fest und guten Rutsch.</p>"
+		},
+		{
+			"caption": "Leider doch kein Konzert mit pg.lost",
+			"date": "2017-11-07T00:15:00",
+			"description": "<p>Das Konzert mit <a target=\"_blank\" href=\"http://www.pglost.com/\">pg.lost</a> im Erfurter <a target=\"_blank\" href=\"http://www.museumskeller.de/\">Museumskeller</a> wurde leider aufgrund von <a target=\"_blank\" href=\"https://www.urbandictionary.com/define.php?term=clusterfuck\">Clusterfuck</a> abgesagt.</p><p>Schade eigentlich, naja, dann eben neues Album machen, hilft ja nix.</p>"
+		},
+		{
+			"caption": "Noch ein Highlight zum Jahresende",
+			"date": "2017-09-06T22:15:00",
+			"description": "<p>Das Jahr neigt sich mal wieder dem Ende und wir können noch einmal Gutes verkünden. Und zwar dürfen wir <a target=\"_blank\" href=\"http://www.pglost.com/\">pg.lost</a> in Erfurt im <a target=\"_blank\" href=\"http://www.museumskeller.de/\">Museumskeller</a> supporten. Das freut uns sehr und nochmehr würde uns freuen, wenn ihr euch auch alle freut und hinkommt.</p><p>Als dann, bis zum 08. November in Erfurt.</p>"
+		},
+		{
+			"caption": "Schlechte und gute Neuigkeiten",
+			"date": "2017-06-19T00:15:00",
+			"description": "<p>Leider ist aus dem geplanten Gig in der Dresdner St. Pauli Ruine nun doch nichts geworden, Schade eigentlich, wir hatten uns sehr darauf gefreut. Im Allgemeinen sieht es grad etwas Mau aus im Bookingkalender, das hat den Hintergrund, dass wir uns ein wenig Zeit nehmen um endlich mal wieder geilen neuen Scheiß zu schreiben :-). Muss ja auch gemacht werden. Wir sind natürlich trotzdem immer für Anfragen offen.</p><p>In diesem Sinne: Fürchtet euch nicht, das nächste Album aller Zeiten kommt bestimmt...</p>"
+		},
+		{
+			"caption": "Weiter gehts!",
+			"date": "2017-05-13T00:15:00",
+			"description": "<p>Nachdem wir im Januar die Jungfernfahrt von Trén begleiten durften und mal wieder einen netten Abend mit den Kollegen von <a target=\"_blank\" href=\"http://www.belowasilentsky.de\">Below a Silent Sky</a> und <a target=\"_blank\" href=\"https://apoa.bandcamp.com/\">APOA</a> verbracht haben, freuen wir uns nun aufs Stadtfest in Ilmenau.</p><p>Be there or be square!</p>"
+		},
+		{
+			"caption": "So, erstma Urlaub",
+			"date": "2016-12-12T00:15:00",
+			"description": "<p>So, wir haun in`n Sack für dieses Jahr. Vielen Dank an Leipzig, war saugeil, Tourabschluss in den ehrwürdigen Hallen der Baracke5 in Ilmenau hat gefetzt wie immer! Bleibt uns nur noch euch allen herzlich zu danken und euch gemütliche Feiertage zu wünschen.</p><p>In diesem Sinne: Venceremos und bis nächstes Jahr!</p>"
+		},
+		{
+			"caption": "Sorry Dudes und Dudesses",
+			"date": "2016-11-18T00:15:00",
+			"description": "<p>Leider müssen wir unser Konzert am 19.11. in Berlin aus gesundheitlichen Gründen absagen. Wir hoffen natürlich dieses demnächst nachholen zu können. Wir sehen uns dann frisch erholt am 03.12. in Leipzig im Tipi mit den Kollegen von <a target=\"_blank\" href=\"http://www.belowasilentsky.de\">Below a Silent Sky</a> und <a target=\"_blank\" href=\"http://kopfhochherzraus.tumblr.com/\">Kopf Hoch.</a>. Den Tourabschluss feiern wir dann traditionell in Ilmenau in der Baracke5 und zwar am 10.12.</p>"
+		},
+		{
+			"caption": "Long time no see :)",
+			"date": "2016-05-17T03:55:00",
+			"description": "<p>Aber keine Bange, nach Babypause und Unigedöhns sind wir wieder on the Road. Nach einem Zwischenstopp im <a target=\"_blank\" href=\"http://www.stadtgarten-erfurt.de/\">Stadtgarten Erfurt</a> haben wir mit dem <a target=\"_blank\" href=\"https://www.facebook.com/events/1582942968653526/\">AK44 in Gießen</a> unseren bisher westlichsten Wegpunkt genommen.</p><p>Weiter gehts mit Frau Korte in Erfurt und dem Dots in Göttingen. Desweiteren ist der zweite Teil der Beyond the Sphere Tour mit den Dudes von <a target=\"_blank\" href=\"http://www.belowasilentsky.de\">Below a Silent Sky</a> in Planung</p>"
+		},
+		{
+			"caption": "Does a Sphere have an End?",
+			"date": "2015-12-18T03:55:00",
+			"description": "<p>Für diese Jahr schon. Aber es geht natürlich nächstes Jahr weiter.</p><p>Nach dem fulminanten Tourabschluss mit <a target=\"_blank\" href=\"http://www.belowasilentsky.de\">Below a Silent Sky</a> und <a target=\"_blank\" href=\"http://kopfhochherzraus.tumblr.com/\">Kopf Hoch.</a> haben wir das Jahr mit einem herrlichen Abend mit <a target=\"_blank\" href=\"http://www.monomyththeband.com/\">Monomyth</a> und <a target=\"_blank\" href=\"http://pyrior.com/\">Pyrior</a> beschließen können.</p><p>Kilometerstand des Sojus-Mobils: 280.000km :)</p><p>Euch allen geruhsame Feiertage und bis nächstes Jahr.</p>"
+		},
+		{
+			"caption": "In the middle of the Sphere",
+			"date": "2015-11-01T20:46:00",
+			"description": "<p>Unsere kleine Tour feiert Bergfest, vier Gigs sind gespielt, vier folgen (vorerst) noch. Die ersten Bilder könnt ihr <a target=\"_blank\" href=\"http://www.sojus3000.de\">hier</a> oder auf <a target=\"_blank\" href=\"https://de-de.facebook.com/Sojus3000\">facebook</a> anschauen. Alle sind wohlauf und hochmotiviert.</p><p>Abseits der Tour wurden wir eingeladen die großartigen <a target=\"_blank\" href=\"http://www.monomyththeband.com/\">Monomyth</a> in Jena zu supporten. Bezeichnenderweise heißt der vierte Song auf deren Album \"Further\" 6EQUJ5. Kann das Zufall sein? Wir freuen uns wie die Schneekönige from outer Space!</p><p>Möge der Doom mit euch sein!</p>"
+		},
+		{
+			"caption": "Unsere Tour nimmt langsam Gestalt an.",
+			"date": "2015-08-13T23:36:00",
+			"description": "<p>Die ersten Daten sind bestätigt und können <a target=\"_blank\" href=\"http://www.sojus3000.de\">hier</a>, <a target=\"_blank\" href=\"https://de-de.facebook.com/Sojus3000\">hier</a> und <a target=\"_blank\" href=\"http://www.bandsintown.com/Sojus3000\">hier</a> begutachtet werden. Ein Bus ist gekauft, die Lieder geübt. Es kann also losgehen!</p><p>Wir sehen uns on the road!</p>"
+		},
+		{
+			"caption": "Sooo, die Pause neigt sich dem Ende.",
+			"date": "2015-06-03T03:06:00",
+			"description": "<p>Wobei wir natürlich trotzdem fleißig waren wie die Bienchen. Ein neues <a target=\"_blank\" href=\"https://www.youtube.com/watch?v=bWmzb0aISpg\">kleines Filmchen</a> wurde in die <a target=\"_blank\" href=\"http://www.sojus3000.de\">Weiten der Interwebs</a> entlassen und die Liste der bestätigten Tourdaten füllt sich langsam aber stetig.</p><p>In diesem Sinne, wir bleiben dran! Bis die Tage, eure Sojunauten.</p>"
+		},
+		{
+			"caption": "Wir machen mal ne kurze Pause.",
+			"date": "2015-05-05T02:04:00",
+			"description": "<p>Da unser Elektriker und Bassist es dem Chef. Red. des <a target=\"_blank\" href=\"http://www.der-postillon.com/2015/04/der-postillon-macht-pause-2.html\">Postillon</a> gleichtut und sich demnächst von Kindergeld finanziert, legen wir diesen Monat eine kleine Pause ein. Ihm schonmal herzliche Glückwünsche und viel Erfolg dafür. Diese Zeit nutzt unser Hauptbassist gleich mal um seinen Master in IrgendwasmitMedien zu machen. Auch ihm viel Erfolg dabei. Natürlich sind wir in der Zeit nicht untätig sondern planen unsere Herbsttour und schreiben neue Songs.</p><p>Am 19.06.2015 sehen wir uns dann in Dresden zur BRN wieder.</p>"
+		},
+		{
+			"caption": "Wir gehen auf Tour!",
+			"date": "2015-02-16T02:04:00",
+			"description": "<p>Jajaaa, wir sind da was am planen dran.</p><div> Und zwar sind wir von Ende September bis Anfang Dezember mit den Kollegen von <a target=\"_blank\" href=\"http://www.belowasilentsky.de\">Below a Silent Sky</a> in ganz Deutschland unterwegs.</div>"
+		},
+		{
+			"caption": "Sojus im Bandcamp",
+			"date": "2015-02-11T02:04:00",
+			"description": "<p>Beide Alben sind nun auch auf Bandcamp streambar.</p><div><a target=\"_blank\" href=\"https://sojus3000.bandcamp.com/album/atlas\">Atlas</a>, <a target=\"_blank\" href=\"https://sojus3000.bandcamp.com/album/6equj5\">6EQUJ5</a></div>"
+		},
+		{
+			"caption": "Online Release",
+			"date": "2014-12-16T21:00:00",
+			"description": "<p>Ab sofort ist \"Atlas\" über Spotify und Co streambar und bei iTunes und Amazon etc. erhältlich!</p><div> siehe: <a target=\"_blank\" href=\"http://open.spotify.com/user/1122090316/playlist/6kch0Tvp1RuuSBesuygKRX\">Spotify</a>, <a target=\"_blank\" href=\"http://www.amazon.de/Atlas-SOJUS-3000/dp/B00PVUDESY/ref=sr_1_1?ie=UTF8&qid=1418731579&sr=8-1&keywords=sojus3000\">Amazon</a>, <a target=\"_blank\" href=\"https://itunes.apple.com/de/album/atlas/id943397937\">iTunes</a></div>"
+		},
+		{
+			"caption": "Fuzzmatazz X-MAS Sale",
+			"date": "2014-12-01T21:00:00",
+			"description": "<p>Ihr bekommt unsere Platte jetzt 10% günstiger!</p><div><a target=\"_blank\" href=\"http://fuzzmatazz.com/merch/index.php/home/sojus3000-atlas-vinyl.html\">http://fuzzmatazz.com/merch/index.php/home/sojus3000-atlas-vinyl.html</a></div>"
+		},
+		{
+			"caption": "Interview auf Radio F.R.E.I.",
+			"date": "2014-11-28T21:00:00",
+			"description": "<p>Freitag 21:00 Uhr</p><div><a target=\"_blank\" href=\"http://www.radiofrei.de/index.php?iid=1&ksubmit_show=sendung&kunixtime=1417204800\">http://www.radiofrei.de/index.php?iid=1&ksubmit_show=sendung&kunixtime=1417204800</a></div><p>Danke an André!</p>"
+		},
+		{
+			"caption": "Record Release: ATLAS!",
+			"date": "2014-11-21T20:00:00",
+			"description": "<p>Endlich! Nach 6EQUJ5 nun unsere zweite Platte: ATLAS! Im Sommer 2014 produziert, konnten wir sie jetzt mit der Unterstützung des Jenaer Label Fuzzmatazz records in eine physische Form pressen. Wir freuen uns auf die weitere Zusammenarbeit mit den Jungs! www.fuzzmatazz.de</p> <p>Was 2009 mit gelegentlichen Sessions während des Studiums begann, hat sich zu einer vorrangig dem Postrock und Doom verschriebenen Formation entwickelt. Seit der Fertigstellung ihrer Debut-EP 6EQUJ5 im Jahr 2011 tourt die Band durch Deutschland. Ende 2013 begannen die Vorbereitungen der ersten LP ATLAS, die im Herbst 2014 erscheint.</p> <p>Einen starken Einfluss haben Bands wie My Sleeping Karma, Mogwai, This Will Destroy You, Russian Circles, God Is An Astronaut, Isis, Ufomammut.</p>"
+		},
+		{
+			"caption": "Baracke5@Ilmenau",
+			"date": "2014-11-21T19:00:00",
+			"description": "<p>Und noch einmal, weil es so schön war! Diesmal aber mit besonderem Anlass - UNSERE LP ATLAS! Offizielle Record Release Party mit Sonderkonditionen und Unterstützung von unserer Lieblingslokalkappelle Below a Silent Sky</p>"
+		},
+		{
+			"caption": "Baracke5@Ilmenau",
+			"date": "2014-09-13T20:00:00",
+			"description": "<p>Immernoch unterwegs mit der russischen Postrock Band I Will Kill Chita. Wir freuen uns! Mehr Infos auf Facebook: https://www.facebook.com/events/1463773227206999</p>"
+		},
+		{
+			"caption": "Klanggeruest@Erfurt",
+			"date": "2014-09-12T20:00:00",
+			"description": "<p>Immernoch unterwegs mit der russischen Postrock Band I Will Kill Chita. Wir freuen uns! Mehr Infos auf Facebook: https://www.facebook.com/events/1536371699910985</p>"
+		},
+		{
+			"caption": "Cafe Wagner@Jena",
+			"date": "2014-09-10T20:00:00",
+			"description": "<p>Unterwegs mit der russischen Postrock Band I Will Kill Chita. Wir freuen uns! Mehr Infos auf Facebook: https://www.facebook.com/events/343184409162740 </p>"
+		},
+		{
+			"caption": "Tour@Thueringen",
+			"date": "2014-09-09T20:00:00",
+			"description": "<p>Mit hoffentlich fertiger Platte startet eine einwöchige Tour durch Mitteldeutschland. Dabei begleiten wir die Russische Band I Will Kill Chita auf ihrer Europa Tour. Jena, Potsdam, Freiberg, Erfurt und Ilmenau sind in Planung. Termine folgen detailliert...</p>"
+		},
+		{
+			"caption": "Fuzzmatazz@Jena",
+			"date": "2014-08-15T20:00:00",
+			"description": "<p>Wir freuen uns bekanntgeben zu können, dass wir zukünftig Teil des wunderbaren Labels Fuzzmatazz in Jena sein werden und uns somit in eine wunderbare Familie aus einarmigen Karussellbremsern, Opas und Halbgöttern einreihen.</p>"
+		},
+		{
+			"caption": "Kunstrasen Festival@Erfurt",
+			"date": "2014-08-08T22:00:00",
+			"description": "<p>Ohhhhhh OOOHhhhhhhh Kuuunst! Wir fühlen uns geehrt als künstlerisch wertvoller Beitrag am Kunstrasen Festival in Erfurt teilzunehmen. Freitag Abend zwischen 10 und 11 Uhr werden wir die Songs unserer neuen Platte spielen und anschliessend entspannt Kurzfilme schauen. Kommt vorbei!</p>"
+		},
+		{
+			"caption": "StudioDieDritte@Erfurt",
+			"date": "2014-07-15T20:00:00",
+			"description": "<p>Die Tonspur ist fertig, das Design steht, jetzt müssen wir nur noch ausreichend Geld für die Pressung zusammenkratzen. Das Album sollte also im kommenden Monat erscheinen! Watch: https://www.youtube.com/watch?v=2_Drcv8WakE </p>"
+		},
+		{
+			"caption": "StudioDieZweite@Erfurt",
+			"date": "2014-03-15T20:00:00",
+			"description": "<p>Nach einiger Verzögerung sind wir wirklich im Studio gelandet und füllen ab heute eine LP mit Material. Footage folgt in sozialen Netzwerken. Arbeit läuft noch aber der Release wird wohl in circa zwei Monaten über die Bühne gehen! Klingt schon fedd!</p>"
+		},
+		{
+			"caption": "Studio@Erfurt",
+			"date": "2014-01-15T20:00:00",
+			"description": "<p>Die kommenden zwei Monate sind für Studioarbeit reserviert. Man darf gespannt sein, was da auf einen zukommt! Wir wissen es selbst nicht. Aber ein Erlebnis wird es definitv werden. Vor allem für die Hörer! </p>"
+		},
+		{
+			"caption": "UpYours@Bamberg",
+			"date": "2013-12-14T20:00:00",
+			"description": "<p>Wieder unterwegs mit unseren Kollegen von Orgastic Noises. Neues Material ist ebenfalls im Gepäck. Man darf gespannt sein. Wir freuen uns drauf! Mehr Infos auch auf Facebook. </p>"
+		},
+		{
+			"caption": "Graduating@Ilmenau",
+			"date": "2013-07-01T20:00:00",
+			"description": "<p>In nächster Zeit legen wir eine kurze Pause ein, damit die Hälfte der Band auch mal einen vernünftigen Abschluss vorweisen kann. Ende des Jahres geht's dann ins Studio, also freut euch auf das was da kommt...</p>"
+		},
+		{
+			"caption": "Wetzlarer Platz@Ilmenau",
+			"date": "2013-06-08T20:00:00",
+			"description": "<p>Die Studentenclubs liefern die Bühne, wir das Programm. 20.30 Uhr auf dem Wetzlarer Platz vor der alten Försterei. Anlass: schönes Wetter und Stadtfest. </p>"
+		},
+		{
+			"caption": "L-Club@Wuerzburg",
+			"date": "2013-06-06T20:00:00",
+			"description": "<p>Erster Stop der zukunftsträchtigen Odyssee mit unseren werten Nachbarn Orgastic Noises in Würzburg im L-Club! Mehr Infos gibt es für unsere geschätze copy&paste generation unter: www.facebook.com/events/167912223368969 </p>"
+		},
+		{
+			"caption": "Ilmenau@Baracke 5",
+			"date": "2013-04-06T20:00:00",
+			"description": "<p>We proudly present Colaris! Eine sehr gute Instrumentalband aus dem Westen der Republik. Wir spielen an diesem Abend mal nur den Anheizer, also pünktlich kommen! Mehr Infos unter www.baracke5.de</p>"
+		},
+		{
+			"caption": "Erfurt@Klanggeruest",
+			"date": "2013-01-19T20:00:00",
+			"description": "<p>Auf ein Neues in Erfurt! Nach dem durchaus positiven Debut in der Hauptstadt mit Mirovia, diesmal im Alleingang unterwegs. Ein Support wird wenn dann kurzfristig bekannt gegeben. Im weiteren Verlauf bleibt der Abend lebensbejahend und elektronisch... </p>"
+		},
+		{
+			"caption": "Ilmenau@Silvester",
+			"date": "2012-12-31T23:59:00",
+			"description": "<p>Frohes Noice!!! Auch dieses Jahr. Wir leben ja alle noch. Der Maya Kalender ist jung, posten wir los! </p>"
+		},
+		{
+			"caption": "Erfurt@Klanggeruest",
+			"date": "2012-11-30T20:00:00",
+			"description": "<p>Diesmal wirklich mit unseren Kollegen von Mirovia im Klanggerüst. Los gehts gegen 9 und es wird psychedelisch gerockt und gefeiert! Bild, Ton und Alkohol werden gegen geringe Obili gestellt. Bis denn... </p> <p>Eure Sojusen </p>"
+		},
+		{
+			"caption": "Jena@Schallspielnacht",
+			"date": "2012-10-26T20:00:00",
+			"description": "<p>Nach erfolgreichem Hinspiel mit unseren neu gewonnenen Freunden vom Phonton e.V. gibts nun die Rückrunde - auswärts. Nach dem wunderbaren Gig im Kassa hoffen wir auf einen mindestens genauso musikverseuchten Abend. mehr Infos auf der Phonton Seite... </p>"
+		},
+		{
+			"caption": "lastfm",
+			"date": "2012-10-06T12:00:00",
+			"description": "<p>Uns gibts jetzt auch auf lastfm! Zwar eigentlich schon länger aber jetzt wissen wir das auch. Zusätzlich kann man uns dort nun hören und scrobbeln :) Also schaut mal rum unter <br> <br> http://www.lastfm.de/music/Sojus3000 </p>"
+		},
+		{
+			"caption": "Dresden@Hechtfest",
+			"date": "2012-08-25T16:00:00",
+			"description": "<p>Zurück in Dresden der Stadt der Feste. Diesmal an einem hoffentlich schönen Samstag Nachmittag auf dem Hechtfest. Wenn nicht auch nicht so schlimm, die Regenstimmung steht unserer Musik auch nicht schlecht :) Erscheint in Schaaren!</p>"
+		},
+		{
+			"caption": "Jena@Kassablanca",
+			"date": "2012-08-15T22:00:00",
+			"description": "<p>Kurzfristig, aber deswegen nicht minder wichtig gehts am Mittwoch nach Jena um dort beim Punkrockkaffee Alleinunterhalter zu machen :) Nicht vom Namen irritieren lassen, wir haben unseren Stil nicht geändert Eintritt gibts nich, kühle Getränke schon - also hinkommen! </p>"
+		},
+		{
+			"caption": "Freiberg@Hoffest",
+			"date": "2012-06-23T21:00:00",
+			"description": "<p>passend zum Sonnenuntergang lassen wir den Abend nach der Dresdner Großstadtparty im heimatlichen Freiberg ausklingen. Für die engen Freunde und Familie wird es hier einen Platz am Feuer zu unserer Musik geben. </br> Wir freuen uns drauf. </p>"
+		},
+		{
+			"caption": "Dresden@Columbusstrassenfest",
+			"date": "2012-06-23T16:00:00",
+			"description": "<p>Nächster Termin: Dresden - Löbtau. Dort gibts es den ganzen Tag Musik und Leute. wir starten diesmal etwas früher als gewohnt aber trotzdem mit sphärischem Einsatz. Mehr Infos gibts vor Ort. Wer es so früh nicht schafft, kann uns gern am Abend noch in Freiberg sehen. </p>"
+		},
+		{
+			"caption": "Weimar@Schutzengasse",
+			"date": "2012-06-16T21:00:00",
+			"description": "<p>Wir spielen im gemütlichsten Studentenclub Weimars auf und zwar nicht allein. Mit an Board: Phoenix Crossing (Stoner aus Jena) und ON (Psychedelic Postock aus Ilmenau). Das alles für Spottpreise damit sich jeder noch 'ne CD kaufen kann. Bis dennsen </p>"
+		},
+		{
+			"caption": "Ilmenau@fete d'ete ",
+			"date": "2012-06-09T21:00:00",
+			"description": "<p>Wiedermal zu faul sich weit vom heimischen Sofa zu entfernen, spielen wir für Lau direkt vor unserem eigenen Proberaum inklusive kleinem Open Air. Hinkommen, Sonne genießen, live Musik hören! (Gibt auch ne schöne Wiese zum chillen) </p>"
+		},
+		{
+			"caption": "Touring, die 2.",
+			"date": "2012-03-31T22:00:00",
+			"description": "<p>Noch haben wir freie Kapazitäten also bei Interesse einfach mal oben auf den kleinen grauen Briefumschlag klicken und anfragen. </p>"
+		},
+		{
+			"caption": "Touring",
+			"date": "2012-01-15T20:00:00",
+			"description": "<p>Ab März/April planen wir eine kleine Clubtour. Wer uns in seiner Nähe haben will (rrrrrrr) kann uns auch gern kontaktieren (siehe oben). Dates gibts sobald wir welche haben ;-) </p>"
+		},
+		{
+			"caption": "Next Show",
+			"date": "2012-01-14T20:00:00",
+			"description": "<p>Mit alten Freunden wieder mal in Ilmenau:</p><ul><li>with:</li><li>PMC (Ilmenau, Progressive Rock)</li><li>Parabola (Bamberg, Progressive Rock)</li><li>@ Baracke5</li></ul>"
+		},
+		{
+			"caption": "Aufs Neue,",
+			"date": "2011-12-31T00:00:00",
+			"description": "<p>Frohes Noice! rinjehaun.</p>"
+		},
+		{
+			"caption": "Record Release Party",
+			"date": "2011-11-26T20:00:00",
+			"description": "<p>Erster Tonträger aus eigenem Anbau, das muss begossen werden. Darum wird auch im Haus des Ursprungs, der Baracke in Ilmenau, der Beginn dieser Ära zelebriert! Kost' nix, außer man will einen der streng limiterten Tonträger erwerben. Mehr Infos bei Facebook </p>"
+		},
+		{
+			"caption": "Page Lift-Off",
+			"date": "2011-11-25T00:00:00",
+			"description": "<p>Fedde Henne, neue Page und so, und alle so: yeeeaaahh!</p>"
 		}
 	]
 }
