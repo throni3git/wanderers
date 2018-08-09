@@ -23,6 +23,13 @@ html, body {
 	color: ${Colors.DefaultTextColor};
 	font-family: sans-serif;
 }
+
+a {
+	color: ${Colors.LinkColor};
+	&:hover {
+		color: ${Colors.LinkHoverColor};
+	}
+}
 `;
 
 ReactDOM.render(React.createElement(Container), content);
