@@ -20,7 +20,7 @@ const MenuEntry = styled.span`
   cursor: pointer;
   /* Set up the hover */
   /* If you aren't using autoprefix, remember to prefix the gradient for other browsers */
-  background-image: linear-gradient(LHC, LHC);
+  background-image: linear-gradient(${LHC}, ${LHC});
   background-size: 0 2px, auto;
   background-repeat: no-repeat;
   background-position: center bottom;
