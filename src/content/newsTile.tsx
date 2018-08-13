@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { Scrollbars } from 'react-custom-scrollbars';
+
 import { loadJsonFile } from "../utils";
 import styled from "../../node_modules/styled-components";
 import { Colors } from "../artwork";
@@ -13,16 +15,6 @@ interface INews {
   caption: string;
   description: string;
 }
-
-const NewsTileContainer = styled.div`
-  padding: 20px;
-  height: calc(100% - 97px);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  overflow-y: auto;
-  overflow-y: overlay;
-  -webkit-overflow-scrolling: touch;
-`;
 
 const NewsEntryContainer = styled.div`
   padding: 20px;
@@ -88,7 +80,11 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     const sortedEntries = this.state.content.sort(this.sortLambda);
 
     return (
-      <NewsTileContainer>
+      <Scrollbars style={{
+        padding: "20px",
+        height: "calc(100% - 97px)",
+        width: "100%"
+      }} >
         {sortedEntries.map(entry => {
           // parse date info
           const date = new Date(entry.date);
@@ -99,11 +95,11 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
                 <NewsEntryCaptionText>{entry.caption}</NewsEntryCaptionText>
                 <NewsEntryCaptionDate>{dateInCaption}</NewsEntryCaptionDate>
               </NewsEntryCaption>
-              <NewsEntryText><div dangerouslySetInnerHTML={{__html: entry.description}}></div></NewsEntryText>
+              <NewsEntryText><div dangerouslySetInnerHTML={{ __html: entry.description }}></div></NewsEntryText>
             </NewsEntryContainer>
           )
         })}
-      </NewsTileContainer>
+      </Scrollbars >
     );
   }
 }
