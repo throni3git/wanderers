@@ -52,6 +52,14 @@ const NewsEntryCaptionDate = styled.div`
 font-size: 0.8em;
 `;
 
+let newsPromise: Promise<INewsFile>;
+try {
+  newsPromise = loadJsonFile<INewsFile>("data/news.json");
+
+} catch (e) {
+  console.log(e);
+}
+
 export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
   constructor(props: NewsTile["props"]) {
     super(props);
@@ -59,14 +67,10 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
       content: []
     };
 
-    try {
-      loadJsonFile<INewsFile>("data/news.json").then(news => {
-        console.log(news);
-        this.setState({ content: news.entries });
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    newsPromise.then(news => {
+      console.log(news);
+      this.setState({ content: news.entries });
+    });
   }
 
   private sortLambda = (a: INews, b: INews) => {
