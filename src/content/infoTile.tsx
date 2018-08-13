@@ -1,21 +1,68 @@
 import * as React from "react";
 
-export class InfoTile extends React.Component <IInfoTileProps, IInfoTileState> {
-   constructor(props: InfoTile["props"]) {
-     super(props);
+import { loadJsonFile } from "../utils";
+import {
+  UnitEntryContainer,
+  UnitEntryText,
+  UnitEntryCaption,
+  UnitEntryCaptionText,
+  UnitEntryCaptionDate,
+  ScrollComponent
+} from "./tileComponents";
+
+interface IInfoFile {
+  entries: IInfo[];
+}
+
+interface IInfo {
+  caption: string;
+  description: string[];
+}
+
+let infoFilePromise: Promise<IInfoFile>;
+try {
+  infoFilePromise = loadJsonFile<IInfoFile>("data/info.json");
+
+} catch (e) {
+  console.log(e);
+}
+
+export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
+  constructor(props: InfoTile["props"]) {
+    super(props);
+    this.state = {
+      content: []
+    }
+
+    infoFilePromise.then(newsFile => {
+      console.log(newsFile);
+      this.setState({ content: newsFile.entries });
+    });
   }
 
   public render() {
     return (
-      <div>
-        InfoTile
-      </div>
+      <ScrollComponent>
+        {this.state.content.map((entry: IInfo, index: number) => {
+          // parse date info
+          return (
+            <UnitEntryContainer key={index}>
+              <UnitEntryCaption>
+                <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
+              </UnitEntryCaption>
+              <UnitEntryText dangerouslySetInnerHTML={{__html:entry.description.join("")}}></UnitEntryText>
+            </UnitEntryContainer>
+          )
+        })}
+      </ScrollComponent>
     );
   }
 }
 
 export default InfoTile;
 
- export interface IInfoTileProps {}
+export interface IInfoTileProps { }
 
- interface IInfoTileState {}
+interface IInfoTileState {
+  content: IInfo[];
+}
