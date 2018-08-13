@@ -1,10 +1,14 @@
 import * as React from "react";
 
-import { Scrollbars } from 'react-custom-scrollbars';
-
 import { loadJsonFile } from "../utils";
-import styled from "../../node_modules/styled-components";
-import { Colors } from "../artwork";
+import {
+  UnitEntryContainer,
+  UnitEntryText,
+  UnitEntryCaption,
+  UnitEntryCaptionText,
+  UnitEntryCaptionDate,
+  ScrollComponent
+} from "./tileComponents";
 
 interface INewsFile {
   entries: INews[];
@@ -15,34 +19,6 @@ interface INews {
   caption: string;
   description: string;
 }
-
-const NewsEntryContainer = styled.div`
-  padding: 20px;
-`;
-
-const NewsEntryText = styled.div`
-  padding: 20px;
-`;
-
-const NewsEntryCaption = styled.div`
-  border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
-  display: flex;
-  justify-content:space-between;
-  align-items: center;
-  padding: 20px;
-`;
-
-const NewsEntryCaptionText = styled.div`
-font-size: 1.5em;
-&::first-letter {
-  color: ${Colors.HighlightColor};
-  font-weight: bold;
-}
-`;
-
-const NewsEntryCaptionDate = styled.div`
-font-size: 0.8em;
-`;
 
 let newsPromise: Promise<INewsFile>;
 try {
@@ -80,26 +56,22 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     const sortedEntries = this.state.content.sort(this.sortLambda);
 
     return (
-      <Scrollbars style={{
-        padding: "20px",
-        height: "calc(100% - 97px)",
-        width: "100%"
-      }} >
+      <ScrollComponent>
         {sortedEntries.map(entry => {
           // parse date info
           const date = new Date(entry.date);
           const dateInCaption = ("0" + date.getDate()).slice(-2) + "." + ("0" + date.getMonth()).slice(-2) + "." + date.getFullYear();
           return (
-            <NewsEntryContainer key={entry.date}>
-              <NewsEntryCaption>
-                <NewsEntryCaptionText>{entry.caption}</NewsEntryCaptionText>
-                <NewsEntryCaptionDate>{dateInCaption}</NewsEntryCaptionDate>
-              </NewsEntryCaption>
-              <NewsEntryText><div dangerouslySetInnerHTML={{ __html: entry.description }}></div></NewsEntryText>
-            </NewsEntryContainer>
+            <UnitEntryContainer key={entry.date}>
+              <UnitEntryCaption>
+                <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
+                <UnitEntryCaptionDate>{dateInCaption}</UnitEntryCaptionDate>
+              </UnitEntryCaption>
+              <UnitEntryText><div dangerouslySetInnerHTML={{ __html: entry.description }}></div></UnitEntryText>
+            </UnitEntryContainer>
           )
         })}
-      </Scrollbars >
+      </ScrollComponent >
     );
   }
 }
