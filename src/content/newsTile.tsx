@@ -20,9 +20,9 @@ interface INews {
   description: string;
 }
 
-let newsPromise: Promise<INewsFile>;
+let newsFilePromise: Promise<INewsFile>;
 try {
-  newsPromise = loadJsonFile<INewsFile>("data/news.json");
+  newsFilePromise = loadJsonFile<INewsFile>("data/news.json");
 
 } catch (e) {
   console.log(e);
@@ -35,9 +35,9 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
       content: []
     };
 
-    newsPromise.then(news => {
-      console.log(news);
-      this.setState({ content: news.entries });
+    newsFilePromise.then(newsFile => {
+      console.log(newsFile);
+      this.setState({ content: newsFile.entries });
     });
   }
 
