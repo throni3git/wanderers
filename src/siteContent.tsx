@@ -8,6 +8,7 @@ import { InfoTile } from "./content/infoTile";
 import { LinksTile } from "./content/linksTile";
 import { LiveTile } from "./content/liveTile";
 import { NewsTile } from "./content/newsTile";
+import { SiteFooter } from "./siteFooter";
 
 const SiteContentContainer = styled.div`
   height: calc(100% - 14vh);
@@ -34,6 +35,7 @@ export class SiteContent extends React.Component<
           activeContent={this.state.activeContent}
         />
         {this.getCurrentContent()}
+        <SiteFooter />
       </SiteContentContainer>
     );
   }

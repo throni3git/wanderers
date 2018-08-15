@@ -38,7 +38,7 @@ font-size: 0.8em;
 export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
   <Scrollbars style={{
     padding: "20px",
-    height: "calc(100% - 97px)",
+    height: "calc(100% - 57px - 100px)",
     width: "100%"
   }}>
     {props.children}
