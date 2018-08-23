@@ -17,3 +17,9 @@ run locally
 build
 
 `npm run dist`
+
+## url parameters
+
+debugCamera
+debugOrbiting
+showSite

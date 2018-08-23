@@ -16,6 +16,7 @@ function detectWebGL(): boolean {
 }
 
 export let DBG_CAMERA = false;
+export let DBG_ORBITING = false;
 
 export class SceneManager {
   private _renderer: THREE.WebGLRenderer;
@@ -34,15 +35,24 @@ export class SceneManager {
   private _windowHalfX;
   private _windowHalfY;
 
-  private _cameraVelocity = 0.01;
+  private _cameraVelocity = 0.02;
+  private _cameraAcceleration = 0.005;
   private _cameraRotationRadius = 0.5;
+  private vX = 0;
+  private vY = 0;
 
+  private _velocityMarker: HTMLDivElement;
   constructor(containerElement: HTMLDivElement) {
     // TODO 2018-08-04 check for browser compatibility
     const url = new URL(window.location.href);
     const dbgCamera = url.searchParams.get("debugCamera");
     if (dbgCamera != null) {
       DBG_CAMERA = true;
+    }
+
+    const dbgOrbiting = url.searchParams.get("debugOrbiting");
+    if (dbgOrbiting != null) {
+      DBG_ORBITING = true;
     }
 
     const isWebGLAvailable = detectWebGL();
@@ -52,7 +62,7 @@ export class SceneManager {
 
     this._renderer = new THREE.WebGLRenderer({ antialias: true });
     this._renderer.setClearColor(new THREE.Color(0xffffff));
-    this._renderer.setPixelRatio(window.devicePixelRatio || 1);
+    this._renderer.setPixelRatio((window.devicePixelRatio || 1) / 2);
 
     this._containerElement = containerElement;
     containerElement.appendChild(this._renderer.domElement);
@@ -75,19 +85,20 @@ export class SceneManager {
       ) as any;
     }
 
+    if (DBG_ORBITING) {
+      const marker = document.createElement("div");
+      containerElement.appendChild(marker);
+      marker.style.position = "absolute";
+      marker.style.width = "5px";
+      marker.style.height = "5px";
+      marker.style.top = "5px";
+      marker.style.left = "5px";
+      marker.style.backgroundColor = "#12ff45";
+      this._velocityMarker = marker;
+    }
+
     this.render();
   }
-
-  private onDocumentMouseMove = event => {
-    this._mouseX =
-      ((event.clientX - this._windowHalfX) / window.innerWidth) *
-      2 *
-      this._cameraRotationRadius;
-    this._mouseY =
-      ((event.clientY - this._windowHalfY) / window.innerHeight) *
-      2 *
-      this._cameraRotationRadius;
-  };
 
   private setupCamera(): void {
     this._camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20);
@@ -148,13 +159,37 @@ export class SceneManager {
     this._renderer.setSize(width, height);
   };
 
+  private onDocumentMouseMove = event => {
+    this._mouseX =
+      ((event.clientX - this._windowHalfX) / window.innerWidth) *
+      2 *
+      this._cameraRotationRadius;
+    this._mouseY =
+      ((event.clientY - this._windowHalfY) / window.innerHeight) *
+      2 *
+      this._cameraRotationRadius;
+  };
+
   private render = (): void => {
     requestAnimationFrame(this.render);
 
+    const diffVX = this._mouseX - this.vX;
+    const diffVY = this._mouseY - this.vY;
+
+    const magnitudeVXY = Math.sqrt(diffVX * diffVX + diffVY * diffVY) + 1e-5;
+
+    this.vX += diffVX / magnitudeVXY * this._cameraAcceleration;
+    this.vY += diffVY / magnitudeVXY * this._cameraAcceleration;
+
+    if (DBG_ORBITING) {
+      this._velocityMarker.style.left = "" + (this.vX / 2 / this._cameraRotationRadius * window.innerWidth + this._windowHalfX) + "px";
+      this._velocityMarker.style.top = "" + (this.vY / 2 / this._cameraRotationRadius * window.innerHeight + this._windowHalfY) + "px";
+    }
+
     this._camera.position.x +=
-      (this._mouseX - this._camera.position.x) * this._cameraVelocity;
+      (this.vX - this._camera.position.x) * this._cameraVelocity;
     this._camera.position.y +=
-      (-this._mouseY - this._camera.position.y) * this._cameraVelocity;
+      (-this.vY - this._camera.position.y) * this._cameraVelocity;
 
     const MAX_CAM_OFFSET = 3;
     this._camera.position.x = Math.min(
