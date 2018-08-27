@@ -3,7 +3,7 @@ import * as React from "react";
 import { loadJsonFile } from "../utils";
 import {
   UnitEntryContainer,
-  UnitEntryText,
+  UnitEntryContent,
   UnitEntryCaption,
   UnitEntryCaptionText,
   UnitEntryCaptionDate,
@@ -50,7 +50,7 @@ export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
               <UnitEntryCaption>
                 <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
               </UnitEntryCaption>
-              <UnitEntryText dangerouslySetInnerHTML={{__html:entry.description.join("")}}></UnitEntryText>
+              <UnitEntryContent dangerouslySetInnerHTML={{__html:entry.description.join("")}}></UnitEntryContent>
             </UnitEntryContainer>
           )
         })}

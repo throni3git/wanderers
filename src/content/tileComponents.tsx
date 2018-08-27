@@ -14,18 +14,18 @@ interface IUnitEntryImageProps {
   url:string;
 }
 export const UnitEntryImage = styled.div<IUnitEntryImageProps>`
-width: 200px;
-height: 150px;
-background: url(${props => "data/img/" + props.url});
-background-size: contain;
-background-repeat: no-repeat;
-float: right;
-margin: 0 20px 20px 0;
+// max-width: 200px;
+// height: 150px;
+// background: url(${props => "data/img/" + props.url});
+// background-size: contain;
+// background-repeat: no-repeat;
+// float: right;
+padding: 0px 0 00px 20px;
 `;
 
-export const UnitEntryText = styled.div`
+export const UnitEntryContent = styled.div`
 padding: 20px;
-/* display: flex; */
+display: flex;
 `;
 
 export const UnitEntryCaption = styled.div`

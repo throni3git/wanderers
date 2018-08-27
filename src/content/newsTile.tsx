@@ -3,7 +3,7 @@ import * as React from "react";
 import { loadJsonFile } from "../utils";
 import {
   UnitEntryContainer,
-  UnitEntryText,
+  UnitEntryContent,
   UnitEntryCaption,
   UnitEntryCaptionText,
   UnitEntryCaptionDate,
@@ -69,10 +69,14 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
                 <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
                 <UnitEntryCaptionDate>{dateInCaption}</UnitEntryCaptionDate>
               </UnitEntryCaption>
-              <UnitEntryText>
-                {entry.imageUrl && <UnitEntryImage url={entry.imageUrl} />}
-                <div dangerouslySetInnerHTML={{ __html: entry.description }}></div>
-              </UnitEntryText>
+              <UnitEntryContent>
+                <div dangerouslySetInnerHTML={{ __html: entry.description }} style={{flex: 3}}></div>
+                {
+                  entry.imageUrl && <UnitEntryImage url={entry.imageUrl} style={{flex: 1}} >
+                    <img src={"data/img/" + entry.imageUrl} style={{maxWidth: "100%",maxHeight: "100%"}}></img>
+                  </UnitEntryImage>
+                }
+              </UnitEntryContent>
             </UnitEntryContainer>
           )
         })}
