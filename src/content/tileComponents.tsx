@@ -10,8 +10,22 @@ export const UnitEntryContainer = styled.div`
 padding: 20px;
 `;
 
+interface IUnitEntryImageProps {
+  url:string;
+}
+export const UnitEntryImage = styled.div<IUnitEntryImageProps>`
+width: 200px;
+height: 150px;
+background: url(${props => "data/img/" + props.url});
+background-size: contain;
+background-repeat: no-repeat;
+float: right;
+margin: 0 20px 20px 0;
+`;
+
 export const UnitEntryText = styled.div`
 padding: 20px;
+/* display: flex; */
 `;
 
 export const UnitEntryCaption = styled.div`

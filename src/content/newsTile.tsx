@@ -7,7 +7,8 @@ import {
   UnitEntryCaption,
   UnitEntryCaptionText,
   UnitEntryCaptionDate,
-  ScrollComponent
+  ScrollComponent,
+  UnitEntryImage
 } from "./tileComponents";
 
 interface INewsFile {
@@ -18,6 +19,7 @@ interface INews {
   date: string;
   caption: string;
   description: string;
+  imageUrl?: string;
 }
 
 let newsFilePromise: Promise<INewsFile>;
@@ -67,7 +69,10 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
                 <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
                 <UnitEntryCaptionDate>{dateInCaption}</UnitEntryCaptionDate>
               </UnitEntryCaption>
-              <UnitEntryText><div dangerouslySetInnerHTML={{ __html: entry.description }}></div></UnitEntryText>
+              <UnitEntryText>
+                {entry.imageUrl && <UnitEntryImage url={entry.imageUrl} />}
+                <div dangerouslySetInnerHTML={{ __html: entry.description }}></div>
+              </UnitEntryText>
             </UnitEntryContainer>
           )
         })}
