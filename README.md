@@ -20,6 +20,6 @@ build
 
 ## url parameters
 
-debugCamera
-debugOrbiting
-showSite
+- `debugCamera`
+- `debugOrbiting`
+- `showSite`
