@@ -27,13 +27,18 @@ injectGlobal`
 	box-sizing: border-box;
 }
 
+@font-face {
+	font-family: 'genome';
+	src: url("data/genome.woff") format("woff");
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
 	color: ${Colors.DefaultTextColor};
-	font-family: sans-serif;
+	font-family: 'genome', sans-serif;
 }
 
 a {
