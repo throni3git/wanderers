@@ -69,7 +69,7 @@ export class SceneManager {
       precision: "mediump"
     });
     this._renderer.setClearColor(new THREE.Color(0xffffff));
-    this._renderer.setPixelRatio((window.devicePixelRatio || 1) / 2);
+    this._renderer.setPixelRatio((window.devicePixelRatio || 1) / 1);
 
     this._containerElement = containerElement;
     containerElement.appendChild(this._renderer.domElement);
