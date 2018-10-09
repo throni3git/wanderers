@@ -40,16 +40,16 @@ const SiteHeading = styled.div`
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
   private _baseElement: HTMLDivElement;
   private _sceneManager: SceneManager;
-  private _hideSite = true;
+  private _hideSite = false;
 
   constructor(props: Container["props"]) {
     super(props);
 
     // TODO 2018-08-04 check for browser compatibility
     const url = new URL(window.location.href);
-    const showSite = url.searchParams.get("showSite");
-    if (showSite != null) {
-      this._hideSite = false;
+    const hideSite = url.searchParams.get("hideSite");
+    if (hideSite != null) {
+      this._hideSite = true;
     }
   }
 

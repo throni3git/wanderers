@@ -22,4 +22,4 @@ build
 
 - `debugCamera`
 - `debugOrbiting`
-- `showSite`
+- `hideSite`
