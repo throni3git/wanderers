@@ -58,7 +58,7 @@ export class Artwork {
     const planetSize = 0.08;
     const extraPlanetSize = 0.03;
     const LINE_RESOLUTION = 50;
-    const LINE_AMOUNT = 200;
+    const LINE_AMOUNT = 100;
     const LINE_WIDTH = 0.01;
 
     const matWireframe = new THREE.MeshBasicMaterial({
@@ -253,7 +253,41 @@ export class Artwork {
     meshLandscape.scale.set(10, 10, 2);
     meshLandscape.position.set(0, -0.25, 5.5);
     // meshLandscape.rotation.x = 0.1;
-    this._scene.add(meshLandscape);
+    // this._scene.add(meshLandscape);
+
+    let geoLineLandscape = new THREE.Geometry();
+    for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
+      let oldHeight = 0;
+      const alpha = 0.1;
+
+      for (let j = 0; j < LINE_RESOLUTION; j++) {
+        const height = -j / LINE_RESOLUTION + Math.random();
+        const filteredHeight = height * alpha + (1 - alpha) * oldHeight;
+        const v = new THREE.Vector3(
+          lineIdx / LINE_AMOUNT,
+          filteredHeight,
+          j / LINE_RESOLUTION
+        );
+        oldHeight = filteredHeight;
+        if (j !== 0 && j !== LINE_RESOLUTION - 1) {
+          geoLineLandscape.vertices.push(v);
+        }
+        geoLineLandscape.vertices.push(v);
+      }
+    }
+
+    // var meshLineLandscape = new MeshLine();
+    // meshLineLandscape.setGeometry(geoLineLandscape);
+    // const matMeshLineLandscape = new MeshLineMaterial({ color: new THREE.Color(0x0), lineWidth: LINE_WIDTH, sizeAttenuation: 1 });
+    // const meshMeshLineLandscape = new THREE.Mesh(meshLineLandscape.geometry, matMeshLineLandscape);
+    // meshAllLines.add(meshMeshLineLandscape);
+
+    const meshAllLines = new THREE.LineSegments(geoLineLandscape, matOrbit);
+    meshAllLines.scale.set(5, 0.5, 8);
+    meshAllLines.position.set(-5, -0.5, 2);
+    meshAllLines.rotation.x = 0.1;
+    meshAllLines.rotation.y = 0.3;
+    this._scene.add(meshAllLines);
   }
 
   private createOrbitLine(
