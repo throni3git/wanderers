@@ -8,7 +8,7 @@ const ArtworkContainer = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  background: url(assets/bg_white.jpg);
+  background: url(assets/white/grain.jpg);
   background-size: cover;
   background-position: center;
   overflow: hidden;

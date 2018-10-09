@@ -77,7 +77,7 @@ export class Artwork {
       transparent: true
     });
     const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
-    this._scene.add(meshWhiteGrain);
+    // this._scene.add(meshWhiteGrain);
     meshWhiteGrain.position.z = -4;
     if (DBG_CAMERA) {
       const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
@@ -96,7 +96,7 @@ export class Artwork {
       transparent: true
     });
     const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
-    this._scene.add(meshWhiteGrain2);
+    // this._scene.add(meshWhiteGrain2);
     meshWhiteGrain2.position.z = -7;
     if (DBG_CAMERA) {
       const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
