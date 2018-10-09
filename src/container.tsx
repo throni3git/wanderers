@@ -17,7 +17,7 @@ const ArtworkContainer = styled.div`
 const SiteContainer = styled.div`
   width: 900px;
   height: 95vh;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.86);
   overflow: hidden;
   box-shadow: #444444 0 0 10px;
   position: absolute;
