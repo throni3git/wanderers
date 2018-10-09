@@ -42,6 +42,10 @@ export class SceneManager {
   private vY = 0;
 
   private _velocityMarker: HTMLDivElement;
+
+  private _lastRender = Date.now();
+  private _maxFPS = 60;
+
   constructor(containerElement: HTMLDivElement) {
     // TODO 2018-08-04 check for browser compatibility
     const url = new URL(window.location.href);
@@ -100,7 +104,8 @@ export class SceneManager {
       this._velocityMarker = marker;
     }
 
-    this.render();
+    this.framedRedraw();
+    window["sceneManager"] = this;
   }
 
   private setupCamera(): void {
@@ -173,9 +178,7 @@ export class SceneManager {
       this._cameraRotationRadius;
   };
 
-  private render = (): void => {
-    requestAnimationFrame(this.render);
-
+  private animate = (): void => {
     const diffVX = this._mouseX - this.vX;
     const diffVY = this._mouseY - this.vY;
 
@@ -214,6 +217,22 @@ export class SceneManager {
     this._camera.lookAt(this._scene.position);
 
     this._artwork.update();
+  };
+
+  protected framedRedraw = (): void => {
+    const tTimestamp = Date.now();
+    const tDiff = tTimestamp - this._lastRender;
+    const tInterval = 1000 / this._maxFPS;
+    this.animate();
+
+    if (tDiff > tInterval) {
+      this.render();
+      this._lastRender = tTimestamp - (tDiff % tInterval);
+    }
+    window.requestAnimationFrame(this.framedRedraw);
+  };
+
+  private render = (): void => {
     if (DBG_CAMERA) {
       this._controls.update();
       this._cameraHelper.update();
