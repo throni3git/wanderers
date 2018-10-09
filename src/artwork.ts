@@ -18,14 +18,19 @@ export const Colors = {
   RulerColor: "#444444"
 };
 
+interface ITextureRessource {
+  name: string;
+  texture: THREE.Texture;
+}
+
 const textureLoader = new THREE.TextureLoader();
 
-async function loadTexture(url: string): Promise<THREE.Texture> {
-  const result = new Promise<THREE.Texture>((resolve, reject) => {
+async function loadTexture(url: string): Promise<ITextureRessource> {
+  const result = new Promise<ITextureRessource>((resolve, reject) => {
     textureLoader.load(
       url,
       texture => {
-        resolve(texture);
+        resolve({ name: url, texture });
       },
       error => {
         reject(error);
@@ -40,11 +45,27 @@ export class Artwork {
   private _lastUpdateTime = Date.now();
   private _startTime = Date.now();
   private _matLandscape: THREE.ShaderMaterial;
+  private _textures: Record<string, THREE.Texture> = {};
+
   constructor(
     private _scene: THREE.Scene,
     private _renderer: THREE.WebGLRenderer
   ) {
     this._setupLights();
+
+    this._loadAssets();
+  }
+
+  private async _loadAssets(): Promise<void> {
+    const texturePromises = [
+      loadTexture("assets/black/grain2.jpg"),
+      loadTexture("assets/white/sun_map.jpg"),
+      loadTexture("assets/white/sun_alpha.jpg")
+    ];
+    const textureRessources = await Promise.all(texturePromises);
+    for (const tr of textureRessources) {
+      this._textures[tr.name] = tr.texture;
+    }
 
     this._setupScene();
   }
@@ -67,7 +88,7 @@ export class Artwork {
     });
 
     // add background of white grain
-    const texWhiteGrain = await loadTexture("assets/black/grain2.jpg");
+    const texWhiteGrain = this._textures["assets/black/grain2.jpg"];
     texWhiteGrain.repeat.set(3, 3);
     texWhiteGrain.wrapS = texWhiteGrain.wrapT = THREE.RepeatWrapping;
     const geoGrain = new THREE.PlaneGeometry(32, 32);
@@ -104,8 +125,8 @@ export class Artwork {
     }
 
     // add sun
-    const texMapSun = await loadTexture("assets/white/sun_map.jpg");
-    const texAlphaSun = await loadTexture("assets/white/sun_alpha.jpg");
+    const texMapSun = this._textures["assets/white/sun_map.jpg"];
+    const texAlphaSun = this._textures["assets/white/sun_alpha.jpg"];
     const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
     const matSun = new THREE.MeshPhongMaterial({
       map: texMapSun,
