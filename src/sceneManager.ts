@@ -60,7 +60,10 @@ export class SceneManager {
       return;
     }
 
-    this._renderer = new THREE.WebGLRenderer({ antialias: true });
+    this._renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      precision: "mediump"
+    });
     this._renderer.setClearColor(new THREE.Color(0xffffff));
     this._renderer.setPixelRatio((window.devicePixelRatio || 1) / 2);
 
