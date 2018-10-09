@@ -26,6 +26,11 @@ padding: 0px 0 00px 20px;
 export const UnitEntryContent = styled.div`
   text-align: justify;
   padding: 20px;
+`;
+
+export const NewsEntryContent = styled.div`
+  text-align: justify;
+  padding: 20px;
   display: flex;
 `;
 
