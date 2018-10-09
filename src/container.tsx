@@ -22,8 +22,8 @@ const SiteContainer = styled.div`
   box-shadow: #444444 0 0 10px;
   position: absolute;
   margin: auto;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   bottom: 0;
   top: 0;
 `;
@@ -58,20 +58,22 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
   }
 
   public render() {
-    return <div style={{ width: "100%" }}>
-      <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
-      {!this._hideSite &&
-        <SiteContainer>
-          <SiteHeading />
-          <SiteContent />
-        </SiteContainer>
-      }
-    </div>;
+    return (
+      <div style={{ width: "100%" }}>
+        <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
+        {!this._hideSite && (
+          <SiteContainer>
+            <SiteHeading />
+            <SiteContent />
+          </SiteContainer>
+        )}
+      </div>
+    );
   }
 }
 
 export default Container;
 
-export interface ICanvasProps { }
+export interface ICanvasProps {}
 
-interface ICanvasState { }
+interface ICanvasState {}

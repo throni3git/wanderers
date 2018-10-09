@@ -178,12 +178,20 @@ export class SceneManager {
 
     const magnitudeVXY = Math.sqrt(diffVX * diffVX + diffVY * diffVY) + 1e-5;
 
-    this.vX += diffVX / magnitudeVXY * this._cameraAcceleration;
-    this.vY += diffVY / magnitudeVXY * this._cameraAcceleration;
+    this.vX += (diffVX / magnitudeVXY) * this._cameraAcceleration;
+    this.vY += (diffVY / magnitudeVXY) * this._cameraAcceleration;
 
     if (DBG_ORBITING) {
-      this._velocityMarker.style.left = "" + (this.vX / 2 / this._cameraRotationRadius * window.innerWidth + this._windowHalfX) + "px";
-      this._velocityMarker.style.top = "" + (this.vY / 2 / this._cameraRotationRadius * window.innerHeight + this._windowHalfY) + "px";
+      this._velocityMarker.style.left =
+        "" +
+        ((this.vX / 2 / this._cameraRotationRadius) * window.innerWidth +
+          this._windowHalfX) +
+        "px";
+      this._velocityMarker.style.top =
+        "" +
+        ((this.vY / 2 / this._cameraRotationRadius) * window.innerHeight +
+          this._windowHalfY) +
+        "px";
     }
 
     this._camera.position.x +=

@@ -16,7 +16,7 @@ export const Colors = {
   ActiveMenuColor: "#888888",
   CaptionUnderlineColor: "#888888",
   RulerColor: "#444444"
-}
+};
 
 const textureLoader = new THREE.TextureLoader();
 
