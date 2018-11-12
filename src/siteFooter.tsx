@@ -6,12 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const FooterContainer = styled.div`
   height: 100px;
+    width: 100%;
   border-top: 1px solid ${Colors.RulerColor};
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: relative;
+    position: absolute;
+    bottom: 0;
 `;
 
 const FooterIcon = styled.a`
