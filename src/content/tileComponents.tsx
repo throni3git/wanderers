@@ -25,12 +25,12 @@ padding: 0px 0 00px 20px;
 
 export const UnitEntryContent = styled.div`
   text-align: justify;
-  padding: 20px;
+  padding: 10px 20px;
 `;
 
 export const NewsEntryContent = styled.div`
   text-align: justify;
-  padding: 20px;
+  padding: 10px 20px;
   display: flex;
 `;
 
@@ -39,7 +39,7 @@ export const UnitEntryCaption = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px 20px;
 `;
 
 export const UnitEntryCaptionText = styled.div`
