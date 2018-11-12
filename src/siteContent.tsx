@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { SiteMenu, MenuEntryNames } from "./SiteMenu";
+import { SiteMenu, MenuEntryNames, ActiveContentTypes } from "./SiteMenu";
 import { ContactTile } from "./content/contactTile";
 import { GalleryTile } from "./content/galleryTile";
 import { InfoTile } from "./content/infoTile";
@@ -9,6 +9,7 @@ import { LinksTile } from "./content/linksTile";
 import { LiveTile } from "./content/liveTile";
 import { NewsTile } from "./content/newsTile";
 import { SiteFooter } from "./siteFooter";
+import ImpressumTile from "./content/impressumTile";
 
 const SiteContentContainer = styled.div`
   height: calc(100% - 14vh);
@@ -17,11 +18,11 @@ const SiteContentContainer = styled.div`
 export class SiteContent extends React.Component<
   ISiteContentProps,
   ISiteContentState
-> {
+  > {
   constructor(props: SiteContent["props"]) {
     super(props);
     this.state = {
-      activeContent: MenuEntryNames.News as keyof typeof MenuEntryNames
+      activeContent: MenuEntryNames.News as ActiveContentTypes
     };
   }
 
@@ -35,7 +36,7 @@ export class SiteContent extends React.Component<
           activeContent={this.state.activeContent}
         />
         {this.getCurrentContent()}
-        <SiteFooter />
+        <SiteFooter setActiveContent={name => { this.setState({ activeContent: name }); }} />
       </SiteContentContainer>
     );
   }
@@ -60,6 +61,9 @@ export class SiteContent extends React.Component<
       case MenuEntryNames.News: {
         return <NewsTile>News</NewsTile>;
       }
+      case "Impressum": {
+        return <ImpressumTile>Impressum</ImpressumTile>;
+      }
     }
     return <div />;
   }
@@ -67,8 +71,8 @@ export class SiteContent extends React.Component<
 
 export default SiteContent;
 
-export interface ISiteContentProps {}
+export interface ISiteContentProps { }
 
 interface ISiteContentState {
-  activeContent: keyof typeof MenuEntryNames;
+  activeContent: ActiveContentTypes;
 }

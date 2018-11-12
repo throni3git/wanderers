@@ -12,6 +12,8 @@ export const MenuEntryNames = {
   Links: "Links"
 };
 
+export type ActiveContentTypes = keyof typeof MenuEntryNames | "Impressum";
+
 const LHC = Colors.LinkHoverColor;
 
 const MenuEntry = styled.span`
@@ -73,8 +75,8 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
 export default SiteMenu;
 
 export interface ISiteMenuProps {
-  setActiveContent: (name: keyof typeof MenuEntryNames) => void;
-  activeContent: keyof typeof MenuEntryNames;
+  setActiveContent: (name: ActiveContentTypes) => void;
+  activeContent: ActiveContentTypes;
 }
 
-interface ISiteMenuState {}
+interface ISiteMenuState { }

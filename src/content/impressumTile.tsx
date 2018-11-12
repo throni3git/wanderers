@@ -1,0 +1,91 @@
+import * as React from "react";
+
+import styled from "styled-components";
+
+import { loadJsonFile } from "../utils";
+import {
+  UnitEntryContainer,
+  UnitEntryContent,
+  UnitEntryCaption,
+  UnitEntryCaptionText,
+  UnitEntryCaptionDate,
+  ScrollComponent
+} from "./tileComponents";
+
+import { Colors } from "../artwork";
+
+interface IParagraphFile {
+  entries: IParagraph[];
+}
+
+interface IParagraph {
+  // date: string;
+  caption: string;
+  description: string;
+  // imageUrl?: string;
+}
+
+export const ImpressumEntryCaption = styled.div`
+  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+`;
+
+export const ImpressumCaptionText = styled.div`
+  font-size: 2em;
+  &::first-letter {
+    color: ${Colors.HighlightColor};
+    font-weight: bold;
+  }
+`;
+
+
+let impressumFilePromise: Promise<IParagraphFile>;
+try {
+  impressumFilePromise = loadJsonFile<IParagraphFile>("data/impressum.json");
+} catch (e) {
+  console.log(e);
+}
+
+export class ImpressumTile extends React.Component<IImpressumTileProps, IImpressumTileState> {
+  constructor(props: ImpressumTile["props"]) {
+    super(props);
+    this.state = { content: [] };
+
+    impressumFilePromise.then(impressumFile => {
+      console.log(impressumFile);
+      this.setState({ content: impressumFile.entries });
+    });
+  }
+
+  public render() {
+    return (
+      <ScrollComponent>
+        <UnitEntryContainer>
+          <ImpressumEntryCaption><ImpressumCaptionText>Impressum</ImpressumCaptionText></ImpressumEntryCaption>
+        </UnitEntryContainer>
+        {this.state.content.map((entry: IParagraph, index: number) => {
+          // parse date info
+          return (
+            <UnitEntryContainer key={index}>
+              <UnitEntryCaption>
+                <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
+              </UnitEntryCaption>
+              <UnitEntryContent dangerouslySetInnerHTML={{ __html: entry.description }}></UnitEntryContent>
+            </UnitEntryContainer>
+          )
+        })}
+      </ScrollComponent>
+    );
+  }
+}
+
+export default ImpressumTile;
+
+export interface IImpressumTileProps { }
+
+interface IImpressumTileState {
+  content: IParagraph[];
+}

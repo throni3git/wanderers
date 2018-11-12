@@ -2,12 +2,12 @@ import * as React from "react";
 
 import { Scrollbars } from "react-custom-scrollbars";
 
-import styled from "../../node_modules/styled-components";
+import styled from "styled-components";
 
 import { Colors } from "../artwork";
 
 export const UnitEntryContainer = styled.div`
-  padding: 20px;
+  padding: 10px 20px;
 `;
 
 interface IUnitEntryImageProps {
