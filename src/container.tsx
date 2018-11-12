@@ -1,8 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 import { SceneManager } from "./sceneManager";
 import { SiteContent } from "./siteContent";
+
+import { Colors } from "./artwork";
 
 const ArtworkContainer = styled.div`
   width: 100%;
@@ -37,6 +40,35 @@ const SiteHeading = styled.div`
   margin: 3vh 3vw;
 `;
 
+
+const GlobalStyle = createGlobalStyle`
+* {
+	box-sizing: border-box;
+}
+
+/* @font-face {
+	font-family: 'genome';
+	src: url("data/genome.woff") format("woff");
+} */
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: ${Colors.DefaultTextColor};
+	/* font-family: 'genome', sans-serif; */
+	font-family: sans-serif;
+}
+
+a {
+	color: ${Colors.LinkColor};
+	&:hover {
+		color: ${Colors.LinkHoverColor};
+	}
+}
+`;
+
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
   private _baseElement: HTMLDivElement;
   private _sceneManager: SceneManager;
@@ -60,13 +92,14 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
   public render() {
     return (
       <div style={{ width: "100%" }}>
-        <ArtworkContainer innerRef={ref => (this._baseElement = ref)} />
+        <ArtworkContainer ref={ref => (this._baseElement = ref)} />
         {!this._hideSite && (
           <SiteContainer>
             <SiteHeading />
             <SiteContent />
           </SiteContainer>
         )}
+        <GlobalStyle />
       </div>
     );
   }
