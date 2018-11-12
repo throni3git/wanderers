@@ -10,6 +10,7 @@ import { DBG_CAMERA } from "./sceneManager";
 
 export const Colors = {
   DefaultTextColor: "#000000",
+  LightTextColor: "#666666",
   LinkColor: "#000000",
   LinkHoverColor: "#856234",
   HighlightColor: "#856234",

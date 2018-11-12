@@ -51,7 +51,8 @@ export const UnitEntryCaptionText = styled.div`
 `;
 
 export const UnitEntryCaptionDate = styled.div`
-  font-size: 0.8em;
+  color: ${Colors.LightTextColor};
+  font-size: 0.9em;
 `;
 
 export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
@@ -70,4 +71,4 @@ ScrollComponent.displayName = "ScrollComponent";
 
 export default ScrollComponent;
 
-export interface IScrollComponentProps {}
+export interface IScrollComponentProps { }
