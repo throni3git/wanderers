@@ -26,6 +26,20 @@ export async function loadJsonFile<T>(url: string): Promise<T> {
   return promise;
 }
 
+/** general json file typing needed since the info/news/... entries must be the value of a key */
+export interface IJsonFile<T> {
+  entries: T[];
+}
+
+/** typing for  */
+export interface IHeadedParagraphSection {
+  caption: string;
+  paragraphs: string[];
+}
+
+export function joinParagraphs(paragraphs: string[]):string {
+  return paragraphs.map(para => "<p>" + para + "</p>").join("");
+}
 
 
 export function polarToCartRad(
@@ -59,8 +73,8 @@ export function cartToPolarRad(
 ): { azimuth: number; elevation: number; radius: number } {
   const length = Math.sqrt(
     direction.x * direction.x +
-      direction.y * direction.y +
-      direction.z * direction.z
+    direction.y * direction.y +
+    direction.z * direction.z
   );
   if (length === 0) {
     return {
