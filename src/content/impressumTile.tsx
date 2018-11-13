@@ -2,7 +2,11 @@ import * as React from "react";
 
 import styled from "styled-components";
 
-import { loadJsonFile } from "../utils";
+import {
+  loadJsonFile
+  ,
+  IJsonFile, IHeadedParagraphSection, joinParagraphs
+} from "../utils";
 import {
   UnitEntryContainer,
   UnitEntryContent,
@@ -14,16 +18,16 @@ import {
 
 import { Colors } from "../artwork";
 
-interface IParagraphFile {
-  entries: IParagraph[];
-}
+// interface IParagraphFile {
+//   entries: IParagraph[];
+// }
 
-interface IParagraph {
-  // date: string;
-  caption: string;
-  description: string;
-  // imageUrl?: string;
-}
+// interface IParagraph {
+//   // date: string;
+//   caption: string;
+//   description: string;
+//   // imageUrl?: string;
+// }
 
 export const ImpressumEntryCaption = styled.div`
   /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
@@ -42,9 +46,9 @@ export const ImpressumCaptionText = styled.div`
 `;
 
 
-let impressumFilePromise: Promise<IParagraphFile>;
+let impressumFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
 try {
-  impressumFilePromise = loadJsonFile<IParagraphFile>("data/impressum.json");
+  impressumFilePromise = loadJsonFile<IJsonFile<IHeadedParagraphSection>>("data/impressum.json");
 } catch (e) {
   console.log(e);
 }
@@ -66,14 +70,14 @@ export class ImpressumTile extends React.Component<IImpressumTileProps, IImpress
         <UnitEntryContainer>
           <ImpressumEntryCaption><ImpressumCaptionText>Impressum</ImpressumCaptionText></ImpressumEntryCaption>
         </UnitEntryContainer>
-        {this.state.content.map((entry: IParagraph, index: number) => {
+        {this.state.content.map((entry: IHeadedParagraphSection, index: number) => {
           // parse date info
           return (
             <UnitEntryContainer key={index}>
               <UnitEntryCaption>
                 <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
               </UnitEntryCaption>
-              <UnitEntryContent dangerouslySetInnerHTML={{ __html: entry.description }}></UnitEntryContent>
+              <UnitEntryContent dangerouslySetInnerHTML={{ __html: joinParagraphs(entry.paragraphs) }}></UnitEntryContent>
             </UnitEntryContainer>
           )
         })}
@@ -87,5 +91,5 @@ export default ImpressumTile;
 export interface IImpressumTileProps { }
 
 interface IImpressumTileState {
-  content: IParagraph[];
+  content: IHeadedParagraphSection[];
 }

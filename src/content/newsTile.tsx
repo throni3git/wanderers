@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { loadJsonFile } from "../utils";
+import { loadJsonFile, IJsonFile, IHeadedParagraphSection, joinParagraphs } from "../utils";
 import {
   UnitEntryContainer,
   NewsEntryContent,
@@ -11,20 +11,15 @@ import {
   UnitEntryImage
 } from "./tileComponents";
 
-interface INewsFile {
-  entries: INews[];
-}
 
-interface INews {
+interface INewsSection extends IHeadedParagraphSection {
   date: string;
-  caption: string;
-  description: string;
   imageUrl?: string;
 }
 
-let newsFilePromise: Promise<INewsFile>;
+let newsFilePromise: Promise<IJsonFile<INewsSection>>;
 try {
-  newsFilePromise = loadJsonFile<INewsFile>("data/news.json");
+  newsFilePromise = loadJsonFile<IJsonFile<INewsSection>>("data/news.json");
 } catch (e) {
   console.log(e);
 }
@@ -42,7 +37,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
     });
   }
 
-  private sortLambda = (a: INews, b: INews) => {
+  private sortLambda = (a: INewsSection, b: INewsSection) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     if (dateA < dateB) {
@@ -75,7 +70,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
               </UnitEntryCaption>
               <NewsEntryContent>
                 <div
-                  dangerouslySetInnerHTML={{ __html: entry.description }}
+                  dangerouslySetInnerHTML={{ __html: joinParagraphs(entry.paragraphs) }}
                   style={{ flex: 3 }}
                 />
                 {entry.imageUrl && (
@@ -97,8 +92,8 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
 export default NewsTile;
 
-export interface INewsTileProps {}
+export interface INewsTileProps { }
 
 interface INewsTileState {
-  content: INews[];
+  content: INewsSection[];
 }

@@ -1,27 +1,21 @@
 import * as React from "react";
 
-import { loadJsonFile } from "../utils";
+import {
+  loadJsonFile, IJsonFile,
+  IHeadedParagraphSection,
+  joinParagraphs
+} from "../utils";
 import {
   UnitEntryContainer,
   UnitEntryContent,
   UnitEntryCaption,
   UnitEntryCaptionText,
-  UnitEntryCaptionDate,
   ScrollComponent
 } from "./tileComponents";
 
-interface IInfoFile {
-  entries: IInfo[];
-}
-
-interface IInfo {
-  caption: string;
-  description: string[];
-}
-
-let infoFilePromise: Promise<IInfoFile>;
+let infoFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
 try {
-  infoFilePromise = loadJsonFile<IInfoFile>("data/info.json");
+  infoFilePromise = loadJsonFile<IJsonFile<IHeadedParagraphSection>>("data/info.json");
 
 } catch (e) {
   console.log(e);
@@ -43,14 +37,14 @@ export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
   public render() {
     return (
       <ScrollComponent>
-        {this.state.content.map((entry: IInfo, index: number) => {
+        {this.state.content.map((entry: IHeadedParagraphSection, index: number) => {
           // parse date info
           return (
             <UnitEntryContainer key={index}>
               <UnitEntryCaption>
                 <UnitEntryCaptionText>{entry.caption}</UnitEntryCaptionText>
               </UnitEntryCaption>
-              <UnitEntryContent dangerouslySetInnerHTML={{__html:entry.description.join("")}}></UnitEntryContent>
+              <UnitEntryContent dangerouslySetInnerHTML={{ __html: joinParagraphs(entry.paragraphs) }}></UnitEntryContent>
             </UnitEntryContainer>
           )
         })}
@@ -64,5 +58,5 @@ export default InfoTile;
 export interface IInfoTileProps { }
 
 interface IInfoTileState {
-  content: IInfo[];
+  content: IHeadedParagraphSection[];
 }
