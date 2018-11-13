@@ -18,18 +18,7 @@ import {
 
 import { Colors } from "../artwork";
 
-// interface IParagraphFile {
-//   entries: IParagraph[];
-// }
-
-// interface IParagraph {
-//   // date: string;
-//   caption: string;
-//   description: string;
-//   // imageUrl?: string;
-// }
-
-export const ImpressumEntryCaption = styled.div`
+const ImpressumEntryCaption = styled.div`
   /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
   display: flex;
   justify-content: center;
@@ -37,7 +26,7 @@ export const ImpressumEntryCaption = styled.div`
   padding: 10px 20px;
 `;
 
-export const ImpressumCaptionText = styled.div`
+const ImpressumCaptionText = styled.div`
   font-size: 2em;
   &::first-letter {
     color: ${Colors.HighlightColor};
