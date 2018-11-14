@@ -2,6 +2,9 @@ import * as React from "react";
 
 import styled from "styled-components";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Colors } from "../artwork";
+
 const Overlay = styled.div`
 	position: fixed;
 	top: 0;
@@ -9,7 +12,7 @@ const Overlay = styled.div`
 	bottom: 0;
 	right: 0;
 	display: flex;
-	background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 0, 0, 0.7);
 	z-index: 10;
 `;
 
@@ -38,16 +41,49 @@ const MainImageCenter = styled.div`
 	/* } */
 `;
 
-const PreviousImageButton = styled.div`
+const PreviousImageButtonContainer = styled.div`
 	width: 100px;
 	height: 100%;
-	background: red;
+	/* background: red; */
+	display: flex;
+	align-items: center;
+`;
+
+const PreviousImageButton = styled.div`
+	width: 100%;
+	height: 100px;
+	/* background: blue; */
+	text-align: center;
+	line-height: 100px;
+	font-size: 80px;
+`;
+
+const NextImageButtonContainer = styled.div`
+	width: 100px;
+	height: 100%;
+	/* background: green; */
+	display: flex;
+	align-items: center;
 `;
 
 const NextImageButton = styled.div`
+	width: 100%;
+	height: 100px;
+	/* background: blue; */
+	text-align: center;
+	line-height: 100px;
+	font-size: 80px;
+`;
+
+const ExitButton = styled.div`
+	position: absolute;
 	width: 100px;
-	height: 100%;
-	background: green;
+	height: 100px;
+	text-align: center;
+	line-height: 100px;
+	font-size: 80px;
+	top: 0;
+	right: 0;
 `;
 
 export class ActiveImage extends React.Component<
@@ -61,17 +97,37 @@ export class ActiveImage extends React.Component<
 	public render() {
 		return (
 			<Overlay>
-				<PreviousImageButton
+				<PreviousImageButtonContainer
 					onClick={this.props.nextImageClickHandler}
-				/>
+				>
+					<PreviousImageButton>
+						<FontAwesomeIcon
+							icon={["fas", "arrow-left"]}
+							style={{ color: Colors.galleryArrayColor }}
+						/>
+					</PreviousImageButton>
+				</PreviousImageButtonContainer>
 				<MainImageContainer>
 					<MainImageCenter>
 						<MainImage src={this.props.url} />
 					</MainImageCenter>
 				</MainImageContainer>
-				<NextImageButton
+				<NextImageButtonContainer
 					onClick={this.props.previousImageClickHandler}
-				/>
+				>
+					<NextImageButton>
+						<FontAwesomeIcon
+							icon={["fas", "arrow-right"]}
+							style={{ color: Colors.galleryArrayColor }}
+						/>
+					</NextImageButton>
+				</NextImageButtonContainer>
+				<ExitButton onClick={this.props.exitClickHandler}>
+					<FontAwesomeIcon
+						icon={["fas", "times"]}
+						style={{ color: Colors.galleryArrayColor }}
+					/>
+				</ExitButton>
 			</Overlay>
 		);
 	}
@@ -81,6 +137,7 @@ export interface IActiveImageProps {
 	url: string;
 	nextImageClickHandler: () => void;
 	previousImageClickHandler: () => void;
+	exitClickHandler: () => void;
 }
 
 interface IActiveImageState {}

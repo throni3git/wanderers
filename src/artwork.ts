@@ -16,7 +16,8 @@ export const Colors = {
 	HighlightColor: "#856234",
 	ActiveMenuColor: "#888888",
 	CaptionUnderlineColor: "#888888",
-	RulerColor: "#444444"
+	RulerColor: "#444444",
+	galleryArrayColor: "#cccccc"
 };
 
 interface ITextureRessource {

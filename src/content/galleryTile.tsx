@@ -90,9 +90,9 @@ export class GalleryTile extends React.Component<
 
 			if (this.imageMapping.has(activeImage.imageSectionIdx + 1)) {
 				newSectionIdx = activeImage.imageSectionIdx + 1;
-			}else {
-        newSectionIdx=0;
-      }
+			} else {
+				newSectionIdx = 0;
+			}
 		}
 
 		this.setState({
@@ -117,11 +117,10 @@ export class GalleryTile extends React.Component<
 		} else {
 			if (this.imageMapping.has(activeImage.imageSectionIdx - 1)) {
 				newSectionIdx = activeImage.imageSectionIdx - 1;
-      }
-      else {
-        newSectionIdx = this.imageMapping.size -1;
-      }
-			newImageIdx = this.imageMapping.get(newSectionIdx).size-1;
+			} else {
+				newSectionIdx = this.imageMapping.size - 1;
+			}
+			newImageIdx = this.imageMapping.get(newSectionIdx).size - 1;
 		}
 
 		this.setState({
@@ -130,6 +129,10 @@ export class GalleryTile extends React.Component<
 				imageIdx: newImageIdx
 			}
 		});
+	};
+
+	private exitActiveImage = () => {
+		this.setState({ activeImage: undefined });
 	};
 
 	public render() {
@@ -207,6 +210,7 @@ export class GalleryTile extends React.Component<
 						}
 						nextImageClickHandler={this.gotoNextImage}
 						previousImageClickHandler={this.gotoPreviousImage}
+						exitClickHandler={this.exitActiveImage}
 					/>
 				)}
 			</>

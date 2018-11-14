@@ -2,11 +2,12 @@ import * as ReactDOM from "react-dom";
 import * as React from "react";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStroopwafel } from "@fortawesome/free-solid-svg-icons";
+import { faStroopwafel, fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 
 library.add(faStroopwafel);
 library.add(fab);
+library.add(fas);
 
 import { Container } from "./container";
 
