@@ -13,15 +13,22 @@ import {
 } from "./tileComponents";
 
 const GalleryImageSection = styled.div`
+	padding: 10px 0;
 	display: flex;
 `;
 
-const SingleImageContainer = styled.div(props => ({
-	background: "url(" + props.src + ")",
-	padding: "10px",
-	width: "25%",
-	height: "180px"
-}));
+const SingleImageContainer = styled.div`
+	background: url(${props => props.src});
+	background-size: cover;
+	background-position: center;
+	margin: 2px;
+	width: 25%;
+	height: 160px;
+	transition: 0.1s ease-in-out;
+	:hover {
+		opacity: 0.85;
+	}
+`;
 
 interface IImageUrl {
 	imageUrl: string;
