@@ -25,7 +25,8 @@ const config: webpack.Configuration = {
 		new cleanPlugin(isProduction ? ["dist/**/*"] : []),
 		new copyPlugin([
 			{ from: "assets/", to: "assets/" },
-			{ from: "data/", to: "data/" }
+			{ from: "data/", to: "data/" },
+			{ from: "media/", to: "media/" }
 		])
 	],
 	output: {

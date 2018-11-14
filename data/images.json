@@ -1,0 +1,26 @@
+{
+  "entries": [
+    {
+      "caption": "Bandfotos",
+      "folder": "Bandfotos",
+      "imageList": [
+        {
+          "imageUrl": "HD_SOJUS3000_001.jpg",
+          "thumbUrl": "thumbs/HD_SOJUS3000_001.jpg"
+        },
+        {
+          "imageUrl": "HD_SOJUS3000_002.jpg",
+          "thumbUrl": "thumbs/HD_SOJUS3000_002.jpg"
+        },
+        {
+          "imageUrl": "HD_SOJUS3000_003.jpg",
+          "thumbUrl": "thumbs/HD_SOJUS3000_003.jpg"
+        },
+        {
+          "imageUrl": "HD_SOJUS3000_004.jpg",
+          "thumbUrl": "thumbs/HD_SOJUS3000_004.jpg"
+        }
+      ]
+    }
+  ]
+}
