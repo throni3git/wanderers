@@ -22,16 +22,11 @@ const GalleryImageSection = styled.div`
 	flex-wrap: wrap;
 `;
 
-export interface IImageUrl {
-	imageUrl: string;
-	thumbUrl?: string;
-}
-
 /** typing for a universal section with a caption */
 interface IImageSection {
 	caption: string;
 	date?: string;
-	imageList: IImageUrl[];
+	imageList: string[];
 	folder: string;
 }
 
@@ -48,7 +43,7 @@ export class GalleryTile extends React.Component<
 	IGalleryTileProps,
 	IGalleryTileState
 > {
-	private imageMapping: Map<number, Map<number, IImageUrl>>;
+	private imageMapping: Map<number, Map<number, string>>;
 
 	constructor(props: GalleryTile["props"]) {
 		super(props);
@@ -136,7 +131,7 @@ export class GalleryTile extends React.Component<
 	};
 
 	public render() {
-		this.imageMapping = new Map<number, Map<number, IImageUrl>>();
+		this.imageMapping = new Map<number, Map<number, string>>();
 		const activeImage = this.state.activeImage;
 
 		return (
@@ -165,7 +160,7 @@ export class GalleryTile extends React.Component<
 									<GalleryImageSection>
 										{imageSection.imageList.map(
 											(
-												imgUrl: IImageUrl,
+												imgUrl: string,
 												imageIdx: number
 											) => {
 												imageSectionMap.set(
@@ -206,7 +201,7 @@ export class GalleryTile extends React.Component<
 							"/" +
 							this.imageMapping
 								.get(activeImage.imageSectionIdx)
-								.get(activeImage.imageIdx).imageUrl
+								.get(activeImage.imageIdx)
 						}
 						nextImageClickHandler={this.gotoNextImage}
 						previousImageClickHandler={this.gotoPreviousImage}

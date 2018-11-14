@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import styled from "styled-components";
-import { IImageUrl } from "./galleryTile";
 
 const SingleImageContainer = styled.div`
 	padding: 2px;
@@ -32,7 +31,7 @@ export class SingleImage extends React.Component<
 		return (
 			<SingleImageContainer onClick={this.props.clickHandler}>
 				<Thumbnail
-					url={this.props.folder + this.props.imageUrl.thumbUrl}
+					url={this.props.folder + "thumbs/" + this.props.imageUrl}
 				/>
 			</SingleImageContainer>
 		);
@@ -41,7 +40,7 @@ export class SingleImage extends React.Component<
 
 
 export interface ISingleImageProps {
-	imageUrl: IImageUrl;
+	imageUrl: string;
   folder: string;
   clickHandler: () => void;
 }
