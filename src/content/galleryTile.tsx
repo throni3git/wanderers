@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ScrollComponent, UnitEntryContainer } from "./tileComponents";
 
 export class GalleryTile extends React.Component<
 	IGalleryTileProps,
@@ -9,7 +10,11 @@ export class GalleryTile extends React.Component<
 	}
 
 	public render() {
-		return <div>GalleryTile</div>;
+		return (
+			<ScrollComponent>
+				<UnitEntryContainer>GalleryTile</UnitEntryContainer>
+			</ScrollComponent>
+		);
 	}
 }
 
