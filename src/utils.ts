@@ -36,8 +36,27 @@ export interface IHeadedParagraphSection {
 	paragraphs: string[];
 }
 
-export function joinParagraphs(paragraphs: string[]): string {
-	return paragraphs.map(para => "<p>" + para + "</p>").join("");
+function openHtmlTag(tagName: string): string {
+	return "<" + tagName + ">";
+}
+
+function closeHtmlTag(tagName: string): string {
+	return "</" + tagName + ">";
+}
+
+/** joins string snippets to HTML <ul> elements */
+export function joinParagraphs(
+	paragraphs: string[],
+	htmlTag: string = "p",
+	outerHtmlTag?: string
+): string {
+	const middle = paragraphs
+		.map(para => openHtmlTag(htmlTag) + para + closeHtmlTag(htmlTag))
+		.join("");
+	if (!outerHtmlTag) return middle;
+	const tagOpen = openHtmlTag(outerHtmlTag);
+	const tagClose = closeHtmlTag(outerHtmlTag);
+	return tagOpen + middle + tagClose;
 }
 
 export function polarToCartRad(
