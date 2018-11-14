@@ -1,8 +1,8 @@
 import { classic3DNoise } from "./noiseShader";
 
 export const displacmentVertexShader =
-  classic3DNoise +
-  `
+	classic3DNoise +
+	`
 varying vec2 vUv;
 varying float noise;
 uniform float time;
@@ -59,12 +59,12 @@ uniform float lineDistance;
 
 
 float isPointOnLine(float position,float differentialLength) {
-	float fractionPartOfPosition=position-floor(position+0.5); 
-	fractionPartOfPosition/=differentialLength; 
+	float fractionPartOfPosition=position-floor(position+0.5);
+	fractionPartOfPosition/=differentialLength;
 	fractionPartOfPosition=clamp(fractionPartOfPosition,-1.,1.);
   float result=0.5+0.5*cos(fractionPartOfPosition*PI);
   result = sqrt(result);
-	return result; 
+	return result;
 }
 
 float getAnisotropicAttenuation(float differentialLength) {
@@ -80,7 +80,7 @@ float contributeOnAxis(float position) {
 
 	float anisotropicAttenuation=getAnisotropicAttenuation(differentialLength);
 	result*=anisotropicAttenuation;
-  
+
   return result;
 }
 
@@ -105,7 +105,7 @@ void main() {
 `;
 
 /*
-*/
+ */
 
 export const gridShader = `
 precision mediump float;
