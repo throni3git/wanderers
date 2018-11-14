@@ -9,7 +9,7 @@ import { LinksTile } from "./content/linksTile";
 import { LiveTile } from "./content/liveTile";
 import { NewsTile } from "./content/newsTile";
 import { SiteFooter } from "./siteFooter";
-import ImpressumTile from "./content/impressumTile";
+import { ImpressumTile } from "./content/impressumTile";
 
 const SiteContentContainer = styled.div`
 	height: calc(100% - 14vh);
@@ -72,8 +72,6 @@ export class SiteContent extends React.Component<
 		return <div />;
 	}
 }
-
-export default SiteContent;
 
 export interface ISiteContentProps {}
 

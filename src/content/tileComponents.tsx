@@ -69,6 +69,5 @@ export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
 
 ScrollComponent.displayName = "ScrollComponent";
 
-export default ScrollComponent;
 
 export interface IScrollComponentProps {}

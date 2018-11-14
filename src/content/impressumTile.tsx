@@ -90,8 +90,6 @@ export class ImpressumTile extends React.Component<
 	}
 }
 
-export default ImpressumTile;
-
 export interface IImpressumTileProps {}
 
 interface IImpressumTileState {

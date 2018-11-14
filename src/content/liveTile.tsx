@@ -191,8 +191,6 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 	}
 }
 
-export default LiveTile;
-
 export interface ILiveTileProps {}
 
 interface ILiveTileState {

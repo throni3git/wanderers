@@ -101,8 +101,6 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 	}
 }
 
-export default NewsTile;
-
 export interface INewsTileProps {}
 
 interface INewsTileState {

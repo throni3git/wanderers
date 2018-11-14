@@ -108,8 +108,6 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	}
 }
 
-export default Container;
-
 export interface ICanvasProps {}
 
 interface ICanvasState {}

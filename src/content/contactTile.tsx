@@ -303,8 +303,6 @@ export class ContactTile extends React.Component<
 	}
 }
 
-export default ContactTile;
-
 export interface IContactTileProps {}
 
 interface IContactTileState {

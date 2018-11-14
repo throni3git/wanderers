@@ -67,8 +67,6 @@ export const SiteFooter: React.SFC<ISiteFooterProps> = props => (
 
 SiteFooter.displayName = "SiteFooter";
 
-export default SiteFooter;
-
 export interface ISiteFooterProps {
 	setActiveContent: (name: ActiveContentTypes) => void;
 }

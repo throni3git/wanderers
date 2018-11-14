@@ -63,8 +63,6 @@ export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
 	}
 }
 
-export default InfoTile;
-
 export interface IInfoTileProps {}
 
 interface IInfoTileState {

@@ -72,8 +72,6 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
 	}
 }
 
-export default SiteMenu;
-
 export interface ISiteMenuProps {
 	setActiveContent: (name: ActiveContentTypes) => void;
 	activeContent: ActiveContentTypes;

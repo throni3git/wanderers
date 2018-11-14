@@ -71,8 +71,6 @@ export class LinksTile extends React.Component<
 	}
 }
 
-export default LinksTile;
-
 export interface ILinksTileProps {}
 
 interface ILinksTileState {
