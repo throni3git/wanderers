@@ -3,22 +3,56 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { IJsonFile, loadJsonFile } from "../utils";
-import { ScrollComponent, UnitEntryContainer, UnitEntryCaption, UnitEntryCaptionDate } from "./tileComponents";
+import { ScrollComponent, UnitEntryContainer, UnitEntryCaptionDate } from "./tileComponents";
 
 import { Colors } from "../artwork";
 
-const GigCityCaptionText = styled.div`
-  font-size: 1.0em;
+const GigEntryCityText = styled.div`
+  font-size: 1.5em;
   &::first-letter {
     color: ${Colors.HighlightColor};
     font-weight: bold;
   }
 `;
 
-const GigLocationCaptionText = styled.div`
+const GigEntryLocationText = styled.div`
+  font-size: 1.2em;
+`;
+
+const GigEntrySubLineText = styled.div`
   font-size: 1.0em;
 `;
 
+
+const GigEntry = styled.div`
+border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
+/* display: flex; */
+/* justify-content: space-between; */
+/* align-items: center; */
+/* padding: 10px 20px; */
+`;
+
+const GigEntryMainLine = styled.div`
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px 20px;
+`;
+const GigEntrySubLine = styled.div`
+ /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+ padding: 10px 20px;
+`;
+
+const HeadingEntryCaption = styled.div`
+  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+`;
 
 
 const YearCaptionText = styled.div`
@@ -27,6 +61,15 @@ const YearCaptionText = styled.div`
     color: ${Colors.HighlightColor};
     font-weight: bold;
   }
+`;
+
+
+export const GigEntryCaption = styled.div`
+  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 `;
 
 interface ILiveGigMetaData {
@@ -74,13 +117,19 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 
     return (
       <UnitEntryContainer key={entry.date}>
-        <UnitEntryCaption>
-          <GigCityCaptionText>{entry.city}</GigCityCaptionText>
-          <GigLocationCaptionText>{entry.location}</GigLocationCaptionText>
-          {/* <GigLocationCaptionText>{entry.topic}</GigLocationCaptionText>
-          <GigLocationCaptionText>{entry.with}</GigLocationCaptionText> */}
-          <UnitEntryCaptionDate>{dateInCaption}</UnitEntryCaptionDate>
-        </UnitEntryCaption>
+        <GigEntry>
+          <GigEntryMainLine>
+
+            <GigEntryCityText>{entry.city}</GigEntryCityText>
+            <GigEntryLocationText>{entry.topic ? entry.topic + " // " : null}{entry.location}</GigEntryLocationText>
+            <UnitEntryCaptionDate>{dateInCaption}</UnitEntryCaptionDate>
+
+          </GigEntryMainLine>
+          <GigEntrySubLine>
+
+            <GigEntrySubLineText>{"+ " + entry.with}</GigEntrySubLineText>
+          </GigEntrySubLine>
+        </GigEntry>
       </UnitEntryContainer>
     );
 
@@ -108,18 +157,19 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 
     const pastGigContainers = new Array<JSX.Element>();
     yearMapping.forEach((gigEntries, year) => {
-      const result = (<YearCaptionText key={year}>
-        {year}
+      const result = (<div key={year}>
+        <UnitEntryContainer><YearCaptionText>
+          {year}</YearCaptionText></UnitEntryContainer>
         {gigEntries.map(entry => this.makeGigEntry(entry))}
-      </YearCaptionText>);
+      </div>);
       pastGigContainers.push(result);
     })
 
     return (
       <ScrollComponent>
-        <YearCaptionText>Future Shows</YearCaptionText>
+        <HeadingEntryCaption><YearCaptionText>Future Shows</YearCaptionText></HeadingEntryCaption>
         {futureGigsContainer}
-        <YearCaptionText>Past Shows</YearCaptionText>
+        <HeadingEntryCaption><YearCaptionText>Past Shows</YearCaptionText></HeadingEntryCaption>
         {pastGigContainers}
       </ScrollComponent>
     );
