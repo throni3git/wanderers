@@ -70,12 +70,7 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
   private makeGigEntry(entry: ILiveGigMetaData): JSX.Element {
     // parse date info
     const date = new Date(entry.date);
-    const dateInCaption =
-      ("0" + date.getDate()).slice(-2) +
-      "." +
-      ("0" + date.getMonth()).slice(-2) +
-      "." +
-      date.getFullYear();
+    const dateInCaption = date.toLocaleDateString();
 
     return (
       <UnitEntryContainer key={entry.date}>

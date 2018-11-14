@@ -56,12 +56,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
         {sortedEntries.map(entry => {
           // parse date info
           const date = new Date(entry.date);
-          const dateInCaption =
-            ("0" + date.getDate()).slice(-2) +
-            "." +
-            ("0" + date.getMonth()).slice(-2) +
-            "." +
-            date.getFullYear();
+          const dateInCaption = date.toLocaleDateString();
           return (
             <UnitEntryContainer key={entry.date}>
               <UnitEntryCaption>
