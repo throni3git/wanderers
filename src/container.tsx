@@ -86,6 +86,9 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 		if (hideSite != null) {
 			this._hideSite = true;
 		}
+
+		const pageToBeActivated = url.searchParams.get("page");
+		this.state = { initialPage: pageToBeActivated };
 	}
 
 	public componentDidMount() {
@@ -99,7 +102,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 				{!this._hideSite && (
 					<SiteContainer>
 						<SiteHeading />
-						<SiteContent />
+						<SiteContent initialPage={this.state.initialPage} />
 					</SiteContainer>
 				)}
 				<GlobalStyle />
@@ -110,4 +113,6 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 
 export interface ICanvasProps {}
 
-interface ICanvasState {}
+interface ICanvasState {
+	initialPage: string;
+}

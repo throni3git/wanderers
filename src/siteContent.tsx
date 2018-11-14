@@ -19,10 +19,12 @@ export class SiteContent extends React.Component<
 	ISiteContentProps,
 	ISiteContentState
 > {
-	constructor(props: SiteContent["props"]) {
+	constructor(props: ISiteContentProps) {
 		super(props);
+		const activeContent = (props.initialPage ||
+			MenuEntryNames.News) as ActiveContentTypes;
 		this.state = {
-			activeContent: MenuEntryNames.News as ActiveContentTypes
+			activeContent
 		};
 	}
 
@@ -73,7 +75,9 @@ export class SiteContent extends React.Component<
 	}
 }
 
-export interface ISiteContentProps {}
+export interface ISiteContentProps {
+	initialPage?: string;
+}
 
 interface ISiteContentState {
 	activeContent: ActiveContentTypes;
