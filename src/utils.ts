@@ -34,6 +34,8 @@ export interface IJsonFile<T> {
 export interface IHeadedParagraphSection {
 	caption: string;
 	paragraphs: string[];
+	htmlTag?: string;
+	outerHtmlTag?: string;
 }
 
 function openHtmlTag(tagName: string): string {

@@ -66,6 +66,10 @@ a {
 		color: ${Colors.LinkHoverColor};
 	}
 }
+
+li {
+  padding: 3px 0;
+}
 `;
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
