@@ -30,7 +30,7 @@ export interface IJsonFile<T> {
 	entries: T[];
 }
 
-/** typing for  */
+/** typing for a universal section with a caption */
 export interface IHeadedParagraphSection {
 	caption: string;
 	paragraphs: string[];
