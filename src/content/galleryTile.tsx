@@ -150,9 +150,11 @@ export class GalleryTile extends React.Component<
 							return (
 								<UnitEntryContainer key={imageSectionIdx}>
 									<UnitEntryCaption>
-										<UnitEntryCaptionText>
-											{imageSection.caption}
-										</UnitEntryCaptionText>
+										<UnitEntryCaptionText
+											dangerouslySetInnerHTML={{
+												__html: imageSection.caption
+											}}
+										/>
 										<UnitEntryCaptionDate>
 											{imageSection.date}
 										</UnitEntryCaptionDate>
