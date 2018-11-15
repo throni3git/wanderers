@@ -14,8 +14,9 @@
       ]
     },
     {
-      "caption": "23.06.2018 Videodreh - Erfurt, Bilder: <a target='_blank' href='https://erikswiatloch.de/coldskinstudio/'>Erik Swiatloch</a>",
+      "caption": "Videodreh - Erfurt, Bilder: <a target='_blank' href='https://erikswiatloch.de/coldskinstudio/'>Erik Swiatloch</a>",
       "folder": "Auswahl_Session",
+      "date": "2018-06-23T18:00:00.000Z",
       "imageList": [
         "DSC05869.jpg",
         "DSC05872-2.jpg",
@@ -37,8 +38,9 @@
       ]
     },
     {
-      "caption": "03.03.2018 Erfurt - Stadtgarten",
+      "caption": "Erfurt - Stadtgarten",
       "folder": "2018_Erfurt_Kalle",
+      "date": "2018-03-03T19:00:00.000Z",
       "imageList": [
         "28514968_1886649064687351_4928474462308414817_o.jpg",
         "28515034_1886649284687329_8634568951148936849_o.jpg",
@@ -56,8 +58,9 @@
       ]
     },
     {
-      "caption": "20.10.2017 Jena - Kulturbahnhof",
+      "caption": "Jena - Kulturbahnhof",
       "folder": "2017-10-20_Kulturbahnhof_Jena",
+      "date": "2017-10-20T18:00:00.000Z",
       "imageList": [
         "IMG_3179.jpg",
         "IMG_3182.jpg",
@@ -205,8 +208,9 @@
       ]
     },
     {
-      "caption": "13.01.2015 Ilmenau, BC-Club (made by Marcel Kühlhorn]",
+      "caption": "Ilmenau, BC-Club (made by Marcel Kühlhorn]",
       "folder": "2015-01-13_Ilmenau_BC_Club",
+      "date": "2015-01-13T19:00:00.000Z",
       "imageList": [
         "DSC_2210.jpg",
         "DSC_2215.jpg",
@@ -262,8 +266,9 @@
       ]
     },
     {
-      "caption": "08.08.14 Erfurt, Kunstrasen",
+      "caption": "Erfurt, Kunstrasen",
       "folder": "08.08.14_erfurt_kunstrasen",
+      "date": "2014-08-08T18:00:00.000Z",
       "imageList": [
         "SOJUS3000_Kunstrasen_Festival_Erfurt_8.8.14_001.jpg",
         "SOJUS3000_Kunstrasen_Festival_Erfurt_8.8.14_002.jpg",
@@ -271,8 +276,9 @@
       ]
     },
     {
-      "caption": "22.03.14 Freiberg, Pi Haus",
+      "caption": "Freiberg, Pi Haus",
       "folder": "22.03.14_freiberg_pi_haus",
+      "date": "2014-03-22T19:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Pi_Haus_Freiberg_22.3.14_001.jpg",
         "HD_SOJUS3000_Pi_Haus_Freiberg_22.3.14_002.jpg",
@@ -282,8 +288,9 @@
       ]
     },
     {
-      "caption": "01.03.14 Baracke5, Ilmenau",
+      "caption": "Baracke5, Ilmenau",
       "folder": "01.03.14_Ilmenau_Baracke5",
+      "date": "2014-03-01T19:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Baracke5_Ilmenau_1.3.14_001.jpg",
         "HD_SOJUS3000_Baracke5_Ilmenau_1.3.14_002.jpg",
@@ -305,24 +312,27 @@
       ]
     },
     {
-      "caption": "08.06.13 Ilmenau, Stadtfest",
+      "caption": "Ilmenau, Stadtfest",
       "folder": "08.06.13_Ilmenau_Stadtfest",
+      "date": "2013-06-08T18:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Stadtfest_Ilmenau_8.6.13__001.jpg",
         "HD_SOJUS3000_Stadtfest_Ilmenau_8.6.13__001.jpg"
       ]
     },
     {
-      "caption": "30.11.12 Erfurt, Klanggerüst",
+      "caption": "Erfurt, Klanggerüst",
       "folder": "30.11.12_erfurt_klanggeruest",
+      "date": "2012-11-30T19:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Klanggeruest_Erfurt_30.11.12_001.jpg",
         "HD_SOJUS3000_Klanggeruest_Erfurt_30.11.12_002.jpg"
       ]
     },
     {
-      "caption": "26.10.12 Jena, Schallspielnacht",
+      "caption": "Jena, Schallspielnacht",
       "folder": "26.10.12_jena_schallspielnacht",
+      "date": "2012-10-26T18:00:00.000Z",
       "imageList": ["HD_SOJUS3000_Schallspielnacht_Jena_26.10.14_001.jpg"]
     }
   ]

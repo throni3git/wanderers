@@ -147,6 +147,11 @@ export class GalleryTile extends React.Component<
 								imageSectionIdx,
 								imageSectionMap
 							);
+							let dateInCaption: string;
+							if (imageSection.date) {
+								const date = new Date(imageSection.date);
+								dateInCaption = date.toLocaleDateString();
+							}
 							return (
 								<UnitEntryContainer key={imageSectionIdx}>
 									<UnitEntryCaption>
@@ -156,7 +161,7 @@ export class GalleryTile extends React.Component<
 											}}
 										/>
 										<UnitEntryCaptionDate>
-											{imageSection.date}
+											{dateInCaption}
 										</UnitEntryCaptionDate>
 									</UnitEntryCaption>
 									<GalleryImageSection>
