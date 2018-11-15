@@ -86,6 +86,13 @@ const ExitButton = styled.div`
 	right: 0;
 `;
 
+const IconWithHoverEffect = styled(FontAwesomeIcon)`
+	color: ${Colors.galleryArrayColor};
+	&:hover {
+		color: ${Colors.HighlightColor};
+	}
+`;
+
 export class ActiveImage extends React.Component<
 	IActiveImageProps,
 	IActiveImageState
@@ -101,10 +108,7 @@ export class ActiveImage extends React.Component<
 					onClick={this.props.nextImageClickHandler}
 				>
 					<PreviousImageButton>
-						<FontAwesomeIcon
-							icon={["fas", "arrow-left"]}
-							style={{ color: Colors.galleryArrayColor }}
-						/>
+						<IconWithHoverEffect icon={["fas", "arrow-left"]} />
 					</PreviousImageButton>
 				</PreviousImageButtonContainer>
 				<MainImageContainer>
@@ -116,17 +120,11 @@ export class ActiveImage extends React.Component<
 					onClick={this.props.previousImageClickHandler}
 				>
 					<NextImageButton>
-						<FontAwesomeIcon
-							icon={["fas", "arrow-right"]}
-							style={{ color: Colors.galleryArrayColor }}
-						/>
+						<IconWithHoverEffect icon={["fas", "arrow-right"]} />
 					</NextImageButton>
 				</NextImageButtonContainer>
 				<ExitButton onClick={this.props.exitClickHandler}>
-					<FontAwesomeIcon
-						icon={["fas", "times"]}
-						style={{ color: Colors.galleryArrayColor }}
-					/>
+					<IconWithHoverEffect icon={["fas", "times"]} />
 				</ExitButton>
 			</Overlay>
 		);
