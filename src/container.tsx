@@ -43,6 +43,8 @@ const SiteHeading = styled.div`
 const GlobalStyle = createGlobalStyle`
 * {
 	box-sizing: border-box;
+	color: ${Colors.DefaultTextColor};
+	font-family: sans-serif;
 }
 
 /* @font-face {
@@ -55,9 +57,7 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	color: ${Colors.DefaultTextColor};
 	/* font-family: 'genome', sans-serif; */
-	font-family: sans-serif;
 }
 
 a {
