@@ -60,7 +60,7 @@ export const SiteFooter: React.SFC<ISiteFooterProps> = props => (
 			<FontAwesomeIcon icon={["fab", "bandcamp"]} />
 		</FooterIcon>
 		<ImpressumLink onClick={() => props.setActiveContent("Impressum")}>
-			Impressum
+			Impressum/DSGVO
 		</ImpressumLink>
 	</FooterContainer>
 );
