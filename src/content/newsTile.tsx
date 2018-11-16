@@ -16,6 +16,7 @@ import {
 	UnitEntryImageContainer,
 	UnitEntryImage
 } from "./tileComponents";
+import { NEWS_IMAGE_FOLDER } from "../constants";
 
 interface INewsSection extends IHeadedParagraphSection {
 	date: string;
@@ -65,7 +66,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 					const img = entry.imageUrl && (
 						<UnitEntryImageContainer>
 							<UnitEntryImage
-								src={"data/img/" + entry.imageUrl}
+								src={NEWS_IMAGE_FOLDER + entry.imageUrl}
 							/>
 						</UnitEntryImageContainer>
 					);

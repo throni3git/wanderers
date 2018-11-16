@@ -9,3 +9,5 @@ export const Colors = {
 	RulerColor: "#444444",
 	galleryArrayColor: "#cccccc"
 };
+
+export const NEWS_IMAGE_FOLDER = "data/news_images/";
