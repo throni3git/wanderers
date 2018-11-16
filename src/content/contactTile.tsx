@@ -2,10 +2,8 @@ import * as React from "react";
 
 import styled from "styled-components";
 
-import {
-	ScrollComponent,
-} from "./tileComponents";
-
+import { ScrollComponent } from "./tileComponents";
+import { Colors } from "../constants";
 
 const ContactFormOuterContainer = styled.div`
 	display: flex;
