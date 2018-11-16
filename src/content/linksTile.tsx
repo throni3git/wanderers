@@ -1,23 +1,62 @@
 import * as React from "react";
 
-import {
-	loadJsonFile,
-	IJsonFile,
-	IHeadedParagraphSection,
-	joinParagraphs
-} from "../utils";
+import styled from "styled-components";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { loadJsonFile, IJsonFile } from "../utils";
 
 import {
 	UnitEntryContainer,
-	UnitEntryContent,
 	UnitEntryCaption,
 	UnitEntryCaptionText,
 	ScrollComponent
 } from "./tileComponents";
 
-let linksFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
+const LinkPatch = styled.div`
+	width: 50%;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const LinkSection = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+const LinkIcon = styled.span`
+	font-size: 40px;
+	line-height: 50px;
+	text-align: center;
+	height: 50px;
+	width: 50px;
+	margin: auto 10px;
+	cursor: pointer;
+	& > * {
+		font-size: 40px;
+		line-height: 50px;
+		height: 50px;
+		/* width: 50px; */
+	}
+`;
+
+interface ILinkEntry {
+	url: string;
+	name: string;
+	logoUrl?: string;
+	logoFontawesomeTag?: [string, string];
+}
+
+export interface ILinksSection {
+	caption: string;
+	linkEntries: ILinkEntry[];
+}
+
+let linksFilePromise: Promise<IJsonFile<ILinksSection>>;
 try {
-	linksFilePromise = loadJsonFile<IJsonFile<IHeadedParagraphSection>>(
+	linksFilePromise = loadJsonFile<IJsonFile<ILinksSection>>(
 		"data/links.json"
 	);
 } catch (e) {
@@ -44,24 +83,68 @@ export class LinksTile extends React.Component<
 		return (
 			<ScrollComponent>
 				{this.state.content.map(
-					(entry: IHeadedParagraphSection, index: number) => {
-						const linksSection = joinParagraphs(
-							entry.paragraphs,
-							"li",
-							"ul"
-						);
+					(linksSection: ILinksSection, index: number) => {
+						// const linksSection = joinParagraphs(
+						// 	entry.linkEntries,
+						// 	"li",
+						// 	"ul"
+						// );
 						return (
 							<UnitEntryContainer key={index}>
 								<UnitEntryCaption>
 									<UnitEntryCaptionText>
-										{entry.caption}
+										{linksSection.caption}
 									</UnitEntryCaptionText>
 								</UnitEntryCaption>
-								<UnitEntryContent
-									dangerouslySetInnerHTML={{
-										__html: linksSection
-									}}
-								/>
+								<LinkSection>
+									{linksSection.linkEntries.map(
+										(linkEntry, index) => (
+											<LinkPatch key={index}>
+												{linkEntry.logoUrl && (
+													<a
+														href={linkEntry.url}
+														target="_blank"
+													>
+														<LinkIcon>
+															<img
+																src={
+																	linkEntry.logoUrl
+																}
+															/>
+														</LinkIcon>
+													</a>
+												)}
+												{linkEntry.logoFontawesomeTag && (
+													<a
+														href={linkEntry.url}
+														target="_blank"
+													>
+														<LinkIcon>
+															<FontAwesomeIcon
+																icon={
+																	[
+																		linkEntry
+																			.logoFontawesomeTag[0],
+																		linkEntry
+																			.logoFontawesomeTag[1]
+																	] as any
+																}
+															/>
+														</LinkIcon>
+													</a>
+												)}
+												<a
+													href={linkEntry.url}
+													target="_blank"
+												>
+													<span>
+														{linkEntry.name}
+													</span>
+												</a>
+											</LinkPatch>
+										)
+									)}
+								</LinkSection>
 							</UnitEntryContainer>
 						);
 					}
@@ -74,5 +157,5 @@ export class LinksTile extends React.Component<
 export interface ILinksTileProps {}
 
 interface ILinksTileState {
-	content: IHeadedParagraphSection[];
+	content: ILinksSection[];
 }

@@ -2,31 +2,87 @@
   "entries": [
     {
       "caption": "Social Media",
-      "paragraphs": [
-        "<a target='_blank' href='https://www.facebook.com/sojus3000'>SOJUS3000 @ Facebook</a>",
-        "<a target='_blank' href='https://www.youtube.com/user/sojus3000'>SOJUS3000 @ YouTube</a>",
-        "<a target='_blank' href='https://open.spotify.com/artist/29i6nmTanReeRZDPwUayI6'>SOJUS3000 @ Spotify</a>",
-        "<a target='_blank' href='https://instagram.com/sojus3000music'>SOJUS3000 @ Instagram</a>",
-        "<a target='_blank' href='https://sojus3000.bandcamp.com/'>SOJUS3000 @ bandcamp</a>",
-        "<a target='_blank' href='https://www.deezer.com/artist/7109499'>SOJUS3000 @ deezer</a>"
+      "linkEntries": [
+        {
+          "url": "https://www.facebook.com/sojus3000",
+          "name": "SOJUS3000 @ Facebook",
+          "logoFontawesomeTag": ["fab", "facebook"]
+        },
+        {
+          "url": "https://www.youtube.com/user/sojus3000",
+          "name": "SOJUS3000 @ YouTube",
+          "logoFontawesomeTag": ["fab", "youtube"]
+        },
+        {
+          "url": "https://open.spotify.com/artist/29i6nmTanReeRZDPwUayI6",
+          "name": "SOJUS3000 @ Spotify",
+          "logoFontawesomeTag": ["fab", "spotify"]
+        },
+        {
+          "url": "https://instagram.com/sojus3000music",
+          "name": "SOJUS3000 @ Instagram",
+          "logoFontawesomeTag": ["fab", "instagram"]
+        },
+        {
+          "url": "https://sojus3000.bandcamp.com",
+          "name": "SOJUS3000 @ bandcamp",
+          "logoFontawesomeTag": ["fab", "bandcamp"]
+        },
+        {
+          "url": "https://www.deezer.com/artist/7109499",
+          "name": "SOJUS3000 @ deezer",
+          "logoUrl": "data/logos/deezer.svg"
+        }
       ]
     },
     {
       "caption": "Recording and Studio",
-      "paragraphs": [
-        "<a target='_blank' href='http://www.baracke5.de/'>Baracke 5 e.V.</a>",
-        "<a target='_blank' href='http://www.fuzzmatazz.com/'>Fuzzmatazz Label</a>",
-        "<a target='_blank' href='http://www.atomino-studio.de/'>Atomino Studio</a>",
-        "<a target='_blank' href='https://www.facebook.com/RamaSound/'>RAMA Tonstudio</a>",
-        "<a target='_blank' href='https://erikswiatloch.de/coldskinstudio/'>Cold Skin Tonstudio</a>",
-        "<a target='_blank' href='https://www.ponkpictures.de/'>Ponk Pictures</a>"
+      "linkEntries": [
+        {
+          "url": "http://www.baracke5.de",
+          "name": "Baracke 5 e.V.",
+          "logoUrl": "data/logos/logo_baracke.svg"
+        },
+        {
+          "url": "http://www.fuzzmatazz.com",
+          "name": "Fuzzmatazz Label",
+          "logoUrl": "data/logos/logo_fuzzmatazz.svg"
+        },
+        {
+          "url": "http://www.atomino-studio.de",
+          "name": "Atomino Studio",
+          "logoUrl": "data/logos/logo_atomino.svg"
+        },
+        {
+          "url": "https://www.facebook.com/RamaSound",
+          "name": "RAMA Tonstudio",
+          "logoUrl": "data/logos/"
+        },
+        {
+          "url": "https://erikswiatloch.de/coldskinstudio",
+          "name": "Cold Skin Tonstudio",
+          "logoUrl": "data/logos/"
+        },
+        {
+          "url": "https://www.ponkpictures.de",
+          "name": "Ponk Pictures",
+          "logoUrl": "data/logos/"
+        }
       ]
     },
     {
       "caption": "Artwork",
-      "paragraphs": [
-        "<a target='_blank' href='http://dkm-graphik.de/'>dkm graphics</a>",
-        "<a target='_blank' href='https://www.natehillphotography.com.au/'>Nate Hill Photography</a>"
+      "linkEntries": [
+        {
+          "url": "http://dkm-graphik.de",
+          "name": "dkm graphics",
+          "logoUrl": "data/logos/logo_dkm.svg"
+        },
+        {
+          "url": "https://www.natehillphotography.com.au",
+          "name": "Nate Hill Photography",
+          "logoUrl": ""
+        }
       ]
     }
   ]
