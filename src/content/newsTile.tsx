@@ -13,6 +13,7 @@ import {
 	UnitEntryCaptionText,
 	UnitEntryCaptionDate,
 	ScrollComponent,
+	UnitEntryImageContainer,
 	UnitEntryImage
 } from "./tileComponents";
 
@@ -57,10 +58,17 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 
 		return (
 			<ScrollComponent>
-				{sortedEntries.map(entry => {
+				{sortedEntries.map((entry, idx) => {
 					// parse date info
 					const date = new Date(entry.date);
 					const dateInCaption = date.toLocaleDateString();
+					const img = entry.imageUrl && (
+						<UnitEntryImageContainer>
+							<UnitEntryImage
+								src={"data/img/" + entry.imageUrl}
+							/>
+						</UnitEntryImageContainer>
+					);
 					return (
 						<UnitEntryContainer key={entry.date}>
 							<UnitEntryCaption>
@@ -72,26 +80,14 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 								</UnitEntryCaptionDate>
 							</UnitEntryCaption>
 							<NewsEntryContent>
+								{idx % 2 === 1 && img}
 								<div
 									dangerouslySetInnerHTML={{
 										__html: joinParagraphs(entry.paragraphs)
 									}}
 									style={{ flex: 3 }}
 								/>
-								{entry.imageUrl && (
-									<UnitEntryImage
-										url={entry.imageUrl}
-										style={{ flex: 1 }}
-									>
-										<img
-											src={"data/img/" + entry.imageUrl}
-											style={{
-												maxWidth: "100%",
-												maxHeight: "100%"
-											}}
-										/>
-									</UnitEntryImage>
-								)}
+								{idx % 2 === 0 && img}
 							</NewsEntryContent>
 						</UnitEntryContainer>
 					);

@@ -10,17 +10,15 @@ export const UnitEntryContainer = styled.div`
 	padding: 10px 20px;
 `;
 
-interface IUnitEntryImageProps {
-	url: string;
-}
-export const UnitEntryImage = styled.div<IUnitEntryImageProps>`
-// max-width: 200px;
-// height: 150px;
-// background: url(${props => "data/img/" + props.url});
-// background-size: contain;
-// background-repeat: no-repeat;
-// float: right;
-padding: 0px 0 00px 20px;
+export const UnitEntryImageContainer = styled.div`
+	/* padding-left: 20px; */
+	line-height: 0;
+	flex: 1;
+`;
+
+export const UnitEntryImage = styled.img`
+	max-width: 100%;
+	max-height: 100%;
 `;
 
 export const UnitEntryContent = styled.div`
@@ -32,6 +30,13 @@ export const NewsEntryContent = styled.div`
 	text-align: justify;
 	padding: 10px 20px;
 	display: flex;
+	& > * {
+		padding-left: 20px;
+	}
+	& > :first-child {
+		padding-left: 0;
+		/* background: red; */
+	}
 `;
 
 export const UnitEntryCaption = styled.div`
@@ -39,7 +44,7 @@ export const UnitEntryCaption = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px 20px;
+	/* padding: 10px 20px; */
 `;
 
 export const UnitEntryCaptionText = styled.div`
@@ -68,6 +73,5 @@ export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
 );
 
 ScrollComponent.displayName = "ScrollComponent";
-
 
 export interface IScrollComponentProps {}

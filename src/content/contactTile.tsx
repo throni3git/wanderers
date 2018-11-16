@@ -9,7 +9,7 @@ import {
 	UnitEntryCaptionText,
 	UnitEntryCaptionDate,
 	ScrollComponent,
-	UnitEntryImage
+	UnitEntryImageContainer
 } from "./tileComponents";
 
 import { Colors } from "../artwork";
