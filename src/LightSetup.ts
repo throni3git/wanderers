@@ -1,5 +1,6 @@
 import * as THREE from "three";
-import { loadJsonFile, polarToCartDeg, polarToCartRad } from "./utils";
+import { loadJsonFile } from "./utils";
+import { polarToCartDeg, polarToCartRad } from "./math";
 
 const DEBUG = true;
 

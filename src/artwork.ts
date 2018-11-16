@@ -7,28 +7,19 @@ import {
 } from "./shaders/landscapeShader";
 
 import { DBG_CAMERA } from "./sceneManager";
+import { loadTexture } from "./utils";
 
-interface ITextureRessource {
-	name: string;
-	texture: THREE.Texture;
-}
-
-const textureLoader = new THREE.TextureLoader();
-
-async function loadTexture(url: string): Promise<ITextureRessource> {
-	const result = new Promise<ITextureRessource>((resolve, reject) => {
-		textureLoader.load(
-			url,
-			texture => {
-				resolve({ name: url, texture });
-			},
-			error => {
-				reject(error);
-			}
-		);
-	});
-	return result;
-}
+const sunSize = 1.5;
+const orbitSize = sunSize * 0.98;
+const orbitResolution = 256;
+const orbitFactor = 1.16;
+const extraOrbitSize = 0.17;
+const planetSize = 0.08;
+const extraPlanetSize = 0.03;
+const LINE_RESOLUTION = 100;
+const LINE_AMOUNT = 200;
+const LINE_WIDTH = 0.01;
+const FIELD_WIDTH = 20;
 
 export class Artwork {
 	private _orbits: { speed: number; lineObject: THREE.Object3D }[] = [];
@@ -61,18 +52,6 @@ export class Artwork {
 	}
 
 	private async _setupScene(): Promise<void> {
-		const sunSize = 1.5;
-		const orbitSize = sunSize * 0.98;
-		const orbitResolution = 256;
-		const orbitFactor = 1.16;
-		const extraOrbitSize = 0.17;
-		const planetSize = 0.08;
-		const extraPlanetSize = 0.03;
-		const LINE_RESOLUTION = 100;
-		const LINE_AMOUNT = 200;
-		const LINE_WIDTH = 0.01;
-		const FIELD_WIDTH = 20;
-
 		const matWireframe = new THREE.MeshBasicMaterial({
 			color: 0x444444,
 			wireframe: true
@@ -223,92 +202,97 @@ export class Artwork {
 		meshOuterExtraPlanet.position.y = extraOrbitSize;
 		outerMoonSupport.add(meshOuterExtraPlanet);
 
-		// create wobbling landscape
-		// first, try example from https://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js/
-		this._matLandscape = new THREE.ShaderMaterial({
-			uniforms: {
-				time: {
-					type: "f",
-					value: 0.0
-				},
-				vpw: {
-					type: "f",
-					value: 100.0
-				},
-				vph: {
-					type: "f",
-					value: 100.0
-				},
-				offset: {
-					type: "v2",
-					value: new THREE.Vector2(0, 0.0)
-				},
-				pitch: {
-					type: "v2",
-					value: new THREE.Vector2(50, 50)
-				},
-				lineWidth: {
-					type: "f",
-					value: 0.02
-				},
-				lineDistance: {
-					type: "f",
-					value: 0.1
-				}
-			},
-			vertexShader: displacmentVertexShader,
-			fragmentShader: displacmentFragmentShader,
-			transparent: true,
-			side: THREE.DoubleSide
-		});
-		this._matLandscape.extensions.derivatives = true;
-
-		const geoLandscape = new THREE.PlaneBufferGeometry(1, 1, 120, 120);
-		const meshLandscape = new THREE.Mesh(geoLandscape, this._matLandscape);
-		meshLandscape.position.set(-2, -1, 2);
-		meshLandscape.rotation.x = -Math.PI / 2;
-		meshLandscape.rotation.z = 0.1;
-		meshLandscape.scale.set(10, 10, 2);
-		meshLandscape.position.set(0, -0.25, 5.5);
-		// meshLandscape.rotation.x = 0.1;
 		const useLines = false;
 		if (!useLines) {
+			// create wobbling landscape
+			// first, try example from https://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js/
+			this._matLandscape = new THREE.ShaderMaterial({
+				uniforms: {
+					time: {
+						type: "f",
+						value: 0.0
+					},
+					vpw: {
+						type: "f",
+						value: 100.0
+					},
+					vph: {
+						type: "f",
+						value: 100.0
+					},
+					offset: {
+						type: "v2",
+						value: new THREE.Vector2(0, 0.0)
+					},
+					pitch: {
+						type: "v2",
+						value: new THREE.Vector2(50, 50)
+					},
+					lineWidth: {
+						type: "f",
+						value: 0.02
+					},
+					lineDistance: {
+						type: "f",
+						value: 0.1
+					}
+				},
+				vertexShader: displacmentVertexShader,
+				fragmentShader: displacmentFragmentShader,
+				transparent: true,
+				side: THREE.DoubleSide
+			});
+			this._matLandscape.extensions.derivatives = true;
+
+			const geoLandscape = new THREE.PlaneBufferGeometry(1, 1, 120, 120);
+			const meshLandscape = new THREE.Mesh(
+				geoLandscape,
+				this._matLandscape
+			);
+			meshLandscape.position.set(-2, -1, 2);
+			meshLandscape.rotation.x = -Math.PI / 2;
+			meshLandscape.rotation.z = 0.1;
+			meshLandscape.scale.set(10, 10, 2);
+			meshLandscape.position.set(0, -0.25, 5.5);
+			// meshLandscape.rotation.x = 0.1;
 			this._scene.add(meshLandscape);
-		}
+		} else {
+			let geoLineLandscape = new THREE.Geometry();
+			for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
+				let oldHeight = 0;
+				const alpha = 0.1;
 
-		let geoLineLandscape = new THREE.Geometry();
-		for (let lineIdx = 0; lineIdx < LINE_AMOUNT; lineIdx++) {
-			let oldHeight = 0;
-			const alpha = 0.1;
-
-			for (let j = 0; j < LINE_RESOLUTION; j++) {
-				const height = -j / LINE_RESOLUTION + Math.random();
-				const filteredHeight = height * alpha + (1 - alpha) * oldHeight;
-				const v = new THREE.Vector3(
-					lineIdx / LINE_AMOUNT,
-					filteredHeight,
-					j / LINE_RESOLUTION
-				);
-				oldHeight = filteredHeight;
-				if (j !== 0 && j !== LINE_RESOLUTION - 1) {
+				for (let j = 0; j < LINE_RESOLUTION; j++) {
+					const height = -j / LINE_RESOLUTION + Math.random();
+					const filteredHeight =
+						height * alpha + (1 - alpha) * oldHeight;
+					const v = new THREE.Vector3(
+						lineIdx / LINE_AMOUNT,
+						filteredHeight,
+						j / LINE_RESOLUTION
+					);
+					oldHeight = filteredHeight;
+					if (j !== 0 && j !== LINE_RESOLUTION - 1) {
+						geoLineLandscape.vertices.push(v);
+					}
 					geoLineLandscape.vertices.push(v);
 				}
-				geoLineLandscape.vertices.push(v);
 			}
-		}
 
-		// var meshLineLandscape = new MeshLine();
-		// meshLineLandscape.setGeometry(geoLineLandscape);
-		// const matMeshLineLandscape = new MeshLineMaterial({ color: new THREE.Color(0x0), lineWidth: LINE_WIDTH, sizeAttenuation: 1 });
-		// const meshMeshLineLandscape = new THREE.Mesh(meshLineLandscape.geometry, matMeshLineLandscape);
-		// meshAllLines.add(meshMeshLineLandscape);
+			// var meshLineLandscape = new MeshLine();
+			// meshLineLandscape.setGeometry(geoLineLandscape);
+			// const matMeshLineLandscape = new MeshLineMaterial({ color: new THREE.Color(0x0), lineWidth: LINE_WIDTH, sizeAttenuation: 1 });
+			// const meshMeshLineLandscape = new THREE.Mesh(meshLineLandscape.geometry, matMeshLineLandscape);
+			// meshAllLines.add(meshMeshLineLandscape);
 
-		const meshAllLines = new THREE.LineSegments(geoLineLandscape, matOrbit);
-		meshAllLines.scale.set(FIELD_WIDTH, 0.5, 8);
-		meshAllLines.position.set(-FIELD_WIDTH / 2, -0.5, 2);
-		meshAllLines.rotation.x = 0.1;
-		meshAllLines.rotation.y = 0.03;
-		if (useLines) {
+			const meshAllLines = new THREE.LineSegments(
+				geoLineLandscape,
+				matOrbit
+			);
+			meshAllLines.scale.set(FIELD_WIDTH, 0.5, 8);
+			meshAllLines.position.set(-FIELD_WIDTH / 2, -0.5, 2);
+			meshAllLines.rotation.x = 0.1;
+			meshAllLines.rotation.y = 0.03;
 			this._scene.add(meshAllLines);
 		}
 	}
