@@ -34,20 +34,31 @@ const ContactFormInputDiv = styled.div`
 
 const ContactFormInputText = styled.input`
 	width: 100%;
+	border: 1px solid ${Colors.LightTextColor};
+	background: rgba(255, 255, 255, 0.6);
+	-webkit-appearance: none;
 `;
 
 const ContactFormInputSubmit = styled.input`
 	width: 100%;
+	border: 1px solid ${Colors.LightTextColor};
+	background: rgba(255, 255, 255, 0.6);
+	-webkit-appearance: none;
 `;
 
 const ContactFormInputCheckbox = styled.input`
 	width: 100%;
+	// border: 1px solid ${Colors.LightTextColor};
+	// -webkit-appearance: none;
 `;
 
 const ContactFormInputTextarea = styled.textarea`
 	width: 100%;
 	min-height: 200px;
 	resize: vertical;
+	border: 1px solid ${Colors.LightTextColor};
+	background: rgba(255, 255, 255, 0.6);
+	-webkit-appearance: none;
 `;
 
 /**
