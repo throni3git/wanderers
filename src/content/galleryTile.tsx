@@ -13,7 +13,6 @@ import {
 } from "./tileComponents";
 
 import { SingleImage } from "./SingleImage";
-import { number } from "prop-types";
 import { ActiveImage } from "./ActiveImage";
 
 const GalleryImageSection = styled.div`

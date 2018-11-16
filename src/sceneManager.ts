@@ -224,14 +224,15 @@ export class SceneManager {
 		this._camera.position.y +=
 			(-this.vY - this._camera.position.y) * this._cameraVelocity;
 
-		const MAX_CAM_OFFSET = 3;
+		const MAX_CAM_OFFSET_WIDTH = 4;
+		const MAX_CAM_OFFSET_HEIGHT = 2;
 		this._camera.position.x = Math.min(
-			MAX_CAM_OFFSET,
-			Math.max(-MAX_CAM_OFFSET, this._camera.position.x)
+			MAX_CAM_OFFSET_WIDTH,
+			Math.max(-MAX_CAM_OFFSET_WIDTH, this._camera.position.x)
 		);
 		this._camera.position.y = Math.min(
-			MAX_CAM_OFFSET,
-			Math.max(-MAX_CAM_OFFSET, this._camera.position.y)
+			MAX_CAM_OFFSET_HEIGHT,
+			Math.max(-MAX_CAM_OFFSET_HEIGHT, this._camera.position.y)
 		);
 		this._camera.lookAt(this._scene.position);
 

@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Colors } from "../artwork";
+import { Colors } from "../constants";
 
 const Overlay = styled.div`
 	position: fixed;

@@ -3,16 +3,9 @@ import * as React from "react";
 import styled from "styled-components";
 
 import {
-	UnitEntryContainer,
-	UnitEntryContent,
-	UnitEntryCaption,
-	UnitEntryCaptionText,
-	UnitEntryCaptionDate,
 	ScrollComponent,
-	UnitEntryImageContainer
 } from "./tileComponents";
 
-import { Colors } from "../artwork";
 
 const ContactFormOuterContainer = styled.div`
 	display: flex;

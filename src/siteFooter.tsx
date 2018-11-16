@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Colors } from "./artwork";
+import { Colors } from "./constants";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ActiveContentTypes } from "./SiteMenu";

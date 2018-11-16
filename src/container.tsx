@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import { SceneManager } from "./sceneManager";
 import { SiteContent } from "./siteContent";
 
-import { Colors } from "./artwork";
+import { Colors } from "./constants";
 
 const ArtworkContainer = styled.div`
 	width: 100%;

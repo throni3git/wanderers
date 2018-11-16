@@ -13,11 +13,10 @@ import {
 	UnitEntryContent,
 	UnitEntryCaption,
 	UnitEntryCaptionText,
-	UnitEntryCaptionDate,
 	ScrollComponent
 } from "./tileComponents";
 
-import { Colors } from "../artwork";
+import { Colors } from "../constants";
 
 const ImpressumEntryCaption = styled.div`
   /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */

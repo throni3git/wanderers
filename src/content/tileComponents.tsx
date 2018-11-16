@@ -4,7 +4,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 import styled from "styled-components";
 
-import { Colors } from "../artwork";
+import { Colors } from "../constants";
 
 export const UnitEntryContainer = styled.div`
 	padding: 10px 20px;

@@ -9,7 +9,7 @@ import {
 	UnitEntryCaptionDate
 } from "./tileComponents";
 
-import { Colors } from "../artwork";
+import { Colors } from "../constants";
 
 const GigEntryCityText = styled.div`
 	font-size: 1.5em;
