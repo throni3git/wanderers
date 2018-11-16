@@ -190,11 +190,45 @@ export class ContactTile extends React.Component<
 			this.entryValidation("isHuman", "checkbox").valid;
 
 		if (areAllEntriedValid) {
-			console.log("YEAH");
+			console.log("ALL VALID");
+			this.sendMail(
+				this.state.name,
+				this.state.mail,
+				this.state.text,
+				this.state.name
+			);
 		} else {
 			console.log("NOPE");
 		}
 	};
+
+	private sendMail(
+		heading: string,
+		returnMail: string,
+		message: string,
+		senderName: string
+	): Promise<boolean> {
+		const resultPromise = new Promise<boolean>((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			xhr.open("POST", "./send_message.php", true);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4) {
+					if (xhr.status == 200) {
+						console.log("success");
+					} else {
+						console.log("fail");
+					}
+				}
+			};
+			const publishingJson = {
+				mail_heading: "[HP] Nachricht von " + senderName,
+				mail_content: message
+			};
+			xhr.send(JSON.stringify(publishingJson));
+		});
+		return resultPromise;
+	}
 
 	public render() {
 		return (
