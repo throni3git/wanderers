@@ -15,6 +15,7 @@ export const MenuEntryNames = {
 export type ActiveContentTypes = keyof typeof MenuEntryNames | "Impressum";
 
 const LHC = Colors.LinkHoverColor;
+const AMC = Colors.ActiveMenuColor;
 
 const MenuEntry = styled.span`
 	font-size: 2em;
@@ -22,19 +23,23 @@ const MenuEntry = styled.span`
 	cursor: pointer;
 	/* Set up the hover */
 	/* If you aren't using autoprefix, remember to prefix the gradient for other browsers */
-	background-image: linear-gradient(${LHC}, ${LHC});
 	background-size: 0 2px, auto;
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	transition: all 0.2s ease-out;
 	&:hover {
-		color: ${Colors.LinkHoverColor}; /* The following line makes the underline only as wide as the text */ /* background-size: calc(100% - 2em) 2px, auto; */
+		color: ${LHC}; /* The following line makes the underline only as wide as the text */ /* background-size: calc(100% - 2em) 2px, auto; */
+		background-image: linear-gradient(${LHC}, ${LHC});
 		background-size: 100% 2px, auto;
 	}
 
-	&[active] {
-		color: ${Colors.ActiveMenuColor};
-	}
+	${props =>
+		props.active &&
+		`
+	color: ${AMC};
+	background-image: linear-gradient(${AMC}, ${AMC});
+	background-size: 100% 2px, auto;
+	`}
 `;
 
 const MenuContainer = styled.div`
