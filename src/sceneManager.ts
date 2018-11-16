@@ -129,22 +129,34 @@ export class SceneManager {
 
 	private resizeCanvas = (): void => {
 		const containerStyle = getComputedStyle(this._containerElement);
-		const containerWidth = parseInt(
+		let containerWidth = parseInt(
 			containerStyle.getPropertyValue("width"),
 			10
 		);
-		const containerHeight = parseInt(
+		let containerHeight = parseInt(
 			containerStyle.getPropertyValue("height"),
 			10
 		);
 
-		const width = Math.max(containerWidth, 1);
-		const height = Math.max(containerHeight, 1);
+		// safety first
+		containerWidth = Math.max(1, containerWidth);
+		containerHeight = Math.max(1, containerHeight);
+
+		// size canvas
+		this._canvas.width = containerWidth;
+		this._canvas.height = containerHeight;
+
+		// make sure we don't draw on too large textures
+		const AR = containerWidth / containerHeight;
+
+		const CANVAS_MAX_SIZE = 1024;
+		let width = Math.min(CANVAS_MAX_SIZE, containerWidth);
+		const height = Math.min(CANVAS_MAX_SIZE, containerWidth / AR);
+		width = height * AR;
+
 		this._windowHalfX = width / 2;
 		this._windowHalfY = height / 2;
 
-		this._canvas.width = width;
-		this._canvas.height = height;
 		const newAR = width / height;
 
 		if (this._camera instanceof THREE.PerspectiveCamera) {
@@ -166,7 +178,9 @@ export class SceneManager {
 			this._cameraDBG.updateProjectionMatrix();
 		}
 
-		this._renderer.setSize(width, height);
+		this._renderer.setSize(width, height, false);
+		this._canvas.style.width = containerWidth + "px";
+		this._canvas.style.height = containerHeight + "px";
 	};
 
 	private onDocumentMouseMove = event => {
