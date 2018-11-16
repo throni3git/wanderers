@@ -31,6 +31,10 @@ const MenuEntry = styled.span`
 		color: ${Colors.LinkHoverColor}; /* The following line makes the underline only as wide as the text */ /* background-size: calc(100% - 2em) 2px, auto; */
 		background-size: 100% 2px, auto;
 	}
+
+	&[active] {
+		color: ${Colors.ActiveMenuColor};
+	}
 `;
 
 const MenuContainer = styled.div`
@@ -57,12 +61,7 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
 					<MenuEntry
 						onClick={() => this.props.setActiveContent(name)}
 						key={name}
-						style={{
-							color:
-								this.props.activeContent === name
-									? Colors.ActiveMenuColor
-									: null
-						}}
+						active={this.props.activeContent === name}
 					>
 						{name}
 					</MenuEntry>
