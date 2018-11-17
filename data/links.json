@@ -56,17 +56,17 @@
         {
           "url": "https://www.facebook.com/RamaSound",
           "name": "RAMA Tonstudio",
-          "logoUrl": "data/logos/"
+          "logoUrl": "data/logos/logo_rama.svg"
         },
         {
           "url": "https://erikswiatloch.de/coldskinstudio",
           "name": "Cold Skin Tonstudio",
-          "logoUrl": "data/logos/"
+          "logoUrl": "data/logos/logo_cold_skin_studios.svg"
         },
         {
           "url": "https://www.ponkpictures.de",
           "name": "Ponk Pictures",
-          "logoUrl": "data/logos/"
+          "logoUrl": "data/logos/logo_ponk.svg"
         }
       ]
     },
@@ -81,7 +81,7 @@
         {
           "url": "https://www.natehillphotography.com.au",
           "name": "Nate Hill Photography",
-          "logoUrl": ""
+          "logoUrl": "data/logos/logo_nate_hill.svg"
         }
       ]
     }
