@@ -8,6 +8,7 @@ import {
 
 import { DBG_CAMERA } from "./urlParams";
 import { loadTexture } from "./utils";
+import { ARTWORK_USE_LINES } from "./constants";
 
 const sunSize = 1.5;
 const orbitSize = sunSize * 0.98;
@@ -202,8 +203,7 @@ export class Artwork {
 		meshOuterExtraPlanet.position.y = extraOrbitSize;
 		outerMoonSupport.add(meshOuterExtraPlanet);
 
-		const useLines = false;
-		if (!useLines) {
+		if (!ARTWORK_USE_LINES) {
 			// create wobbling landscape
 			// first, try example from https://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js/
 			this._matLandscape = new THREE.ShaderMaterial({

@@ -14,6 +14,7 @@ import {
 
 import { SingleImage } from "./SingleImage";
 import { ActiveImage } from "./ActiveImage";
+import { MEDIA_FOLDER } from "../constants";
 
 const GalleryImageSection = styled.div`
 	padding: 10px 0;
@@ -152,7 +153,7 @@ export class GalleryTile extends React.Component<
 								dateInCaption = date.toLocaleDateString();
 							}
 							const imageSectionFolder =
-								"media/" + imageSection.folder + "/";
+							MEDIA_FOLDER + imageSection.folder + "/";
 							return (
 								<UnitEntryContainer key={imageSectionIdx}>
 									<UnitEntryCaption>
@@ -201,7 +202,7 @@ export class GalleryTile extends React.Component<
 				{activeImage && (
 					<ActiveImage
 						url={
-							"media/" +
+							MEDIA_FOLDER +
 							this.state.imageContent[activeImage.imageSectionIdx]
 								.folder +
 							"/" +

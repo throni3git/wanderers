@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { ScrollComponent } from "./tileComponents";
-import { Colors } from "../constants";
+import { Colors, CONTACT_MAIL_TO } from "../constants";
 
 const ContactFormOuterContainer = styled.div`
 	display: flex;
@@ -195,7 +195,8 @@ export class ContactTile extends React.Component<
 				"[HP] Nachricht von " + this.state.name,
 				this.state.mail,
 				this.state.text,
-				this.state.name
+				this.state.name,
+				CONTACT_MAIL_TO
 			);
 		} else {
 			console.log("NOPE");
@@ -206,7 +207,8 @@ export class ContactTile extends React.Component<
 		heading: string,
 		returnMail: string,
 		message: string,
-		senderName: string
+		senderName: string,
+		targetMail: string
 	): Promise<boolean> {
 		const resultPromise = new Promise<boolean>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -224,7 +226,8 @@ export class ContactTile extends React.Component<
 			const publishingJson = {
 				mail_heading: heading,
 				mail_content: message,
-				mail_from: returnMail
+				mail_from: returnMail,
+				mail_to: targetMail
 			};
 			xhr.send(JSON.stringify(publishingJson));
 		});
