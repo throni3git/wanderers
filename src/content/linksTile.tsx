@@ -24,6 +24,7 @@ const LinkPatch = styled.div`
 const LinkSection = styled.div`
 	display: flex;
 	flex-wrap: wrap;
+	padding-top:10px;
 `;
 
 const LinkIcon = styled.span`
