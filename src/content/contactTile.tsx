@@ -192,7 +192,7 @@ export class ContactTile extends React.Component<
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
 			this.sendMail(
-				this.state.name,
+				"[HP] Nachricht von " + this.state.name,
 				this.state.mail,
 				this.state.text,
 				this.state.name
@@ -210,7 +210,7 @@ export class ContactTile extends React.Component<
 	): Promise<boolean> {
 		const resultPromise = new Promise<boolean>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
-			xhr.open("POST", "./send_message.php", true);
+			xhr.open("POST", "./mail_api_send.php", true);
 			xhr.setRequestHeader("Content-Type", "application/json");
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4) {
@@ -222,8 +222,9 @@ export class ContactTile extends React.Component<
 				}
 			};
 			const publishingJson = {
-				mail_heading: "[HP] Nachricht von " + senderName,
-				mail_content: message
+				mail_heading: heading,
+				mail_content: message,
+				mail_from: returnMail
 			};
 			xhr.send(JSON.stringify(publishingJson));
 		});
