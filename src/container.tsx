@@ -45,7 +45,8 @@ const SiteHeading = styled.div`
 const GlobalStyle = createGlobalStyle`
 * {
 	box-sizing: border-box;
-	color: ${Colors.DefaultTextColor};
+	// TODO this overwrites too much (arrows in gallery)
+	// color: ${Colors.DefaultTextColor}; 
 	font-family: sans-serif;
 }
 
@@ -55,6 +56,7 @@ const GlobalStyle = createGlobalStyle`
 } */
 
 html, body {
+	// color: ${Colors.DefaultTextColor};
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -62,8 +64,14 @@ html, body {
 	/* font-family: 'genome', sans-serif; */
 }
 
+div, span {
+	
+	// color: ${Colors.DefaultTextColor};
+
+}
+
 a {
-	color: ${Colors.LinkColor};
+	color: ${Colors.DefaultTextColor};
 	&:hover {
 		color: ${Colors.LinkHoverColor};
 	}
