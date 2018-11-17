@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
-import { Colors } from "./constants";
+import { Colors, BORDER } from "./constants";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ActiveContentTypes } from "./SiteMenu";
@@ -8,7 +8,7 @@ import { ActiveContentTypes } from "./SiteMenu";
 const FooterContainer = styled.div`
 	height: 100px;
 	width: 100%;
-	border-top: 1px solid ${Colors.RulerColor};
+	border-top: ${BORDER + "px"} solid ${Colors.RulerColor};
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

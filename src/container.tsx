@@ -5,7 +5,7 @@ import { createGlobalStyle } from "styled-components";
 import { SceneManager } from "./sceneManager";
 import { SiteContent } from "./siteContent";
 
-import { Colors } from "./constants";
+import { Colors, BORDER_RADIUS } from "./constants";
 import { HIDE_SITE, STARTUP_TILE } from "./urlParams";
 
 const ArtworkContainer = styled.div`
@@ -30,6 +30,7 @@ const SiteContainer = styled.div`
 	right: 0;
 	bottom: 0;
 	top: 0;
+	border-radius: ${BORDER_RADIUS};
 `;
 
 const SiteHeading = styled.div`

@@ -26,6 +26,7 @@ const MainImageContainer = styled.div`
 const MainImage = styled.img`
 	max-width: 100%;
 	max-height: 100%;
+	box-shadow: ${Colors.DefaultTextColor} 0 0 3px;
 `;
 
 const MainImageCenter = styled.div`
@@ -87,7 +88,7 @@ const ExitButton = styled.div`
 `;
 
 const IconWithHoverEffect = styled(FontAwesomeIcon)`
-	color: ${Colors.galleryArrayColor};
+	color: ${Colors.GalleryArrayColor};
 	&:hover {
 		color: ${Colors.HighlightColor};
 	}

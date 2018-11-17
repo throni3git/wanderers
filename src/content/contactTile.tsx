@@ -3,7 +3,7 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { ScrollComponent } from "./tileComponents";
-import { Colors } from "../constants";
+import { Colors, BORDER, BORDER_RADIUS } from "../constants";
 import { DBG_CONTACT_TILE } from "../urlParams";
 
 const ContactFormOuterContainer = styled.div`
@@ -33,21 +33,24 @@ const ContactFormInputDiv = styled.div`
 
 const ContactFormInputText = styled.input`
 	width: 100%;
-	border: 1px solid ${Colors.LightTextColor};
+	border: ${BORDER + "px"} solid ${Colors.LightTextColor};
+	border-radius: ${BORDER_RADIUS + "px"}
 	background: rgba(255, 255, 255, 0.6);
 	-webkit-appearance: none;
 `;
 
 const ContactFormInputSubmit = styled.input`
 	width: 100%;
-	border: 1px solid ${Colors.LightTextColor};
+	border: ${BORDER + "px"} solid ${Colors.LightTextColor};
+	border-radius: ${BORDER_RADIUS + "px"}
 	background: rgba(255, 255, 255, 0.6);
 	-webkit-appearance: none;
 `;
 
 const ContactFormInputCheckbox = styled.input`
 	width: 100%;
-	// border: 1px solid ${Colors.LightTextColor};
+	// border: ${BORDER + "px"} solid ${Colors.LightTextColor};
+	border-radius: ${BORDER_RADIUS + "px"}
 	// -webkit-appearance: none;
 `;
 
@@ -55,7 +58,8 @@ const ContactFormInputTextarea = styled.textarea`
 	width: 100%;
 	min-height: 200px;
 	resize: vertical;
-	border: 1px solid ${Colors.LightTextColor};
+	border: ${BORDER + "px"} solid ${Colors.LightTextColor};
+	border-radius: ${BORDER_RADIUS + "px"}
 	background: rgba(255, 255, 255, 0.6);
 	-webkit-appearance: none;
 `;

@@ -9,7 +9,7 @@ import {
 	UnitEntryCaptionDate
 } from "./tileComponents";
 
-import { Colors } from "../constants";
+import { Colors, BORDER } from "../constants";
 
 const GigEntryCityText = styled.div`
 	font-size: 1.5em;
@@ -28,7 +28,7 @@ const GigEntrySubLineText = styled.div`
 `;
 
 const GigEntry = styled.div`
-	border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
+	border-bottom: ${BORDER + "px"} solid ${Colors.CaptionUnderlineColor};
 	/* display: flex; */
 	/* justify-content: space-between; */
 	/* align-items: center; */

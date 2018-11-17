@@ -4,7 +4,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 import styled from "styled-components";
 
-import { Colors } from "../constants";
+import { Colors, BORDER } from "../constants";
 
 export const UnitEntryContainer = styled.div`
 	padding: 10px 20px;
@@ -40,7 +40,7 @@ export const NewsEntryContent = styled.div`
 `;
 
 export const UnitEntryCaption = styled.div`
-	border-bottom: 1px solid ${Colors.CaptionUnderlineColor};
+	border-bottom: ${BORDER + "px"} solid ${Colors.CaptionUnderlineColor};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
