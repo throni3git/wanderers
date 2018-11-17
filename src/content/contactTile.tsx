@@ -3,7 +3,8 @@ import * as React from "react";
 import styled from "styled-components";
 
 import { ScrollComponent } from "./tileComponents";
-import { Colors, CONTACT_MAIL_TO } from "../constants";
+import { Colors } from "../constants";
+import { DBG_CONTACT_TILE } from "../urlParams";
 
 const ContactFormOuterContainer = styled.div`
 	display: flex;
@@ -123,6 +124,17 @@ export class ContactTile extends React.Component<
 			acceptsDSGVO: false,
 			isHuman: false
 		};
+
+		if (DBG_CONTACT_TILE) {
+			this.state = {
+				...this.state,
+				name: "Test",
+				mail: "throni3@gmx.de",
+				text: "Wir testen und wir testen",
+				acceptsDSGVO: true,
+				isHuman: true
+			};
+		}
 	}
 
 	private entryValidation = (
@@ -195,8 +207,7 @@ export class ContactTile extends React.Component<
 				"[HP] Nachricht von " + this.state.name,
 				this.state.mail,
 				this.state.text,
-				this.state.name,
-				CONTACT_MAIL_TO
+				this.state.name
 			);
 		} else {
 			console.log("NOPE");
@@ -207,8 +218,7 @@ export class ContactTile extends React.Component<
 		heading: string,
 		returnMail: string,
 		message: string,
-		senderName: string,
-		targetMail: string
+		senderName: string
 	): Promise<boolean> {
 		const resultPromise = new Promise<boolean>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -221,13 +231,14 @@ export class ContactTile extends React.Component<
 					} else {
 						console.log("fail");
 					}
+					console.log(xhr);
 				}
 			};
 			const publishingJson = {
 				mail_heading: heading,
 				mail_content: message,
 				mail_from: returnMail,
-				mail_to: targetMail
+				DBG_CONTACT_TILE: DBG_CONTACT_TILE
 			};
 			xhr.send(JSON.stringify(publishingJson));
 		});

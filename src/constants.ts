@@ -14,6 +14,4 @@ export const NEWS_IMAGE_FOLDER = "data/news_images/";
 
 export const MEDIA_FOLDER = "media/";
 
-export const CONTACT_MAIL_TO = "throni3b5@gmail.de";
-
 export const ARTWORK_USE_LINES = false;
