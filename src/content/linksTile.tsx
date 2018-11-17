@@ -13,8 +13,16 @@ import {
 	ScrollComponent
 } from "./tileComponents";
 
-const LinkPatch = styled.div`
+const LinkPatchTwoColumns = styled.div`
 	width: 50%;
+	height: 80px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
+const LinkPatchAllInARow = styled.div`
+	width: 80px;
 	height: 80px;
 	display: flex;
 	justify-content: center;
@@ -25,19 +33,20 @@ const LinkSection = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	padding-top: 10px;
+	justify-content: space-evenly;
 `;
 
 const LinkIcon = styled.span`
 	font-size: 40px;
-	line-height: 50px;
-	text-align: center;
-	height: 50px;
-	width: 50px;
-	margin: auto 10px;
+	line-height: 0;
+	// text-align: center;
+	// height: 50px;
+	// width: 50px;
+	margin: 0 10px;
 	cursor: pointer;
 	& > * {
-		font-size: 40px;
-		line-height: 50px;
+		// font-size: 40px;
+		// line-height: 50px;
 		height: 50px;
 		/* width: 50px; */
 	}
@@ -50,7 +59,7 @@ interface ILinkEntry {
 	logoFontawesomeTag?: [string, string];
 }
 
-export interface ILinksSection {
+interface ILinksSection {
 	caption: string;
 	linkEntries: ILinkEntry[];
 	onlyDisplayLogos?: boolean;
@@ -81,76 +90,100 @@ export class LinksTile extends React.Component<
 		});
 	}
 
+	private renderLinkEntryWithName = (
+		linkEntry: ILinkEntry,
+		index: number
+	): JSX.Element => {
+		return (
+			<LinkPatchTwoColumns key={index}>
+				{linkEntry.logoUrl && (
+					<a href={linkEntry.url} target="_blank">
+						<LinkIcon>
+							<img src={linkEntry.logoUrl} />
+						</LinkIcon>
+					</a>
+				)}
+				{linkEntry.logoFontawesomeTag && (
+					<a href={linkEntry.url} target="_blank">
+						<LinkIcon>
+							<FontAwesomeIcon
+								icon={
+									[
+										linkEntry.logoFontawesomeTag[0],
+										linkEntry.logoFontawesomeTag[1]
+									] as any
+								}
+							/>
+						</LinkIcon>
+					</a>
+				)}
+				<a href={linkEntry.url} target="_blank">
+					<span>{linkEntry.name}</span>
+				</a>
+			</LinkPatchTwoColumns>
+		);
+	};
+
+	private renderLinkEntryOnlyLogo = (
+		linkEntry: ILinkEntry,
+		index: number
+	): JSX.Element => {
+		return (
+			<LinkPatchAllInARow key={index}>
+				{linkEntry.logoUrl && (
+					<a href={linkEntry.url} target="_blank">
+						<LinkIcon>
+							<img src={linkEntry.logoUrl} />
+						</LinkIcon>
+					</a>
+				)}
+				{linkEntry.logoFontawesomeTag && (
+					<a href={linkEntry.url} target="_blank">
+						<LinkIcon>
+							<FontAwesomeIcon
+								icon={
+									[
+										linkEntry.logoFontawesomeTag[0],
+										linkEntry.logoFontawesomeTag[1]
+									] as any
+								}
+							/>
+						</LinkIcon>
+					</a>
+				)}
+			</LinkPatchAllInARow>
+		);
+	};
+
+	private renderLinksSection = (
+		linksSection: ILinksSection,
+		index: number
+	): JSX.Element => {
+		return (
+			<UnitEntryContainer key={index}>
+				<UnitEntryCaption>
+					<UnitEntryCaptionText>
+						{linksSection.caption}
+					</UnitEntryCaptionText>
+				</UnitEntryCaption>
+				<LinkSection>
+					{linksSection.onlyDisplayLogos &&
+						linksSection.linkEntries.map(
+							this.renderLinkEntryOnlyLogo
+						)}
+					{!linksSection.onlyDisplayLogos &&
+						linksSection.linkEntries.map(
+							this.renderLinkEntryWithName
+						)}
+				</LinkSection>
+			</UnitEntryContainer>
+		);
+	};
+
 	public render() {
 		return (
 			<ScrollComponent>
-				{this.state.content.map(
-					(linksSection: ILinksSection, index: number) => {
-						// const linksSection = joinParagraphs(
-						// 	entry.linkEntries,
-						// 	"li",
-						// 	"ul"
-						// );
-						return (
-							<UnitEntryContainer key={index}>
-								<UnitEntryCaption>
-									<UnitEntryCaptionText>
-										{linksSection.caption}
-									</UnitEntryCaptionText>
-								</UnitEntryCaption>
-								<LinkSection>
-									{linksSection.linkEntries.map(
-										(linkEntry, index) => (
-											<LinkPatch key={index}>
-												{linkEntry.logoUrl && (
-													<a
-														href={linkEntry.url}
-														target="_blank"
-													>
-														<LinkIcon>
-															<img
-																src={
-																	linkEntry.logoUrl
-																}
-															/>
-														</LinkIcon>
-													</a>
-												)}
-												{linkEntry.logoFontawesomeTag && (
-													<a
-														href={linkEntry.url}
-														target="_blank"
-													>
-														<LinkIcon>
-															<FontAwesomeIcon
-																icon={
-																	[
-																		linkEntry
-																			.logoFontawesomeTag[0],
-																		linkEntry
-																			.logoFontawesomeTag[1]
-																	] as any
-																}
-															/>
-														</LinkIcon>
-													</a>
-												)}
-												<a
-													href={linkEntry.url}
-													target="_blank"
-												>
-													<span>
-														{linkEntry.name}
-													</span>
-												</a>
-											</LinkPatch>
-										)
-									)}
-								</LinkSection>
-							</UnitEntryContainer>
-						);
-					}
-				)}
+				{this.state.content.map(this.renderLinksSection)}
 			</ScrollComponent>
 		);
 	}
