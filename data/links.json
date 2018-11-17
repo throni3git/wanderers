@@ -1,7 +1,8 @@
 {
   "entries": [
     {
-      "caption": "Social Media",
+      "caption": "Social Media and Streaming",
+      "onlyDisplayLogos": true,
       "linkEntries": [
         {
           "url": "https://www.facebook.com/sojus3000",

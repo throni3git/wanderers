@@ -24,7 +24,7 @@ const LinkPatch = styled.div`
 const LinkSection = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	padding-top:10px;
+	padding-top: 10px;
 `;
 
 const LinkIcon = styled.span`
@@ -53,6 +53,7 @@ interface ILinkEntry {
 export interface ILinksSection {
 	caption: string;
 	linkEntries: ILinkEntry[];
+	onlyDisplayLogos?: boolean;
 }
 
 let linksFilePromise: Promise<IJsonFile<ILinksSection>>;
