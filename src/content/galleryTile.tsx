@@ -53,6 +53,21 @@ export class GalleryTile extends React.Component<
 		imagesFilePromise.then(jsonFile => {
 			console.log("images");
 			console.log(jsonFile.entries);
+
+			this.imageMapping = new Map<number, Map<number, string>>();
+			jsonFile.entries.map(
+				(imageSection: IImageSection, imageSectionIdx: number) => {
+					const imageSectionMap = new Map();
+					this.imageMapping.set(imageSectionIdx, imageSectionMap);
+
+					imageSection.imageList.map(
+						(imgUrl: string, imageIdx: number) => {
+							imageSectionMap.set(imageIdx, imgUrl);
+						}
+					);
+				}
+			);
+
 			this.setState({ imageContent: jsonFile.entries });
 		});
 	}
@@ -130,7 +145,6 @@ export class GalleryTile extends React.Component<
 	};
 
 	public render() {
-		this.imageMapping = new Map<number, Map<number, string>>();
 		const activeImage = this.state.activeImage;
 
 		return (
@@ -141,11 +155,6 @@ export class GalleryTile extends React.Component<
 							imageSection: IImageSection,
 							imageSectionIdx: number
 						) => {
-							const imageSectionMap = new Map();
-							this.imageMapping.set(
-								imageSectionIdx,
-								imageSectionMap
-							);
 							let dateInCaption: string;
 							if (imageSection.date) {
 								const date = new Date(imageSection.date);
@@ -171,11 +180,6 @@ export class GalleryTile extends React.Component<
 												imgUrl: string,
 												imageIdx: number
 											) => {
-												imageSectionMap.set(
-													imageIdx,
-													imgUrl
-												);
-												IMAGESECTIONMAP VORHER AUFBAUEN IN DEM THEN VON DER FILEPROMISE
 												return (
 													<SingleImage
 														key={imageIdx}
@@ -183,12 +187,10 @@ export class GalleryTile extends React.Component<
 															imageSectionFolder
 														}
 														imageUrl={imgUrl}
-														imageSectionIdx={imageSectionIdx}
-imageIdx={imageIdx}
-
-														NICHT JEDES MAL EINE FUNKTION ERZEUUGEN
-
-
+														// imageSectionIdx={
+														// 	imageSectionIdx
+														// }
+														// imageIdx={imageIdx}
 														clickHandler={() =>
 															this.clickSingleImage(
 																imageSectionIdx,
