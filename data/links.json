@@ -38,6 +38,7 @@
     },
     {
       "caption": "Recording and Studio",
+      "onlyDisplayLogos": true,
       "linkEntries": [
         {
           "url": "http://www.baracke5.de",
@@ -73,6 +74,7 @@
     },
     {
       "caption": "Artwork",
+      "onlyDisplayLogos": true,
       "linkEntries": [
         {
           "url": "http://dkm-graphik.de",
