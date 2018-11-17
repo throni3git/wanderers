@@ -6,6 +6,7 @@ import { SceneManager } from "./sceneManager";
 import { SiteContent } from "./siteContent";
 
 import { Colors } from "./constants";
+import { HIDE_SITE, STARTUP_TILE } from "./urlParams";
 
 const ArtworkContainer = styled.div`
 	width: 100%;
@@ -80,15 +81,9 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	constructor(props: Container["props"]) {
 		super(props);
 
-		// TODO 2018-08-04 check for browser compatibility
-		const url = new URL(window.location.href);
-		const hideSite = url.searchParams.get("hideSite");
-		if (hideSite != null) {
-			this._hideSite = true;
-		}
+		this._hideSite = HIDE_SITE;
 
-		const pageToBeActivated = url.searchParams.get("page");
-		this.state = { initialPage: pageToBeActivated };
+		this.state = { initialPage: STARTUP_TILE };
 	}
 
 	public componentDidMount() {

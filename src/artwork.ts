@@ -6,7 +6,7 @@ import {
 	displacmentFragmentShader
 } from "./shaders/landscapeShader";
 
-import { DBG_CAMERA } from "./sceneManager";
+import { DBG_CAMERA } from "./urlParams";
 import { loadTexture } from "./utils";
 
 const sunSize = 1.5;

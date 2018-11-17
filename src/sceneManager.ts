@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import { OrbitControls } from "./orbitControls/";
 import { Artwork } from "./artwork";
+import { DBG_CAMERA, DBG_ORBITING } from "./urlParams";
 
 function detectWebGL(): boolean {
 	try {
@@ -16,8 +17,6 @@ function detectWebGL(): boolean {
 	}
 }
 
-export let DBG_CAMERA = false;
-export let DBG_ORBITING = false;
 
 export class SceneManager {
 	private _renderer: THREE.WebGLRenderer;
@@ -48,18 +47,6 @@ export class SceneManager {
 	private _maxFPS = 60;
 
 	constructor(containerElement: HTMLDivElement) {
-		// TODO 2018-08-04 check for browser compatibility
-		const url = new URL(window.location.href);
-		const dbgCamera = url.searchParams.get("debugCamera");
-		if (dbgCamera != null) {
-			DBG_CAMERA = true;
-		}
-
-		const dbgOrbiting = url.searchParams.get("debugOrbiting");
-		if (dbgOrbiting != null) {
-			DBG_ORBITING = true;
-		}
-
 		const isWebGLAvailable = detectWebGL();
 		if (!isWebGLAvailable) {
 			return;
