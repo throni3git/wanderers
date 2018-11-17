@@ -1,6 +1,16 @@
 {
   "entries": [
     {
+      "caption": "Es ist endlich soweit!",
+      "date": "2018-11-17T19:40:00.000Z",
+      "paragraphs": [
+        "Heute veröffentlichen wir nach nur 4 Jahren Warten unser neues Album \"Wanderers\". Die Party steigt traditionsgemäß in der <a target=\"_blank\" href=\"https://www.baracke5.de/\">Baracke 5</a> in Ilmenau.",
+        "Mit von der Partie sind <a target=\"_blank\" href=\"https://drawntolines.bandcamp.com/\">Drawn to Lines</a> aus Leipzig.",
+        "Erscheinen Sie, sonst weinen Sie!"
+      ],
+      "imageUrl": "2018-release.jpg"
+    },
+    {
       "caption": "Ihr könnt jetzt unser 2. Album vorbestellen!",
       "date": "2018-10-26T16:15:00.000Z",
       "paragraphs": [
@@ -8,7 +18,7 @@
         "Passend dazu gibts auch den zweiten Teil der \"Warehouse Session\". Zu finden auf unserem <a target=\"_blank\" href=\"https://www.youtube.com/user/sojus3000\">Youtube Kanal</a> oder hier auf der Seite unter Media.",
         "Und nicht vergessen: am 17. November is Wandertach!"
       ],
-      "imageUrl": "band.jpg"
+      "imageUrl": "2018-wanderers-cover.jpg"
     },
     {
       "caption": "Wir haben da mal was vorbereitet",
@@ -18,7 +28,7 @@
         "Und wenn euch Video nicht reicht, sind wir am 28.09. bei <a target='_blank' href='http://www.thehirscheffekt.de/'>The Hirsch Effekt</a> zu Gast und am 17.11. gibts unser neues Album. Record Release ist traditionell in der <a target='_blank' href='https://www.baracke5.de/'>Baracke5</a> in Ilmenau",
         "Bis dahin, eure Sojunauten."
       ],
-      "imageUrl": "band.jpg"
+      "imageUrl": "2018_warehouse.jpg"
     },
     {
       "caption": "Party on Wayne! Party on Garth!",
