@@ -14,7 +14,7 @@ const ContactFormOuterContainer = styled.div`
 `;
 
 const ContactFormInnerContainer = styled.div`
-	width: 500px;
+	width: 600px;
 `;
 
 const ContactFormUnit = styled.div`
@@ -24,7 +24,7 @@ const ContactFormUnit = styled.div`
 `;
 
 const ContactFormLabel = styled.div`
-	width: 100px;
+	width: 200px;
 `;
 
 const ContactFormInputDiv = styled.div`
@@ -62,6 +62,11 @@ const ContactFormInputTextarea = styled.textarea`
 	border-radius: ${BORDER_RADIUS + "px"}
 	background: rgba(255, 255, 255, 0.6);
 	-webkit-appearance: none;
+`;
+
+const ValidationSpan = styled.span`
+	color: ${Colors.LightTextColor};
+	font-size: 0.9em;
 `;
 
 /**
@@ -257,11 +262,13 @@ export class ContactTile extends React.Component<
 						<form onSubmit={this.onSubmit}>
 							<ContactFormUnit>
 								<ContactFormLabel>
-									Name
-									{
-										this.entryValidation("name", "text")
-											.message
-									}
+									Name{" "}
+									<ValidationSpan>
+										{
+											this.entryValidation("name", "text")
+												.message
+										}
+									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputText
@@ -274,11 +281,13 @@ export class ContactTile extends React.Component<
 							</ContactFormUnit>
 							<ContactFormUnit>
 								<ContactFormLabel>
-									Mail
-									{
-										this.entryValidation("mail", "text")
-											.message
-									}
+									Mail{" "}
+									<ValidationSpan>
+										{
+											this.entryValidation("mail", "text")
+												.message
+										}
+									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputText
@@ -291,16 +300,21 @@ export class ContactTile extends React.Component<
 							</ContactFormUnit>
 							<ContactFormUnit>
 								<ContactFormLabel>
-									Text
-									{
-										this.entryValidation("text", "textarea")
-											.message
-									}
+									Text{" "}
+									<ValidationSpan>
+										{
+											this.entryValidation(
+												"text",
+												"textarea"
+											).message
+										}
+									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputTextarea
 										type="textarea"
 										name="text"
+										maxLength="1000"
 										value={this.state.text}
 										onChange={this.handleChange}
 									/>
@@ -308,13 +322,15 @@ export class ContactTile extends React.Component<
 							</ContactFormUnit>
 							<ContactFormUnit>
 								<ContactFormLabel>
-									Accept DSGVO
-									{
-										this.entryValidation(
-											"acceptsDSGVO",
-											"checkbox"
-										).message
-									}
+									Accept DSGVO{" "}
+									<ValidationSpan>
+										{
+											this.entryValidation(
+												"acceptsDSGVO",
+												"checkbox"
+											).message
+										}
+									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputCheckbox
@@ -327,13 +343,15 @@ export class ContactTile extends React.Component<
 							</ContactFormUnit>
 							<ContactFormUnit>
 								<ContactFormLabel>
-									Human from the earth
-									{
-										this.entryValidation(
-											"isHuman",
-											"checkbox"
-										).message
-									}
+									I am a human from the earth{" "}
+									<ValidationSpan>
+										{
+											this.entryValidation(
+												"isHuman",
+												"checkbox"
+											).message
+										}
+									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputCheckbox
