@@ -151,6 +151,8 @@ export class GalleryTile extends React.Component<
 								const date = new Date(imageSection.date);
 								dateInCaption = date.toLocaleDateString();
 							}
+							const imageSectionFolder =
+								"media/" + imageSection.folder + "/";
 							return (
 								<UnitEntryContainer key={imageSectionIdx}>
 									<UnitEntryCaption>
@@ -177,9 +179,7 @@ export class GalleryTile extends React.Component<
 													<SingleImage
 														key={imageIdx}
 														folder={
-															"media/" +
-															imageSection.folder +
-															"/"
+															imageSectionFolder
 														}
 														imageUrl={imgUrl}
 														clickHandler={() =>
