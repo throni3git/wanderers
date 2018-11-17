@@ -175,6 +175,7 @@ export class GalleryTile extends React.Component<
 													imageIdx,
 													imgUrl
 												);
+												IMAGESECTIONMAP VORHER AUFBAUEN IN DEM THEN VON DER FILEPROMISE
 												return (
 													<SingleImage
 														key={imageIdx}
@@ -182,6 +183,12 @@ export class GalleryTile extends React.Component<
 															imageSectionFolder
 														}
 														imageUrl={imgUrl}
+														imageSectionIdx={imageSectionIdx}
+imageIdx={imageIdx}
+
+														NICHT JEDES MAL EINE FUNKTION ERZEUUGEN
+
+
 														clickHandler={() =>
 															this.clickSingleImage(
 																imageSectionIdx,
