@@ -339,7 +339,7 @@ export class Artwork {
 
 		if (this._matLandscape) {
 			this._matLandscape.uniforms["time"].value =
-				(0.005 * (Date.now() - this._startTime)) / 1000;
+				(0.004 * (Date.now() - this._startTime)) / 1000;
 		}
 	}
 }
