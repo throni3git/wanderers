@@ -9,6 +9,6 @@ $header = 'From: ' . $_POST['mail_from'] . "\r\n" .
 
 // $mail_success = mail($'contact@sojus3000.de', $_POST['mail_heading'], $_POST['mail_content'], $header);
 
-$mail_success = mail('throni3b5@mail.de', $_POST['mail_heading'], $_POST['mail_content'], $header);
+$mail_success = mail($_POST['mail_to'], $_POST['mail_heading'], $_POST['mail_content'], $header);
 
 ?>
