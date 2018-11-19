@@ -116,13 +116,7 @@ export class ContactTile extends React.Component<
 > {
 	constructor(props: ContactTile["props"]) {
 		super(props);
-		this.state = {
-			name: "",
-			mail: "",
-			message: "",
-			acceptsDSGVO: false,
-			isHuman: false
-		};
+		this.state = INITIAL_STATE;
 
 		if (DBG_CONTACT_TILE) {
 			this.state = {
@@ -135,49 +129,6 @@ export class ContactTile extends React.Component<
 			};
 		}
 	}
-
-	private entryValidation = (
-		entryName: string,
-		type: "text" | "textarea" | "checkbox"
-	): { message: string; valid: boolean } => {
-		const trueResult = { valid: true, message: "" };
-		const falseResult = { valid: false, message: "*" };
-
-		switch (type) {
-			case "text": {
-				const textContent = this.state[entryName];
-				if (
-					textContent.length >= TEXTINPUT_MIN_LENGTH &&
-					textContent.length < TEXTINPUT_MAX_LENGTH
-				) {
-					return { ...trueResult, message: "" };
-				} else {
-					return { ...falseResult, message: "*" };
-				}
-
-				break;
-			}
-			case "textarea": {
-				const textContent = this.state[entryName];
-				const remainingChars = MESSAGE_MAX_LENGTH - textContent.length;
-				if (
-					textContent.length >= MESSAGE_MIN_LENGTH &&
-					textContent.length < MESSAGE_MAX_LENGTH
-				) {
-					return { ...trueResult, message: "" + remainingChars };
-				} else if (textContent.length < MESSAGE_MIN_LENGTH) {
-					return { ...falseResult, message: "*" + remainingChars };
-				} else {
-					return { ...falseResult, message: "" + remainingChars };
-				}
-				break;
-			}
-			case "checkbox": {
-				return this.state[entryName] ? trueResult : falseResult;
-				break;
-			}
-		}
-	};
 
 	private checkName(): void {
 		const valid =
@@ -234,24 +185,35 @@ export class ContactTile extends React.Component<
 			this.state.isValidIsHuman &&
 			this.state.isValidMessage;
 
-		// const areAllEntriedValid =
-		// this.entryValidation("name", "text").valid &&
-		// this.entryValidation("mail", "text").valid &&
-		// this.entryValidation("text", "textarea").valid &&
-		// this.entryValidation("acceptsDSGVO", "checkbox").valid &&
-		// this.entryValidation("isHuman", "checkbox").valid;
-
+		let sendMailResult: boolean;
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
-			const sendMailResult = await this.sendMail(
-				"[HP] Nachricht von " + this.state.name,
-				this.state.mail,
-				this.state.message
-			);
-			if (sendMailResult) {
-				// this.setState({ submitWasHit: true });
+			try {
+				sendMailResult = await this.sendMail(
+					"[HP] Nachricht von " + this.state.name,
+					this.state.mail,
+					this.state.message
+				);
+			} catch (e) {
+				this.setState({
+					successMessage: "The message couldn't be sent."
+				});
+				return;
+			}
+
+			if (sendMailResult === true) {
+				this.setState({
+					...INITIAL_STATE,
+					successMessage:
+						"Thanks for writing. The message was sent to us."
+				});
+			} else {
+				this.setState({
+					successMessage: "The message couldn't be sent."
+				});
 			}
 		} else {
+			this.setState({ successMessage: "Please check your entries." });
 			console.log("NOPE");
 		}
 	};
@@ -274,6 +236,9 @@ export class ContactTile extends React.Component<
 					}
 					console.log(xhr);
 				}
+			};
+			xhr.onerror = () => {
+				reject(xhr);
 			};
 			const publishingJson = {
 				mail_heading: heading,
@@ -397,6 +362,9 @@ export class ContactTile extends React.Component<
 									value="Submit"
 								/>
 							</ContactFormUnit>
+							<ContactFormUnit>
+								{this.state.successMessage}
+							</ContactFormUnit>
 						</form>
 					</ContactFormInnerContainer>
 				</ContactFormOuterContainer>
@@ -418,4 +386,19 @@ interface IContactTileState {
 	isValidAcceptsDSGVO?: boolean;
 	isValidIsHuman?: boolean;
 	isValidMessage?: boolean;
+	successMessage?: string;
 }
+
+const INITIAL_STATE: IContactTileState = {
+	name: "",
+	mail: "",
+	message: "",
+	acceptsDSGVO: false,
+	isHuman: false,
+	successMessage: "",
+	isValidAcceptsDSGVO: undefined,
+	isValidIsHuman: undefined,
+	isValidMail: undefined,
+	isValidMessage: undefined,
+	isValidName: undefined
+};
