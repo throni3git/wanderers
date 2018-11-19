@@ -167,9 +167,9 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 		yearMapping.forEach((gigEntries, year) => {
 			const result = (
 				<div key={year}>
-					<UnitEntryContainer>
+					{/* <UnitEntryContainer>
 						<YearCaptionText>{year}</YearCaptionText>
-					</UnitEntryContainer>
+					</UnitEntryContainer> */}
 					{gigEntries.map(entry => this.makeGigEntry(entry))}
 				</div>
 			);
