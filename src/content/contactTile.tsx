@@ -2,7 +2,7 @@ import * as React from "react";
 
 import styled from "styled-components";
 
-import { ScrollComponent } from "./tileComponents";
+import { ScrollComponent, ITileComponentProps } from "./tileComponents";
 import { Colors, BORDER, BORDER_RADIUS } from "../constants";
 import { DBG_CONTACT_TILE } from "../urlParams";
 
@@ -25,6 +25,9 @@ const ContactFormUnit = styled.div`
 
 const ContactFormLabel = styled.div`
 	width: 200px;
+	&[data-invalid="true"] {
+		color: red;
+	}
 `;
 
 const ContactFormInputDiv = styled.div`
@@ -86,20 +89,6 @@ export const required = (
 		: "";
 
 /**
- * Validates whether a field is a valid email
- * @param {IValues} values - All the field values in the form
- * @param {string} fieldName - The field to validate
- * @returns {string} - The error message
- */
-export const isEmail = (values: IContactTileState, fieldName: string): string =>
-	values[fieldName] &&
-	values[fieldName].search(
-		/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-	)
-		? "This must be in a valid email format"
-		: "";
-
-/**
  * Validates whether a field is within a certain amount of characters
  * @param {IValues} values - All the field values in the form
  * @param {string} fieldName - The field to validate
@@ -119,6 +108,7 @@ const MESSAGE_MAX_LENGTH = 1000;
 const MESSAGE_MIN_LENGTH = 3;
 const TEXTINPUT_MAX_LENGTH = 100;
 const TEXTINPUT_MIN_LENGTH = 3;
+const MAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export class ContactTile extends React.Component<
 	IContactTileProps,
@@ -129,7 +119,7 @@ export class ContactTile extends React.Component<
 		this.state = {
 			name: "",
 			mail: "",
-			text: "",
+			message: "",
 			acceptsDSGVO: false,
 			isHuman: false
 		};
@@ -139,7 +129,7 @@ export class ContactTile extends React.Component<
 				...this.state,
 				name: "Test",
 				mail: "throni3@gmx.de",
-				text: "Wir testen und wir testen",
+				message: "Wir testen und wir testen",
 				acceptsDSGVO: true,
 				isHuman: true
 			};
@@ -189,6 +179,34 @@ export class ContactTile extends React.Component<
 		}
 	};
 
+	private checkName(): void {
+		const valid =
+			this.state.name.length >= TEXTINPUT_MIN_LENGTH &&
+			this.state.name.length < TEXTINPUT_MAX_LENGTH;
+		this.setState({ isValidName: valid });
+	}
+
+	private checkMail(): void {
+		const valid =
+			!!this.state.mail && this.state.mail.search(MAIL_REGEX) > -1;
+		this.setState({ isValidMail: valid });
+	}
+
+	private checkMessage(): void {
+		const valid =
+			this.state.message.length >= MESSAGE_MIN_LENGTH &&
+			this.state.message.length < MESSAGE_MAX_LENGTH;
+		this.setState({ isValidMessage: valid });
+	}
+
+	private checkDSGVO(): void {
+		this.setState({ isValidAcceptsDSGVO: this.state.acceptsDSGVO });
+	}
+
+	private checkHuman(): void {
+		this.setState({ isValidIsHuman: this.state.isHuman });
+	}
+
 	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const target = event.target;
 		const changedValue =
@@ -197,27 +215,42 @@ export class ContactTile extends React.Component<
 		this.setState({ [changedEntry]: changedValue });
 	};
 
-	private onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	private onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		console.log(event);
 		console.log(this.state);
 
+		this.checkName();
+		this.checkMail();
+		this.checkMessage();
+		this.checkDSGVO();
+		this.checkHuman();
+
 		const areAllEntriedValid =
-			this.entryValidation("name", "text").valid &&
-			this.entryValidation("mail", "text").valid &&
-			this.entryValidation("text", "textarea").valid &&
-			this.entryValidation("acceptsDSGVO", "checkbox").valid &&
-			this.entryValidation("isHuman", "checkbox").valid;
+			this.state.isValidMail &&
+			this.state.isValidName &&
+			this.state.isValidAcceptsDSGVO &&
+			this.state.isValidIsHuman &&
+			this.state.isValidMessage;
+
+		// const areAllEntriedValid =
+		// this.entryValidation("name", "text").valid &&
+		// this.entryValidation("mail", "text").valid &&
+		// this.entryValidation("text", "textarea").valid &&
+		// this.entryValidation("acceptsDSGVO", "checkbox").valid &&
+		// this.entryValidation("isHuman", "checkbox").valid;
 
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
-			this.sendMail(
+			const sendMailResult = await this.sendMail(
 				"[HP] Nachricht von " + this.state.name,
 				this.state.mail,
-				this.state.text,
-				this.state.name
+				this.state.message
 			);
+			if (sendMailResult) {
+				// this.setState({ submitWasHit: true });
+			}
 		} else {
 			console.log("NOPE");
 		}
@@ -226,8 +259,7 @@ export class ContactTile extends React.Component<
 	private sendMail(
 		heading: string,
 		returnMail: string,
-		message: string,
-		senderName: string
+		message: string
 	): Promise<boolean> {
 		const resultPromise = new Promise<boolean>((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -261,14 +293,12 @@ export class ContactTile extends React.Component<
 					<ContactFormInnerContainer>
 						<form onSubmit={this.onSubmit}>
 							<ContactFormUnit>
-								<ContactFormLabel>
-									Name{" "}
-									<ValidationSpan>
-										{
-											this.entryValidation("name", "text")
-												.message
-										}
-									</ValidationSpan>
+								<ContactFormLabel
+									data-invalid={
+										this.state.isValidName === false
+									}
+								>
+									Name
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputText
@@ -280,14 +310,12 @@ export class ContactTile extends React.Component<
 								</ContactFormInputDiv>
 							</ContactFormUnit>
 							<ContactFormUnit>
-								<ContactFormLabel>
-									Mail{" "}
-									<ValidationSpan>
-										{
-											this.entryValidation("mail", "text")
-												.message
-										}
-									</ValidationSpan>
+								<ContactFormLabel
+									data-invalid={
+										this.state.isValidMail === false
+									}
+								>
+									Mail
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputText
@@ -299,38 +327,43 @@ export class ContactTile extends React.Component<
 								</ContactFormInputDiv>
 							</ContactFormUnit>
 							<ContactFormUnit>
-								<ContactFormLabel>
+								<ContactFormLabel
+									data-invalid={
+										this.state.isValidMessage === false
+									}
+								>
 									Text{" "}
 									<ValidationSpan>
-										{
-											this.entryValidation(
-												"text",
-												"textarea"
-											).message
-										}
+										{MESSAGE_MAX_LENGTH -
+											this.state.message.length}
 									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputTextarea
 										type="textarea"
-										name="text"
+										name="message"
 										maxLength="1000"
-										value={this.state.text}
+										value={this.state.message}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
 							<ContactFormUnit>
-								<ContactFormLabel>
-									Accept DSGVO{" "}
-									<ValidationSpan>
-										{
-											this.entryValidation(
-												"acceptsDSGVO",
-												"checkbox"
-											).message
+								<ContactFormLabel
+									data-invalid={
+										this.state.isValidAcceptsDSGVO === false
+									}
+								>
+									Accept{" "}
+									<a
+										onClick={() =>
+											this.props.contentSwitcher(
+												"Impressum"
+											)
 										}
-									</ValidationSpan>
+									>
+										DSGVO
+									</a>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputCheckbox
@@ -342,16 +375,12 @@ export class ContactTile extends React.Component<
 								</ContactFormInputDiv>
 							</ContactFormUnit>
 							<ContactFormUnit>
-								<ContactFormLabel>
-									I am a human from the earth{" "}
-									<ValidationSpan>
-										{
-											this.entryValidation(
-												"isHuman",
-												"checkbox"
-											).message
-										}
-									</ValidationSpan>
+								<ContactFormLabel
+									data-invalid={
+										this.state.isValidIsHuman === false
+									}
+								>
+									I am a human from the earth
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputCheckbox
@@ -376,12 +405,17 @@ export class ContactTile extends React.Component<
 	}
 }
 
-export interface IContactTileProps {}
+export interface IContactTileProps extends ITileComponentProps {}
 
 interface IContactTileState {
 	mail?: string;
 	name?: string;
 	acceptsDSGVO?: boolean;
 	isHuman?: boolean;
-	text?: string;
+	message?: string;
+	isValidMail?: boolean;
+	isValidName?: boolean;
+	isValidAcceptsDSGVO?: boolean;
+	isValidIsHuman?: boolean;
+	isValidMessage?: boolean;
 }

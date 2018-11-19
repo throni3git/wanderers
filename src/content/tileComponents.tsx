@@ -5,6 +5,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import styled from "styled-components";
 
 import { Colors, BORDER } from "../constants";
+import { ActiveContentTypes } from "../SiteMenu";
 
 export const UnitEntryContainer = styled.div`
 	padding: 10px 20px;
@@ -75,3 +76,7 @@ export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
 ScrollComponent.displayName = "ScrollComponent";
 
 export interface IScrollComponentProps {}
+
+export interface ITileComponentProps {
+	contentSwitcher?: (newContent: ActiveContentTypes) => void;
+}

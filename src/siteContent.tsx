@@ -37,7 +37,7 @@ export class SiteContent extends React.Component<
 					}}
 					activeContent={this.state.activeContent}
 				/>
-				{this.getCurrentContent()}
+				{this.renderCurrentContent()}
 				<SiteFooter
 					setActiveContent={name => {
 						this.setState({ activeContent: name });
@@ -47,10 +47,18 @@ export class SiteContent extends React.Component<
 		);
 	}
 
-	private getCurrentContent() {
+	public setCurrentContent = (activeContent: ActiveContentTypes): void => {
+		this.setState({ activeContent: activeContent });
+	};
+
+	private renderCurrentContent() {
 		switch (this.state.activeContent) {
 			case MenuEntryNames.Contact: {
-				return <ContactTile>Contact</ContactTile>;
+				return (
+					<ContactTile contentSwitcher={this.setCurrentContent}>
+						Contact
+					</ContactTile>
+				);
 			}
 			case MenuEntryNames.Gallery: {
 				return <GalleryTile>Gallery</GalleryTile>;
