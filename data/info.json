@@ -1,13 +1,7 @@
 {
   "entries": [
     {
-      "caption": "Rider",
-      "paragraphs": [
-        "<ul><li><a target='_blank' href='media/Technical_Rider_SOJUS3000_2017.pdf'>Stagerider</a></li><li><a target='_blank' href='media/Catering_Rider_SOJUS3000_2017.pdf'>Cateringrider</a></li></ul>"
-      ]
-    },
-    {
-      "caption": "Pressetext",
+      "caption": "Band",
       "paragraphs": [
         "SOJUS3000 wandeln irgendwo zwischen Postrock, Postmetal und Doom, um dort die perfekte Leinwand für ein monumentales Kopfkino zu schaffen. Verglichen wurde die Band schon mit Daturah, Mogwai, God Is an Astronaut, Pelican, Toundra, Russian Circles oder Pink Floyd.",
         "In ihrer Musik erheben sich melancholische Flächen aus dem Nichts, wachsen zu weiten Klanglandschaften und schaffen so Momente, die zeitlos scheinen. Sprachsamples und elektronische Einflüsse fusionieren mit diesen Harmonieteilen und betten den Zuhörer in ein dichtes Klangspektrum. Ausgedehnte, dynamische Songstrukturen wachsen von einem glimmenden Funken hin zu einem ausbrechenden Vulkan, münden in tiefe, monumentale Riffs überlagert von schwebenden Gitarrenlinien und es ergeben sich urgewaltige Instrumentalwerke.",
@@ -26,6 +20,12 @@
       "caption": "Mitglieder",
       "paragraphs": [
         "<ul><li><bold>Johannes Bebensee</bold> – Electronics, Bass, Guitar </li><li><bold>Christian Kehling</bold> – Guitar</li><li><bold>Sascha Pälchen</bold> – Drums</li><li><bold>Thomas Thron</bold> – Bass, Guitar</li></ul>"
+      ]
+    },
+    {
+      "caption": "Rider",
+      "paragraphs": [
+        "<ul><li><a target='_blank' href='media/Technical_Rider_SOJUS3000_2017.pdf'>Stagerider</a></li><li><a target='_blank' href='media/Catering_Rider_SOJUS3000_2017.pdf'>Cateringrider</a></li></ul>"
       ]
     },
     {
