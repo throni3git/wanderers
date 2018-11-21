@@ -6,6 +6,8 @@ import { ScrollComponent, ITileComponentProps } from "./tileComponents";
 import { Colors, BORDER, BORDER_RADIUS } from "../constants";
 import { DBG_CONTACT_TILE } from "../urlParams";
 
+import * as Store from "../store";
+
 const ContactFormOuterContainer = styled.div`
 	display: flex;
 	justify-content: center;
@@ -119,43 +121,48 @@ export class ContactTile extends React.Component<
 		this.state = INITIAL_STATE;
 
 		if (DBG_CONTACT_TILE) {
-			this.state = {
-				...this.state,
+			Store.setState("contact", {
 				name: "Test",
 				mail: "throni3@gmx.de",
 				message: "Wir testen und wir testen",
 				acceptsDSGVO: true,
 				isHuman: true
-			};
+			});
 		}
+
+		Store.subscribe(() => this.setState({}));
 	}
 
 	private checkName(): void {
+		const contact = Store.getState().contact;
 		const valid =
-			this.state.name.length >= TEXTINPUT_MIN_LENGTH &&
-			this.state.name.length < TEXTINPUT_MAX_LENGTH;
+			contact.name.length >= TEXTINPUT_MIN_LENGTH &&
+			contact.name.length < TEXTINPUT_MAX_LENGTH;
 		this.setState({ isValidName: valid });
 	}
 
 	private checkMail(): void {
-		const valid =
-			!!this.state.mail && this.state.mail.search(MAIL_REGEX) > -1;
+		const contact = Store.getState().contact;
+		const valid = contact.mail.search(MAIL_REGEX) > -1;
 		this.setState({ isValidMail: valid });
 	}
 
 	private checkMessage(): void {
+		const contact = Store.getState().contact;
 		const valid =
-			this.state.message.length >= MESSAGE_MIN_LENGTH &&
-			this.state.message.length < MESSAGE_MAX_LENGTH;
+			contact.message.length >= MESSAGE_MIN_LENGTH &&
+			contact.message.length < MESSAGE_MAX_LENGTH;
 		this.setState({ isValidMessage: valid });
 	}
 
 	private checkDSGVO(): void {
-		this.setState({ isValidAcceptsDSGVO: this.state.acceptsDSGVO });
+		const contact = Store.getState().contact;
+		this.setState({ isValidAcceptsDSGVO: contact.acceptsDSGVO });
 	}
 
 	private checkHuman(): void {
-		this.setState({ isValidIsHuman: this.state.isHuman });
+		const contact = Store.getState().contact;
+		this.setState({ isValidIsHuman: contact.isHuman });
 	}
 
 	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -163,14 +170,18 @@ export class ContactTile extends React.Component<
 		const changedValue =
 			target.type === "checkbox" ? target.checked : target.value;
 		const changedEntry = target.name;
-		this.setState({ [changedEntry]: changedValue });
+
+		const contact = Store.getState().contact;
+		Store.setState("contact", { ...contact, [changedEntry]: changedValue });
 	};
 
 	private onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
+		const contact = Store.getState().contact;
+
 		console.log(event);
-		console.log(this.state);
+		console.log(contact);
 
 		this.checkName();
 		this.checkMail();
@@ -189,10 +200,12 @@ export class ContactTile extends React.Component<
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
 			try {
+				const contact = Store.getState().contact;
+
 				sendMailResult = await this.sendMail(
-					"[HP] Nachricht von " + this.state.name,
-					this.state.mail,
-					this.state.message
+					"[HP] Nachricht von " + contact.name,
+					contact.mail,
+					contact.message
 				);
 			} catch (e) {
 				this.setState({
@@ -202,11 +215,7 @@ export class ContactTile extends React.Component<
 			}
 
 			if (sendMailResult === true) {
-				this.setState({
-					...INITIAL_STATE,
-					successMessage:
-						"Thanks for writing. The message was sent to us."
-				});
+				Store.setState("contact", Store.INITIAL_CONTACT);
 			} else {
 				this.setState({
 					successMessage: "The message couldn't be sent."
@@ -269,7 +278,7 @@ export class ContactTile extends React.Component<
 									<ContactFormInputText
 										type="text"
 										name="name"
-										value={this.state.name}
+										value={Store.getState().contact.name}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
@@ -286,7 +295,7 @@ export class ContactTile extends React.Component<
 									<ContactFormInputText
 										type="text"
 										name="mail"
-										value={this.state.mail}
+										value={Store.getState().contact.mail}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
@@ -300,7 +309,8 @@ export class ContactTile extends React.Component<
 									Text{" "}
 									<ValidationSpan>
 										{MESSAGE_MAX_LENGTH -
-											this.state.message.length}
+											Store.getState().contact.message
+												.length}
 									</ValidationSpan>
 								</ContactFormLabel>
 								<ContactFormInputDiv>
@@ -308,7 +318,7 @@ export class ContactTile extends React.Component<
 										type="textarea"
 										name="message"
 										maxLength="1000"
-										value={this.state.message}
+										value={Store.getState().contact.message}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
@@ -334,7 +344,10 @@ export class ContactTile extends React.Component<
 									<ContactFormInputCheckbox
 										type="checkbox"
 										name="acceptsDSGVO"
-										checked={this.state.acceptsDSGVO}
+										checked={
+											Store.getState().contact
+												.acceptsDSGVO
+										}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
@@ -351,7 +364,9 @@ export class ContactTile extends React.Component<
 									<ContactFormInputCheckbox
 										type="checkbox"
 										name="isHuman"
-										checked={this.state.isHuman}
+										checked={
+											Store.getState().contact.isHuman
+										}
 										onChange={this.handleChange}
 									/>
 								</ContactFormInputDiv>
@@ -376,11 +391,6 @@ export class ContactTile extends React.Component<
 export interface IContactTileProps extends ITileComponentProps {}
 
 interface IContactTileState {
-	mail?: string;
-	name?: string;
-	acceptsDSGVO?: boolean;
-	isHuman?: boolean;
-	message?: string;
 	isValidMail?: boolean;
 	isValidName?: boolean;
 	isValidAcceptsDSGVO?: boolean;
@@ -390,11 +400,6 @@ interface IContactTileState {
 }
 
 const INITIAL_STATE: IContactTileState = {
-	name: "",
-	mail: "",
-	message: "",
-	acceptsDSGVO: false,
-	isHuman: false,
 	successMessage: "",
 	isValidAcceptsDSGVO: undefined,
 	isValidIsHuman: undefined,

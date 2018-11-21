@@ -1,10 +1,28 @@
-export type State = {
-	manufacturer: "Flexo" | "Bauhaus" | "Globus";
+export interface IContact {
+	mail: string;
+	name: string;
+	acceptsDSGVO: boolean;
+	isHuman: boolean;
+	message: string;
+}
+
+export const INITIAL_CONTACT: IContact = {
+	mail: "",
+	name: "",
+	acceptsDSGVO: false,
+	isHuman: false,
+	message: ""
 };
+
+export interface State {
+	contact: IContact;
+}
 
 export type Subscriber = () => void;
 
-let currentState: State = { manufacturer: "Flexo" };
+let currentState: State = {
+	contact: INITIAL_CONTACT
+};
 
 const subscribers: Subscriber[] = [];
 
