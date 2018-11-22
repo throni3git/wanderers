@@ -45,7 +45,7 @@ const PreviousImageButton = styled.div`
 	height: 100px;
 	text-align: center;
 	line-height: 100px;
-	font-size: 80px;
+	font-size: 60px;
 `;
 
 const NextImageButtonContainer = styled.div`
@@ -60,7 +60,7 @@ const NextImageButton = styled.div`
 	height: 100px;
 	text-align: center;
 	line-height: 100px;
-	font-size: 80px;
+	font-size: 60px;
 `;
 
 const ExitButton = styled.div`
@@ -69,7 +69,7 @@ const ExitButton = styled.div`
 	height: 100px;
 	text-align: center;
 	line-height: 100px;
-	font-size: 80px;
+	font-size: 60px;
 	top: 0;
 	right: 0;
 `;
