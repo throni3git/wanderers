@@ -19,7 +19,6 @@ import {
 import { Colors } from "../constants";
 
 const ImpressumEntryCaption = styled.div`
-  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
   display: flex;
   justify-content: center;
   align-items: center;

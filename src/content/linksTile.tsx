@@ -39,16 +39,10 @@ const LinkSection = styled.div`
 const LinkIcon = styled.span`
 	font-size: 40px;
 	line-height: 0;
-	// text-align: center;
-	// height: 50px;
-	// width: 50px;
 	margin: 0 10px;
 	cursor: pointer;
 	& > * {
-		// font-size: 40px;
-		// line-height: 50px;
 		height: 50px;
-		/* width: 50px; */
 	}
 `;
 

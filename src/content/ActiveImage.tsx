@@ -30,22 +30,12 @@ const MainImage = styled.img`
 `;
 
 const MainImageCenter = styled.div`
-	/* background: url(${props => props.url});
-	background-size: cover;
-	background-position: center; */
-	/* transition: 0.1s ease-in-out; */
-	/* max-width: 100%; */
-	/* max-height: 100%; */
   padding: 50px;
-	/* :hover { */
-	/* opacity: 0.85; */
-	/* } */
 `;
 
 const PreviousImageButtonContainer = styled.div`
 	width: 100px;
 	height: 100%;
-	/* background: red; */
 	display: flex;
 	align-items: center;
 `;
@@ -53,7 +43,6 @@ const PreviousImageButtonContainer = styled.div`
 const PreviousImageButton = styled.div`
 	width: 100%;
 	height: 100px;
-	/* background: blue; */
 	text-align: center;
 	line-height: 100px;
 	font-size: 80px;
@@ -62,7 +51,6 @@ const PreviousImageButton = styled.div`
 const NextImageButtonContainer = styled.div`
 	width: 100px;
 	height: 100%;
-	/* background: green; */
 	display: flex;
 	align-items: center;
 `;
@@ -70,7 +58,6 @@ const NextImageButtonContainer = styled.div`
 const NextImageButton = styled.div`
 	width: 100%;
 	height: 100px;
-	/* background: blue; */
 	text-align: center;
 	line-height: 100px;
 	font-size: 80px;

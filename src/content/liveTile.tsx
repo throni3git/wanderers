@@ -29,10 +29,6 @@ const GigEntrySubLineText = styled.div`
 
 const GigEntry = styled.div`
 	border-bottom: ${BORDER + "px"} solid ${Colors.CaptionUnderlineColor};
-	/* display: flex; */
-	/* justify-content: space-between; */
-	/* align-items: center; */
-	/* padding: 10px 20px; */
 `;
 
 const GigEntryMainLine = styled.div`
@@ -42,19 +38,17 @@ const GigEntryMainLine = styled.div`
 	padding: 10px 20px;
 `;
 const GigEntrySubLine = styled.div`
- /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
- display: flex;
- justify-content: space-around;
- align-items: center;
- padding: 10px 20px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 20px;
 `;
 
 const HeadingEntryCaption = styled.div`
-  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 20px;
 `;
 
 const YearCaptionText = styled.div`
@@ -66,11 +60,10 @@ const YearCaptionText = styled.div`
 `;
 
 export const GigEntryCaption = styled.div`
-  /* border-bottom: 1px solid ${Colors.CaptionUnderlineColor}; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
 `;
 
 interface ILiveGigMetaData {

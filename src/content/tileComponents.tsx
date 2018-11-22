@@ -12,14 +12,12 @@ export const UnitEntryContainer = styled.div`
 `;
 
 export const UnitEntryImageContainer = styled.div`
-	/* padding-left: 20px; */
 	line-height: 0;
 	flex: 1;
 `;
 
 export const UnitEntryImage = styled.img`
 	width: 100%;
-	/* max-height: 100%; */
 `;
 
 export const UnitEntryContent = styled.div`
@@ -36,7 +34,6 @@ export const NewsEntryContent = styled.div`
 	}
 	& > :first-child {
 		padding-left: 0;
-		/* background: red; */
 	}
 `;
 
@@ -45,7 +42,6 @@ export const UnitEntryCaption = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* padding: 10px 20px; */
 `;
 
 export const UnitEntryCaptionText = styled.div`
