@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { SiteMenu, MenuEntryNames, ActiveContentTypes } from "./SiteMenuLLL";
+import { SiteMenu, MenuEntryNames, ActiveContentTypes } from "./siteMenu";
 import { ContactTile } from "./content/contactTile";
 import { GalleryTile } from "./content/galleryTile";
 import { InfoTile } from "./content/infoTile";
