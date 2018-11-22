@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import styled from "styled-components";
+
 import {
 	loadJsonFile,
 	IJsonFile,
@@ -13,6 +15,7 @@ import {
 	UnitEntryCaptionText,
 	ScrollComponent
 } from "./tileComponents";
+import { MEDIA_FOLDER } from "../constants";
 
 let infoFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
 try {
@@ -22,6 +25,15 @@ try {
 } catch (e) {
 	console.log(e);
 }
+
+const Bandfoto = styled.div`
+	background: url(${MEDIA_FOLDER + "Bandfotos/HD_SOJUS3000_001.jpg"});
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 500px;
+	margin: 20px;
+`;
 
 export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
 	constructor(props: InfoTile["props"]) {
@@ -39,6 +51,7 @@ export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
 	public render() {
 		return (
 			<ScrollComponent>
+				<Bandfoto />
 				{this.state.content.map(
 					(entry: IHeadedParagraphSection, index: number) => {
 						// parse date info
