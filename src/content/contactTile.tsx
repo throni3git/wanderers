@@ -120,49 +120,44 @@ export class ContactTile extends React.Component<
 		super(props);
 		this.state = INITIAL_STATE;
 
-		if (DBG_CONTACT_TILE) {
-			Store.setState("contact", {
-				name: "Test",
-				mail: "throni3@gmx.de",
-				message: "Wir testen und wir testen",
-				acceptsDSGVO: true,
-				isHuman: true
-			});
-		}
-
 		Store.subscribe(() => this.setState({}));
 	}
 
-	private checkName(): void {
+	private checkName(): boolean {
 		const contact = Store.getState().contact;
 		const valid =
 			contact.name.length >= TEXTINPUT_MIN_LENGTH &&
 			contact.name.length < TEXTINPUT_MAX_LENGTH;
 		this.setState({ isValidName: valid });
+		return valid;
 	}
 
-	private checkMail(): void {
+	private checkMail(): boolean {
 		const contact = Store.getState().contact;
 		const valid = contact.mail.search(MAIL_REGEX) > -1;
 		this.setState({ isValidMail: valid });
+		return valid;
 	}
 
-	private checkMessage(): void {
+	private checkMessage(): boolean {
 		const contact = Store.getState().contact;
 		const valid =
 			contact.message.length >= MESSAGE_MIN_LENGTH &&
 			contact.message.length < MESSAGE_MAX_LENGTH;
 		this.setState({ isValidMessage: valid });
+		return valid;
 	}
 
-	private checkDSGVO(): void {
+	private checkDSGVO(): boolean {
 		const contact = Store.getState().contact;
 		this.setState({ isValidAcceptsDSGVO: contact.acceptsDSGVO });
+		return contact.acceptsDSGVO;
 	}
 
-	private checkHuman(): void {
+	private checkHuman(): boolean {
 		const contact = Store.getState().contact;
 		this.setState({ isValidIsHuman: contact.isHuman });
+		return contact.isHuman;
 	}
 
 	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,18 +178,12 @@ export class ContactTile extends React.Component<
 		console.log(event);
 		console.log(contact);
 
-		this.checkName();
-		this.checkMail();
-		this.checkMessage();
-		this.checkDSGVO();
-		this.checkHuman();
-
 		const areAllEntriedValid =
-			this.state.isValidMail &&
-			this.state.isValidName &&
-			this.state.isValidAcceptsDSGVO &&
-			this.state.isValidIsHuman &&
-			this.state.isValidMessage;
+			this.checkName() &&
+			this.checkMail() &&
+			this.checkMessage() &&
+			this.checkDSGVO() &&
+			this.checkHuman();
 
 		let sendMailResult: boolean;
 		if (areAllEntriedValid) {

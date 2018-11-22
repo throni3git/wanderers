@@ -1,3 +1,5 @@
+import { DBG_CONTACT_TILE } from "./urlParams";
+
 export interface IContact {
 	mail: string;
 	name: string;
@@ -13,6 +15,14 @@ export const INITIAL_CONTACT: IContact = {
 	isHuman: false,
 	message: ""
 };
+
+if (DBG_CONTACT_TILE) {
+	INITIAL_CONTACT.name = "Test";
+	INITIAL_CONTACT.mail = "throni3@gmx.de";
+	INITIAL_CONTACT.message = "Wir testen und wir testen";
+	INITIAL_CONTACT.acceptsDSGVO = true;
+	INITIAL_CONTACT.isHuman = true;
+}
 
 export interface State {
 	contact: IContact;
