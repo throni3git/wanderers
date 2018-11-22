@@ -19,6 +19,7 @@ const Thumbnail = styled.div`
 		opacity: 0.85;
 	}
 `;
+
 export class SingleImage extends React.Component<
 	ISingleImageProps,
 	ISingleImageState
