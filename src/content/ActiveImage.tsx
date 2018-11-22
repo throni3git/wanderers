@@ -93,7 +93,7 @@ export class ActiveImage extends React.Component<
 		return (
 			<Overlay>
 				<PreviousImageButtonContainer
-					onClick={this.props.nextImageClickHandler}
+					onClick={this.props.previousImageClickHandler}
 				>
 					<PreviousImageButton>
 						<IconWithHoverEffect icon={["fas", "arrow-left"]} />
@@ -105,7 +105,7 @@ export class ActiveImage extends React.Component<
 					</MainImageCenter>
 				</MainImageContainer>
 				<NextImageButtonContainer
-					onClick={this.props.previousImageClickHandler}
+					onClick={this.props.nextImageClickHandler}
 				>
 					<NextImageButton>
 						<IconWithHoverEffect icon={["fas", "arrow-right"]} />
