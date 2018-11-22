@@ -5,6 +5,19 @@
 
 import * as THREE from "three";
 
+export function detectWebGL(): boolean {
+	try {
+		var canvas = document.createElement("canvas");
+		return !!(
+			(window as any).WebGLRenderingContext &&
+			(canvas.getContext("webgl") ||
+				canvas.getContext("experimental-webgl"))
+		);
+	} catch (e) {
+		return false;
+	}
+}
+
 /**
  * helper to yield a json with a specific format
  * @param url file location

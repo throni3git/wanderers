@@ -1,5 +1,7 @@
 import { DBG_CONTACT_TILE } from "./urlParams";
 
+import { detectWebGL } from "./utils";
+
 export interface IContact {
 	mail: string;
 	name: string;
@@ -26,12 +28,17 @@ if (DBG_CONTACT_TILE) {
 
 export interface State {
 	contact: IContact;
+	isWebGLAvailable: boolean;
 }
 
 export type Subscriber = () => void;
 
+const isWebGLAvailable = detectWebGL();
+// const isWebGLAvailable = false;
+
 let currentState: State = {
-	contact: INITIAL_CONTACT
+	contact: INITIAL_CONTACT,
+	isWebGLAvailable
 };
 
 const subscribers: Subscriber[] = [];

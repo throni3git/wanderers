@@ -4,18 +4,7 @@ import { OrbitControls } from "./orbitControls/";
 import { Artwork } from "./artwork";
 import { DBG_CAMERA, DBG_ORBITING } from "./urlParams";
 
-function detectWebGL(): boolean {
-	try {
-		var canvas = document.createElement("canvas");
-		return !!(
-			(window as any).WebGLRenderingContext &&
-			(canvas.getContext("webgl") ||
-				canvas.getContext("experimental-webgl"))
-		);
-	} catch (e) {
-		return false;
-	}
-}
+import * as Store from "./store";
 
 
 export class SceneManager {
@@ -47,7 +36,7 @@ export class SceneManager {
 	private _maxFPS = 60;
 
 	constructor(containerElement: HTMLDivElement) {
-		const isWebGLAvailable = detectWebGL();
+		const isWebGLAvailable = Store.getState().isWebGLAvailable;
 		if (!isWebGLAvailable) {
 			return;
 		}

@@ -8,6 +8,8 @@ import { SiteContent } from "./siteContent";
 import { Colors, BORDER_RADIUS } from "./constants";
 import { HIDE_SITE, STARTUP_TILE } from "./urlParams";
 
+import * as Store from "./store";
+
 const ArtworkContainer = styled.div`
 	width: 100%;
 	height: 100%;
@@ -46,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
 * {
 	box-sizing: border-box;
 	// TODO this overwrites too much (arrows in gallery)
-	// color: ${Colors.DefaultTextColor}; 
+	// color: ${Colors.DefaultTextColor};
 	font-family: sans-serif;
 }
 
@@ -65,7 +67,7 @@ html, body {
 }
 
 div, span {
-	
+
 	// color: ${Colors.DefaultTextColor};
 
 }
@@ -80,6 +82,16 @@ a {
 li {
   padding: 3px 0;
 }
+`;
+
+const ArtworkImage = styled.div`
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: url(assets/bg_white_cover.jpg);
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
 `;
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
@@ -102,7 +114,10 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	public render() {
 		return (
 			<div style={{ width: "100%" }}>
-				<ArtworkContainer ref={ref => (this._baseElement = ref)} />
+				{Store.getState().isWebGLAvailable && (
+					<ArtworkContainer ref={ref => (this._baseElement = ref)} />
+				)}
+				{!Store.getState().isWebGLAvailable && <ArtworkImage />}
 				{!this._hideSite && (
 					<SiteContainer>
 						<SiteHeading />
