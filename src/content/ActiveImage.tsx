@@ -14,6 +14,7 @@ const Overlay = styled.div`
 	display: flex;
 	background: rgba(0, 0, 0, 0.7);
 	z-index: 10;
+	user-select: none;
 `;
 
 const MainImageContainer = styled.div`
@@ -30,7 +31,7 @@ const MainImage = styled.img`
 `;
 
 const MainImageCenter = styled.div`
-  padding: 50px;
+	padding: 50px;
 `;
 
 const PreviousImageButtonContainer = styled.div`
