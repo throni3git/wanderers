@@ -7,10 +7,13 @@ $header = 'From: contact@sojus3000.de' . "\r\n" .
 
 $mail_success = -1;
 
-$mail_success = mail('contact@sojus3000.de', $_POST['mail_heading'], $_POST['mail_content'], $header);
+$message = 'Nachricht von ' . $_POST['mail_from'] . "\n\n" . $_POST['mail_content'];
 
 if ($_POST['DBG_CONTACT_TILE'] == TRUE) {
-    $mail_success = mail('throni3b5@mail.de', $_POST['mail_heading'], $_POST['mail_content'], $header);
+    $mail_success = mail('throni3b5@mail.de', $_POST['mail_heading'], $message, $header);
+} else {
+    $mail_success = mail('throni3b5@mail.de', $_POST['mail_heading'], $message, $header);
+    $mail_success = mail('contact@sojus3000.de', $_POST['mail_heading'], $message, $header);
 }
 
 echo($mail_success);
