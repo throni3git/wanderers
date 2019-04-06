@@ -205,12 +205,15 @@ export class ContactTile extends React.Component<
 
 			console.log(sendMailResult);
 
-			if (sendMailResult !== "-1") {
-				Store.setState("contact", Store.INITIAL_CONTACT);
-			} else {
+			if (sendMailResult !== "1") {
 				this.setState({
 					successMessage: "The message couldn't be sent."
 				});
+			} else {
+				Store.setState("contact", Store.INITIAL_CONTACT);
+				this.setState({
+					successMessage: "The message was sent. We will reply soon."
+				})
 			}
 		} else {
 			this.setState({ successMessage: "Please check your entries." });
