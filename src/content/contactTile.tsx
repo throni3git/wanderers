@@ -185,7 +185,7 @@ export class ContactTile extends React.Component<
 			this.checkDSGVO() &&
 			this.checkHuman();
 
-		let sendMailResult: boolean;
+		let sendMailResult: string;
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
 			try {
@@ -203,12 +203,17 @@ export class ContactTile extends React.Component<
 				return;
 			}
 
-			if (sendMailResult === true) {
-				Store.setState("contact", Store.INITIAL_CONTACT);
-			} else {
+			console.log(sendMailResult);
+
+			if (sendMailResult !== "1") {
 				this.setState({
 					successMessage: "The message couldn't be sent."
 				});
+			} else {
+				Store.setState("contact", Store.INITIAL_CONTACT);
+				this.setState({
+					successMessage: "The message was sent. We will reply soon."
+				})
 			}
 		} else {
 			this.setState({ successMessage: "Please check your entries." });
@@ -220,33 +225,45 @@ export class ContactTile extends React.Component<
 		heading: string,
 		returnMail: string,
 		message: string
-	): Promise<boolean> {
-		const resultPromise = new Promise<boolean>((resolve, reject) => {
-			const xhr = new XMLHttpRequest();
-			xhr.open("POST", "./mail_api_send.php", true);
-			xhr.setRequestHeader("Content-Type", "application/json");
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4) {
-					if (xhr.status == 200) {
-						console.log("success");
-					} else {
-						console.log("fail");
-					}
-					console.log(xhr);
-				}
-			};
-			xhr.onerror = () => {
-				reject(xhr);
-			};
-			const publishingJson = {
-				mail_heading: heading,
-				mail_content: message,
-				mail_from: returnMail,
-				DBG_CONTACT_TILE: DBG_CONTACT_TILE
-			};
-			xhr.send(JSON.stringify(publishingJson));
-		});
-		return resultPromise;
+	): Promise<string> {
+		// const resultPromise = new Promise<boolean>((resolve, reject) => {
+		// 	const xhr = new XMLHttpRequest();
+		// 	xhr.open("POST", "./mail_api_send.php", true);
+		// 	xhr.setRequestHeader("Content-Type", "application/json");
+		// 	xhr.onreadystatechange = function() {
+		// 		if (xhr.readyState == 4) {
+		// 			if (xhr.status == 200) {
+		// 				console.log("success");
+		// 			} else {
+		// 				console.log("fail");
+		// 			}
+		// 			console.log(xhr);
+		// 		}
+		// 	};
+		// 	xhr.onerror = () => {
+		// 		reject(xhr);
+		// 	};
+		// 	const publishingJson = {
+		// 		mail_heading: heading,
+		// 		mail_content: message,
+		// 		mail_from: returnMail,
+		// 		DBG_CONTACT_TILE: DBG_CONTACT_TILE
+		// 	};
+		// 	xhr.send(JSON.stringify(publishingJson));
+		// });
+		// return resultPromise;
+
+		const publishingJson = {
+			mail_heading: heading,
+			mail_content: message,
+			mail_from: returnMail,
+			DBG_CONTACT_TILE: DBG_CONTACT_TILE
+		};
+
+		return fetch("./mail_api_send.php", {
+			method: "POST",
+			body: JSON.stringify(publishingJson)
+		}).then(res => res.text());
 	}
 
 	public render() {
