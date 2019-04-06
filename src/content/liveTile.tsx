@@ -126,7 +126,7 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 					</GigEntryMainLine>
 					<GigEntrySubLine>
 						<GigEntrySubLineText>
-							{"+ " + entry.with}
+							{entry.with ? "+ " + entry.with : null}
 						</GigEntrySubLineText>
 					</GigEntrySubLine>
 				</GigEntry>
