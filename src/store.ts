@@ -8,6 +8,7 @@ export interface IContact {
 	acceptsDSGVO: boolean;
 	isHuman: boolean;
 	message: string;
+	sendCopy: boolean;
 }
 
 export const INITIAL_CONTACT: IContact = {
@@ -15,7 +16,8 @@ export const INITIAL_CONTACT: IContact = {
 	name: "",
 	acceptsDSGVO: false,
 	isHuman: false,
-	message: ""
+	message: "",
+	sendCopy: true
 };
 
 if (DBG_CONTACT_TILE) {

@@ -185,6 +185,8 @@ export class ContactTile extends React.Component<
 			this.checkDSGVO() &&
 			this.checkHuman();
 
+		const senderGetsCopy = Store.getState().contact.sendCopy;
+
 		let sendMailResult: string;
 		if (areAllEntriedValid) {
 			console.log("ALL VALID");
@@ -194,7 +196,8 @@ export class ContactTile extends React.Component<
 				sendMailResult = await this.sendMail(
 					"[HP] Nachricht von " + contact.name,
 					contact.mail,
-					contact.message
+					contact.message,
+					senderGetsCopy
 				);
 			} catch (e) {
 				this.setState({
@@ -213,7 +216,7 @@ export class ContactTile extends React.Component<
 				Store.setState("contact", Store.INITIAL_CONTACT);
 				this.setState({
 					successMessage: "The message was sent. We will reply soon."
-				})
+				});
 			}
 		} else {
 			this.setState({ successMessage: "Please check your entries." });
@@ -224,7 +227,8 @@ export class ContactTile extends React.Component<
 	private sendMail(
 		heading: string,
 		returnMail: string,
-		message: string
+		message: string,
+		sendCopy: boolean
 	): Promise<string> {
 		// const resultPromise = new Promise<boolean>((resolve, reject) => {
 		// 	const xhr = new XMLHttpRequest();
@@ -257,6 +261,7 @@ export class ContactTile extends React.Component<
 			mail_heading: heading,
 			mail_content: message,
 			mail_from: returnMail,
+			send_copy_to_sender: sendCopy,
 			DBG_CONTACT_TILE: DBG_CONTACT_TILE
 		};
 
@@ -372,6 +377,21 @@ export class ContactTile extends React.Component<
 										name="isHuman"
 										checked={
 											Store.getState().contact.isHuman
+										}
+										onChange={this.handleChange}
+									/>
+								</ContactFormInputDiv>
+							</ContactFormUnit>
+							<ContactFormUnit>
+								<ContactFormLabel>
+									Send a copy to me
+								</ContactFormLabel>
+								<ContactFormInputDiv>
+									<ContactFormInputCheckbox
+										type="checkbox"
+										name="sendCopy"
+										checked={
+											Store.getState().contact.sendCopy
 										}
 										onChange={this.handleChange}
 									/>
