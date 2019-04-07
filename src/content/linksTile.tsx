@@ -52,6 +52,25 @@ const LinkIcon = styled.a`
 	&:hover > svg {
 		fill: ${Colors.LinkHoverColor};
 	}
+	position: relative;
+	content: "";
+	&:hover::after {
+		position: absolute;
+		content: "${props => props.tooltip}";
+		/* background: ${Colors.DefaultTextColor}; */
+		border-radius: 4px;
+		color: ${Colors.HighlightColor};
+		border-color: black;
+		text-decoration: none;
+		bottom: -15px;
+		transform: translateX(-50%) translateY(50%);
+		line-height: 20px;
+		font-size: 20px;
+		padding: 5px;
+		left: 50%;
+		white-space: nowrap;
+		/* margin-top: 10px; */
+	}
 `;
 
 interface ILinkEntry {
@@ -130,19 +149,31 @@ export class LinksTile extends React.Component<
 		return (
 			<LinkPatchAllInARow key={index}>
 				{linkEntry.logoUrl && (
-					<LinkIcon href={linkEntry.url} target="_blank">
+					<LinkIcon
+						tooltip={linkEntry.name}
+						href={linkEntry.url}
+						target="_blank"
+					>
 						<img src={linkEntry.logoUrl} />
 					</LinkIcon>
 				)}
 				{linkEntry.logoTsxName && (
-					<LinkIcon href={linkEntry.url} target="_blank">
+					<LinkIcon
+						tooltip={linkEntry.name}
+						href={linkEntry.url}
+						target="_blank"
+					>
 						{allTsxLogos[linkEntry.logoTsxName]
 							? allTsxLogos[linkEntry.logoTsxName]
 							: null}
 					</LinkIcon>
 				)}
 				{linkEntry.logoFontawesomeTag && (
-					<LinkIcon href={linkEntry.url} target="_blank">
+					<LinkIcon
+						tooltip={linkEntry.name}
+						href={linkEntry.url}
+						target="_blank"
+					>
 						<FontAwesomeIcon
 							icon={
 								[
