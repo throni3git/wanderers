@@ -47,6 +47,7 @@ const PreviousImageButton = styled.div`
 	text-align: center;
 	line-height: 100px;
 	font-size: 60px;
+	cursor: pointer;
 `;
 
 const NextImageButtonContainer = styled.div`
@@ -62,6 +63,7 @@ const NextImageButton = styled.div`
 	text-align: center;
 	line-height: 100px;
 	font-size: 60px;
+	cursor: pointer;
 `;
 
 const ExitButton = styled.div`
@@ -73,6 +75,7 @@ const ExitButton = styled.div`
 	font-size: 60px;
 	top: 0;
 	right: 0;
+	cursor: pointer;
 `;
 
 const IconWithHoverEffect = styled(FontAwesomeIcon)`

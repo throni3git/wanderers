@@ -342,6 +342,7 @@ export class ContactTile extends React.Component<
 								>
 									Accept{" "}
 									<a
+										style={{ cursor: "pointer" }}
 										onClick={() =>
 											this.props.contentSwitcher(
 												"Impressum"
