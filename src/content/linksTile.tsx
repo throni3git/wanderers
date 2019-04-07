@@ -12,6 +12,8 @@ import {
 	UnitEntryCaptionText,
 	ScrollComponent
 } from "./tileComponents";
+import { allTsxLogos } from "./logos";
+import { Colors } from "../constants";
 
 const LinkPatchTwoColumns = styled.div`
 	width: 50%;
@@ -44,6 +46,12 @@ const LinkIcon = styled.span`
 	& > * {
 		height: 50px;
 	}
+	& > svg{
+		fill: ${Colors.DefaultTextColor}
+	}
+	&:hover > svg{
+		fill: ${Colors.LinkHoverColor}
+	}
 `;
 
 interface ILinkEntry {
@@ -51,6 +59,7 @@ interface ILinkEntry {
 	name: string;
 	logoUrl?: string;
 	logoFontawesomeTag?: [string, string];
+	logoTsxName?: string;
 }
 
 interface ILinksSection {
@@ -128,6 +137,15 @@ export class LinksTile extends React.Component<
 					<a href={linkEntry.url} target="_blank">
 						<LinkIcon>
 							<img src={linkEntry.logoUrl} />
+						</LinkIcon>
+					</a>
+				)}
+				{linkEntry.logoTsxName && (
+					<a href={linkEntry.url} target="_blank">
+						<LinkIcon>
+							{allTsxLogos[linkEntry.logoTsxName]
+								? allTsxLogos[linkEntry.logoTsxName]
+								: null}
 						</LinkIcon>
 					</a>
 				)}

@@ -32,7 +32,7 @@
         {
           "url": "https://www.deezer.com/artist/7109499",
           "name": "SOJUS3000 @ deezer",
-          "logoUrl": "data/logos/deezer.svg"
+          "logoTsxName": "deezer"
         }
       ]
     },
@@ -43,32 +43,32 @@
         {
           "url": "http://www.baracke5.de",
           "name": "Baracke 5 e.V.",
-          "logoUrl": "data/logos/logo_baracke.svg"
+          "logoTsxName": "baracke"
         },
         {
           "url": "http://www.fuzzmatazz.com",
           "name": "Fuzzmatazz Label",
-          "logoUrl": "data/logos/logo_fuzzmatazz.svg"
+          "logoTsxName": "fuzzmatazz"
         },
         {
           "url": "http://www.atomino-studio.de",
           "name": "Atomino Studio",
-          "logoUrl": "data/logos/logo_atomino.svg"
+          "logoTsxName": "atomino"
         },
         {
           "url": "https://www.facebook.com/RamaSound",
           "name": "RAMA Tonstudio",
-          "logoUrl": "data/logos/logo_rama.svg"
+          "logoTsxName": "rama"
         },
         {
           "url": "https://erikswiatloch.de/coldskinstudio",
           "name": "Cold Skin Tonstudio",
-          "logoUrl": "data/logos/logo_cold_skin_studios.svg"
+          "logoTsxName": "coldSkinStudio"
         },
         {
           "url": "https://www.ponkpictures.de",
           "name": "Ponk Pictures",
-          "logoUrl": "data/logos/logo_ponk.svg"
+          "logoTsxName": "ponk"
         }
       ]
     },
@@ -79,12 +79,12 @@
         {
           "url": "http://dkm-graphik.de",
           "name": "dkm graphics",
-          "logoUrl": "data/logos/logo_dkm.svg"
+          "logoTsxName": "dkm"
         },
         {
           "url": "https://www.natehillphotography.com.au",
           "name": "Nate Hill Photography",
-          "logoUrl": "data/logos/logo_nate_hill.svg"
+          "logoTsxName": "nateHill"
         }
       ]
     }
