@@ -38,19 +38,19 @@ const LinkSection = styled.div`
 	justify-content: space-evenly;
 `;
 
-const LinkIcon = styled.span`
-	font-size: 40px;
+const LinkIcon = styled.a`
+	font-size: 50px;
 	line-height: 0;
 	margin: 0 10px;
 	cursor: pointer;
 	& > * {
 		height: 50px;
 	}
-	& > svg{
-		fill: ${Colors.DefaultTextColor}
+	& > svg {
+		fill: ${Colors.DefaultTextColor};
 	}
-	&:hover > svg{
-		fill: ${Colors.LinkHoverColor}
+	&:hover > svg {
+		fill: ${Colors.LinkHoverColor};
 	}
 `;
 
@@ -100,25 +100,21 @@ export class LinksTile extends React.Component<
 		return (
 			<LinkPatchTwoColumns key={index}>
 				{linkEntry.logoUrl && (
-					<a href={linkEntry.url} target="_blank">
-						<LinkIcon>
-							<img src={linkEntry.logoUrl} />
-						</LinkIcon>
-					</a>
+					<LinkIcon href={linkEntry.url} target="_blank">
+						<img src={linkEntry.logoUrl} />
+					</LinkIcon>
 				)}
 				{linkEntry.logoFontawesomeTag && (
-					<a href={linkEntry.url} target="_blank">
-						<LinkIcon>
-							<FontAwesomeIcon
-								icon={
-									[
-										linkEntry.logoFontawesomeTag[0],
-										linkEntry.logoFontawesomeTag[1]
-									] as any
-								}
-							/>
-						</LinkIcon>
-					</a>
+					<LinkIcon href={linkEntry.url} target="_blank">
+						<FontAwesomeIcon
+							icon={
+								[
+									linkEntry.logoFontawesomeTag[0],
+									linkEntry.logoFontawesomeTag[1]
+								] as any
+							}
+						/>
+					</LinkIcon>
 				)}
 				<a href={linkEntry.url} target="_blank">
 					<span>{linkEntry.name}</span>
@@ -134,34 +130,28 @@ export class LinksTile extends React.Component<
 		return (
 			<LinkPatchAllInARow key={index}>
 				{linkEntry.logoUrl && (
-					<a href={linkEntry.url} target="_blank">
-						<LinkIcon>
-							<img src={linkEntry.logoUrl} />
-						</LinkIcon>
-					</a>
+					<LinkIcon href={linkEntry.url} target="_blank">
+						<img src={linkEntry.logoUrl} />
+					</LinkIcon>
 				)}
 				{linkEntry.logoTsxName && (
-					<a href={linkEntry.url} target="_blank">
-						<LinkIcon>
-							{allTsxLogos[linkEntry.logoTsxName]
-								? allTsxLogos[linkEntry.logoTsxName]
-								: null}
-						</LinkIcon>
-					</a>
+					<LinkIcon href={linkEntry.url} target="_blank">
+						{allTsxLogos[linkEntry.logoTsxName]
+							? allTsxLogos[linkEntry.logoTsxName]
+							: null}
+					</LinkIcon>
 				)}
 				{linkEntry.logoFontawesomeTag && (
-					<a href={linkEntry.url} target="_blank">
-						<LinkIcon>
-							<FontAwesomeIcon
-								icon={
-									[
-										linkEntry.logoFontawesomeTag[0],
-										linkEntry.logoFontawesomeTag[1]
-									] as any
-								}
-							/>
-						</LinkIcon>
-					</a>
+					<LinkIcon href={linkEntry.url} target="_blank">
+						<FontAwesomeIcon
+							icon={
+								[
+									linkEntry.logoFontawesomeTag[0],
+									linkEntry.logoFontawesomeTag[1]
+								] as any
+							}
+						/>
+					</LinkIcon>
 				)}
 			</LinkPatchAllInARow>
 		);
