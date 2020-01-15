@@ -12,6 +12,7 @@ import {
 import { Colors, BORDER } from "../constants";
 
 const GigEntryCityText = styled.div`
+	flex: 1;
 	font-size: 1.5em;
 	&::first-letter {
 		color: ${Colors.HighlightColor};
@@ -21,6 +22,11 @@ const GigEntryCityText = styled.div`
 
 const GigEntryLocationText = styled.div`
 	font-size: 1.2em;
+`;
+
+const GigEntryContent = styled(UnitEntryCaptionDate)`
+	flex: 1;
+	text-align: right;
 `;
 
 const GigEntrySubLineText = styled.div`
@@ -120,14 +126,10 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 							{entry.topic ? entry.topic + " // " : null}
 							{entry.location}
 						</GigEntryLocationText>
-						<UnitEntryCaptionDate>
-							{dateInCaption}
-						</UnitEntryCaptionDate>
+						<GigEntryContent>{dateInCaption}</GigEntryContent>
 					</GigEntryMainLine>
 					<GigEntrySubLine>
-						<GigEntrySubLineText>
-							{entry.with}
-						</GigEntrySubLineText>
+						<GigEntrySubLineText>{entry.with}</GigEntrySubLineText>
 					</GigEntrySubLine>
 				</GigEntry>
 			</UnitEntryContainer>
