@@ -17,7 +17,7 @@ export type ActiveContentTypes = keyof typeof MenuEntryNames | "Impressum";
 const LHC = Colors.LinkHoverColor;
 const AMC = Colors.ActiveMenuColor;
 
-const MenuEntry = styled.span`
+const MenuEntry = styled.span<{ active: boolean }>`
 	font-size: 2em;
 	font-weight: bold;
 	cursor: pointer;

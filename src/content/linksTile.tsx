@@ -38,7 +38,7 @@ const LinkSection = styled.div`
 	justify-content: space-evenly;
 `;
 
-const LinkIcon = styled.a`
+const LinkIcon = styled.a<{ tooltip?: string }>`
 	font-size: 50px;
 	line-height: 0;
 	margin: 0 10px;
