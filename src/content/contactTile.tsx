@@ -160,10 +160,20 @@ export class ContactTile extends React.Component<
 		return contact.isHuman;
 	}
 
-	private handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	private handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const target = event.target;
 		const changedValue =
 			target.type === "checkbox" ? target.checked : target.value;
+		const changedEntry = target.name;
+
+		const contact = Store.getState().contact;
+		Store.setState("contact", { ...contact, [changedEntry]: changedValue });
+	};
+
+
+	private handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+		const target = event.target;
+		const changedValue = target.value;
 		const changedEntry = target.name;
 
 		const contact = Store.getState().contact;
@@ -290,7 +300,7 @@ export class ContactTile extends React.Component<
 										type="text"
 										name="name"
 										value={Store.getState().contact.name}
-										onChange={this.handleChange}
+										onChange={this.handleInputChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
@@ -307,7 +317,7 @@ export class ContactTile extends React.Component<
 										type="text"
 										name="mail"
 										value={Store.getState().contact.mail}
-										onChange={this.handleChange}
+										onChange={this.handleInputChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
@@ -326,11 +336,10 @@ export class ContactTile extends React.Component<
 								</ContactFormLabel>
 								<ContactFormInputDiv>
 									<ContactFormInputTextarea
-										type="textarea"
 										name="message"
-										maxLength="1000"
+										maxLength={1000}
 										value={Store.getState().contact.message}
-										onChange={this.handleChange}
+										onChange={this.handleTextAreaChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
@@ -360,7 +369,7 @@ export class ContactTile extends React.Component<
 											Store.getState().contact
 												.acceptsDSGVO
 										}
-										onChange={this.handleChange}
+										onChange={this.handleInputChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
@@ -379,7 +388,7 @@ export class ContactTile extends React.Component<
 										checked={
 											Store.getState().contact.isHuman
 										}
-										onChange={this.handleChange}
+										onChange={this.handleInputChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
@@ -394,7 +403,7 @@ export class ContactTile extends React.Component<
 										checked={
 											Store.getState().contact.sendCopy
 										}
-										onChange={this.handleChange}
+										onChange={this.handleInputChange}
 									/>
 								</ContactFormInputDiv>
 							</ContactFormUnit>
