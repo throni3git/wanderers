@@ -10,12 +10,11 @@ varying vec3 vNormal;
 varying vec4 vPosition;
 
 float turbulence(vec3 p) {
-  float w = 100.0;
   float t = -0.5;
 
   for (float f = 1.0; f <= 10.0; f++) {
     float power = pow(2.0, f);
-    t += abs( pnoise(vec3(power * p), vec3(10.0)) / power);
+    t += abs( pnoise(power * p, vec3(10.0)) / power);
   }
   return t;
 }
@@ -57,42 +56,42 @@ uniform float lineDistance;
 #define SKEWNESS 4.0
 
 
-float isPointOnLine(float position,float differentialLength) {
-	float fractionPartOfPosition=position-floor(position+0.5);
-	fractionPartOfPosition/=differentialLength;
-	fractionPartOfPosition=clamp(fractionPartOfPosition,-1.,1.);
-  float result=0.5+0.5*cos(fractionPartOfPosition*PI);
+float isPointOnLine(float position, float differentialLength) {
+	float fractionPartOfPosition = position - floor(position + 0.5);
+	fractionPartOfPosition /= differentialLength;
+	fractionPartOfPosition = clamp(fractionPartOfPosition, -1., 1.);
+  float result = 0.5 + 0.5 * cos(fractionPartOfPosition * PI);
   result = sqrt(result);
 	return result;
 }
 
 float getAnisotropicAttenuation(float differentialLength) {
-  const float maxNumberOfLines=10.0;
-  return clamp(1.0/(differentialLength+1.0)-1.0/maxNumberOfLines, 0.0, 1.0);
+  const float maxNumberOfLines = 10.0;
+  return clamp(1.0 / (differentialLength + 1.0) - 1.0 / maxNumberOfLines, 0.0, 1.0);
 }
 
 float contributeOnAxis(float position) {
-	float differentialLength=length(vec2(dFdx(position),dFdy(position)));
-	differentialLength*=SQRT2;
+	float differentialLength = length(vec2(dFdx(position), dFdy(position)));
+	differentialLength *= SQRT2;
 
-  float result=isPointOnLine(position,differentialLength);
+  float result = isPointOnLine(position, differentialLength);
 
-	float anisotropicAttenuation=getAnisotropicAttenuation(differentialLength);
-	result*=anisotropicAttenuation;
+	float anisotropicAttenuation = getAnisotropicAttenuation(differentialLength);
+	result *= anisotropicAttenuation;
 
   return result;
 }
 
 void main() {
   // color is RGBA: u, v, 0, 1
-  vec2 color = vUv * (1.0-2.0*noise);
+  vec2 color = vUv * (1.0 - 2.0 * noise);
   // gl_FragColor = vec4(normalize(vNormal), 1.0);
   float opacity = 0.0;
   // float moddedX = mod(vPosition.x, lineDistance);
   float moddedX = vPosition.x / lineDistance - floor(vPosition.x / lineDistance + 0.5);
   if (abs(moddedX) <= lineWidth) {
     float normalizedX = SKEWNESS * moddedX / lineWidth;
-    opacity = min(min(normalizedX, SKEWNESS-normalizedX), 1.0);
+    opacity = min(min(normalizedX, SKEWNESS - normalizedX), 1.0);
   }
 
   // from babylonjs
