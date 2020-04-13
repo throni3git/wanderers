@@ -44,7 +44,6 @@ void main() {
 `;
 
 export const displacmentFragmentShader = `
-
 varying vec2 vUv;
 varying float noise;
 varying vec3 vNormal;

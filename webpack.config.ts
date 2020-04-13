@@ -24,7 +24,7 @@ const config: webpack.Configuration = {
 		new htmlPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
 		new cleanPlugin(isProduction ? ["dist/**/*"] : []),
 		new copyPlugin([
-			{ from: "src/mail_api_send.php", to: "", toType: 'file' },
+			{ from: "src/mail_api_send.php", to: "", toType: "file" },
 			{ from: "assets/", to: "assets/" },
 			{ from: "data/", to: "data/" },
 			{ from: "media/", to: "media/" }

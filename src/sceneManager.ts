@@ -15,7 +15,7 @@ export class SceneManager {
 	private _cameraHelper: THREE.CameraHelper;
 	private _cameraDBG: THREE.PerspectiveCamera;
 
-	private _controls: THREE.OrbitControls;
+	private _controls: OrbitControls;
 	private _scene: THREE.Scene;
 	private _artwork: Artwork;
 
