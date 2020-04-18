@@ -31,16 +31,21 @@ if (DBG_CONTACT_TILE) {
 export interface State {
 	contact: IContact;
 	isWebGLAvailable: boolean;
+	show3DArtwork: boolean;
 }
 
 export type Subscriber = () => void;
 
 const isWebGLAvailable = detectWebGL();
 // const isWebGLAvailable = false;
+const show3DArtwork =
+	isWebGLAvailable && screen.width > 640 && screen.height > 640;
+// const show3DArtwork = false
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
-	isWebGLAvailable
+	isWebGLAvailable,
+	show3DArtwork
 };
 
 const subscribers: Subscriber[] = [];

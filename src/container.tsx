@@ -108,16 +108,21 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	}
 
 	public componentDidMount() {
-		this._sceneManager = new SceneManager(this._baseElement);
+		if (Store.getState().show3DArtwork) {
+			this._sceneManager = new SceneManager(this._baseElement);
+		}
 	}
 
 	public render() {
+		const show3DArtwork = Store.getState().show3DArtwork;
 		return (
 			<div style={{ width: "100%" }}>
-				{Store.getState().isWebGLAvailable && (
-					<ArtworkContainer ref={ref => (this._baseElement = ref)} />
+				{show3DArtwork && (
+					<ArtworkContainer
+						ref={(ref) => (this._baseElement = ref)}
+					/>
 				)}
-				{!Store.getState().isWebGLAvailable && <ArtworkImage />}
+				{!show3DArtwork && <ArtworkImage />}
 				{!this._hideSite && (
 					<SiteContainer>
 						<SiteHeading />
