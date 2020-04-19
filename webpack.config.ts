@@ -15,7 +15,7 @@ const config: webpack.Configuration = {
 	module: {
 		rules: [
 			{
-				test: /.tsx?$/,
+				test: /\.tsx?$/,
 				loader: "ts-loader"
 			}
 		]
