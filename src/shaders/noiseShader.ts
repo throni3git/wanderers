@@ -1,4 +1,4 @@
-export const classic3DNoise = `
+export const classic3DNoise = /* glsl */`
 //
 // GLSL textureless classic 3D noise "cnoise",
 // with an RSL-style periodic variant "pnoise".

@@ -2,7 +2,7 @@ import { classic3DNoise } from "./noiseShader";
 
 export const displacmentVertexShader =
 	classic3DNoise +
-	`
+	/* glsl */ `
 varying vec2 vUv;
 varying float noise;
 uniform float time;
@@ -12,8 +12,8 @@ varying vec4 vPosition;
 float turbulence(vec3 p) {
   float t = -0.5;
 
-  for (float f = 1.0; f <= 10.0; f++) {
-    float power = pow(2.0, f);
+  for (int f = 1; f <= 10; f++) {
+    float power = pow(2.0, float(f));
     t += abs( pnoise(power * p, vec3(10.0)) / power);
   }
   return t;
@@ -22,7 +22,6 @@ float turbulence(vec3 p) {
 void main() {
   vUv = uv;
   vNormal = normal;
-  // vPosition = position;
 
   // get a turbulent 3d noise using the normal, normal to high frequency
   noise = turbulence( 0.5 * position + time );
@@ -42,7 +41,7 @@ void main() {
 }
 `;
 
-export const displacmentFragmentShader = `
+export const displacmentFragmentShader = /* glsl */ `
 varying vec2 vUv;
 varying float noise;
 varying vec3 vNormal;
@@ -77,7 +76,7 @@ float contributeOnAxis(float position) {
   float result = isPointOnLine(position, differentialLength);
 
 	float anisotropicAttenuation = getAnisotropicAttenuation(differentialLength);
-	result *= anisotropicAttenuation;
+	//result *= anisotropicAttenuation;
 
   return result;
 }
@@ -86,6 +85,7 @@ void main() {
   // color is RGBA: u, v, 0, 1
   vec2 color = vUv * (1.0 - 2.0 * noise);
   // gl_FragColor = vec4(normalize(vNormal), 1.0);
+
   float opacity = 0.0;
   // float moddedX = mod(vPosition.x, lineDistance);
   float moddedX = vPosition.x / lineDistance - floor(vPosition.x / lineDistance + 0.5);
@@ -105,7 +105,7 @@ void main() {
 /*
  */
 
-export const gridShader = `
+export const gridShader = /* glsl */ `
 precision mediump float;
 
 uniform float vpw; // Width, in pixels
