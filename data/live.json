@@ -339,6 +339,94 @@
       "city": "Freiberg",
       "location": "Pi-Haus",
       "with": "APOA & Guests"
+    },
+    {
+      "date": "2018-12-22T20:00:00.000Z",
+      "city": "Erfurt",
+      "location": "Tiko",
+      "with": "Laudare"
+    },
+    {
+      "date": "2019-02-23T20:00:00.000Z",
+      "city": "Würzburg",
+      "location": "Kellerperle"
+    },
+    {
+      "date": "2019-03-16T20:00:00.000Z",
+      "city": "Secret City",
+      "location": "Secret Venue",
+      "with": "some friends"
+    },
+    {
+      "date": "2019-04-13T20:00:00.000Z",
+      "city": "Naumburg",
+      "location": "Blackhouse",
+      "with": "The New Colossus"
+    },
+    {
+      "date": "2019-05-18T20:00:00.000Z",
+      "city": "Bitterfeld",
+      "location": "Festung Bitterfeld",
+      "with": "Ophis & Calliophis"
+    },
+    {
+      "date": "2019-06-08T20:00:00.000Z",
+      "city": "Ilmenau",
+      "location": "Altstadtfest",
+      "with": ""
+    },
+    {
+      "date": "2019-07-05T20:00:00.000Z",
+      "city": "Halle",
+      "location": "MACH Festival 2019"
+    },
+    {
+      "date": "2019-07-06T20:00:00.000Z",
+      "city": "Erfurt",
+      "location": "ProForma Festival"
+    },
+    {
+      "date": "2019-09-27T20:00:00.000Z",
+      "city": "Dresden",
+      "location": "Loco Club",
+      "with":"neánder & Miava"
+    },
+    {
+      "date": "2019-12-07T20:00:00.000Z",
+      "city": "Berlin",
+      "location": "Tief",
+      "with": "rýr"
+    },
+    {
+      "date": "2020-01-18T20:00:00.000Z",
+      "city": "Hofheim",
+      "location": "Jazzkeller",
+      "topic": "Spacedelic Odyssey",
+      "with": "Zupermoon & Space Shuttle"
+    },
+    {
+      "date": "2020-02-14T20:00:00.000Z",
+      "city": "Ghent (BE)",
+      "location": "Den Drummer",
+      "with": "If Anything Happens To The Cat"
+    },
+    {
+      "date": "2020-02-15T20:00:00.000Z",
+      "city": "Nijmegen (NL)",
+      "location": "De Onderbroek",
+      "with": "Grotto"
+    },
+    {
+      "date": "2020-02-29T20:00:00.000Z",
+      "city": "Erfurt",
+      "location": "unknown",
+      "topic": "secret show"
+    },
+    {
+      "date": "2020-03-06T20:00:00.000Z",
+      "city": "Ilmenau",
+      "location": "Baracke5",
+      "with": "jeffk"
     }
   ]
 }

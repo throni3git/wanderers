@@ -7,10 +7,37 @@
         "1.jpg",
         "2.jpg",
         "3.jpg",
+        "28514968_1886649064687351_4928474462308414817_o.jpg",
         "HD_SOJUS3000_001.jpg",
         "HD_SOJUS3000_002.jpg",
         "HD_SOJUS3000_003.jpg",
         "HD_SOJUS3000_004.jpg"
+      ]
+    },
+    {
+      "caption": "Weekender Leipzig/Freiberg",
+      "folder": "2018-11-23+24_Sachsen_Weekender",
+      "date": "2018-11-23T18:00:00.000Z",
+      "imageList": [
+        "IMG_7049_Postpro_v1.jpg",
+        "IMG_7051.jpg",
+        "IMG_7061.jpg",
+        "IMG_7473_Postpro_v1.jpg",
+        "IMG_7512_Postpro_v1.jpg",
+        "IMG_7540.jpg",
+        "IMG_7558.jpg",
+        "IMG_7566.jpg",
+        "IMG_7577.jpg",
+        "IMG_7579_Postpro_v1.jpg",
+        "IMG_7584.jpg",
+        "IMG_7589.jpg",
+        "IMG_7593.jpg",
+        "IMG_7596.jpg",
+        "IMG_7597.jpg",
+        "IMG_7598.jpg",
+        "IMG_7614_Postpro_v1.jpg",
+        "IMG_7636.jpg",
+        "IMG_7802_Postpro_v1.jpg"
       ]
     },
     {
@@ -38,7 +65,7 @@
     },
     {
       "caption": "Videodreh - Erfurt, Bilder: <a target='_blank' href='https://erikswiatloch.de/coldskinstudio/'>Erik Swiatloch</a>",
-      "folder": "Auswahl_Session",
+      "folder": "2018-06-23_Warehouse_Session",
       "date": "2018-06-23T18:00:00.000Z",
       "imageList": [
         "DSC05869.jpg",
@@ -62,7 +89,7 @@
     },
     {
       "caption": "Erfurt - Stadtgarten",
-      "folder": "2018_Erfurt_Kalle",
+      "folder": "2018-03-03_Erfurt_Kalle_Stadtgarten",
       "date": "2018-03-03T19:00:00.000Z",
       "imageList": [
         "28514968_1886649064687351_4928474462308414817_o.jpg",
@@ -109,7 +136,8 @@
     },
     {
       "caption": "Beyond the Sphere Tour 2015, Görlitz - Basta",
-      "folder": "Auswahl_Goerlitz",
+      "folder": "2015-12-05_Goerlitz_Basta_BTST",
+      "date": "2015-12-05T18:00:00.000Z",
       "imageList": [
         "20151121_181006_HDR.jpg",
         "20151121_204722.jpg",
@@ -121,7 +149,8 @@
     },
     {
       "caption": "Beyond the Sphere Tour 2015, Freiberg - Train Control",
-      "folder": "Auswahl_Freiberg",
+      "folder": "2015-11-14_Freiberg_TC_BTST",
+      "date": "2015-11-14T18:00:00.000Z",
       "imageList": [
         "IMG_0052.jpg",
         "IMG_0058.jpg",
@@ -134,13 +163,9 @@
       ]
     },
     {
-      "caption": "Beyond the Sphere Tour 2015, Erfurt - Tiko",
-      "folder": "Auswahl_Erfurt",
-      "imageList": ["IMG_0045.jpg"]
-    },
-    {
       "caption": "Beyond the Sphere Tour 2015, Berlin - ZOSCH",
-      "folder": "Auswahl_Berlin",
+      "folder": "2015-10-03_Berlin_Zosch_BTST",
+      "date": "2015-10-03T18:00:00.000Z",
       "imageList": [
         "20151003_144458_HDR.jpg",
         "20151003_161452_HDR.jpg",
@@ -166,7 +191,8 @@
     },
     {
       "caption": "Beyond the Sphere Tour 2015, Chemnitz - Subway to Peter",
-      "folder": "Auswahl_Chemnitz",
+      "folder": "2015-10-02_Chemnitz_Subway_BTST",
+      "date": "2015-10-02T18:00:00.000Z",
       "imageList": [
         "20151002_224450_HDR.jpg",
         "20151003_011829_HDR.jpg",
@@ -186,7 +212,8 @@
     },
     {
       "caption": "Beyond the Sphere Tour 2015, Leipzig - Horns Erben",
-      "folder": "Auswahl_Leipzig",
+      "folder": "2015-09-26_Leipzig_HornsErben_BTST",
+      "date": "2015-09-26T18:00:00.000Z",
       "imageList": [
         "IMG_0010.jpg",
         "IMG_0012.jpg",
@@ -253,7 +280,7 @@
     },
     {
       "caption": "Studio 2014",
-      "folder": "Studio_2014",
+      "folder": "2014-11-11_Studio_Atlas",
       "date": "2014-11-11",
       "imageList": [
         "HD_SOJUS3000_Atomino_Studio_Erfurt_2014_001.jpg",
@@ -271,26 +298,8 @@
       ]
     },
     {
-      "caption": "Friends",
-      "folder": "friends",
-      "imageList": [
-        "HD_SOJUS3000_Below_A_Silent_Sky_1.jpg",
-        "HD_SOJUS3000_Below_A_Silent_Sky_2.jpg",
-        "HD_SOJUS3000_Darboux.jpg",
-        "HD_SOJUS3000_Gabor_1.jpg",
-        "HD_SOJUS3000_Garfield.jpg",
-        "HD_SOJUS3000_Gaston_1.jpg",
-        "HD_SOJUS3000_Maex.jpg",
-        "HD_SOJUS3000_Orgastic_Noises_1.jpg",
-        "HD_SOJUS3000_Orgastic_Noises_2.jpg",
-        "HD_SOJUS3000_Orgastic_Noises_3.jpg",
-        "HD_SOJUS3000_Pac_Flip.jpg",
-        "HD_SOJUS3000_Tanja_Matze.jpg"
-      ]
-    },
-    {
       "caption": "Erfurt, Kunstrasen",
-      "folder": "08.08.14_erfurt_kunstrasen",
+      "folder": "2014-08-08_erfurt_kunstrasen",
       "date": "2014-08-08T18:00:00.000Z",
       "imageList": [
         "SOJUS3000_Kunstrasen_Festival_Erfurt_8.8.14_001.jpg",
@@ -300,7 +309,7 @@
     },
     {
       "caption": "Freiberg, Pi Haus",
-      "folder": "22.03.14_freiberg_pi_haus",
+      "folder": "2014-03-22_freiberg_pi_haus",
       "date": "2014-03-22T19:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Pi_Haus_Freiberg_22.3.14_001.jpg",
@@ -312,7 +321,7 @@
     },
     {
       "caption": "Baracke5, Ilmenau",
-      "folder": "01.03.14_Ilmenau_Baracke5",
+      "folder": "2014-03-01_Ilmenau_Baracke5",
       "date": "2014-03-01T19:00:00.000Z",
       "imageList": [
         "HD_SOJUS3000_Baracke5_Ilmenau_1.3.14_001.jpg",
@@ -333,30 +342,6 @@
         "HD_SOJUS3000_Baracke5_Ilmenau_1.3.14_016.jpg",
         "HD_SOJUS3000_Baracke5_Ilmenau_1.3.14_017.jpg"
       ]
-    },
-    {
-      "caption": "Ilmenau, Stadtfest",
-      "folder": "08.06.13_Ilmenau_Stadtfest",
-      "date": "2013-06-08T18:00:00.000Z",
-      "imageList": [
-        "HD_SOJUS3000_Stadtfest_Ilmenau_8.6.13__001.jpg",
-        "HD_SOJUS3000_Stadtfest_Ilmenau_8.6.13__001.jpg"
-      ]
-    },
-    {
-      "caption": "Erfurt, Klanggerüst",
-      "folder": "30.11.12_erfurt_klanggeruest",
-      "date": "2012-11-30T19:00:00.000Z",
-      "imageList": [
-        "HD_SOJUS3000_Klanggeruest_Erfurt_30.11.12_001.jpg",
-        "HD_SOJUS3000_Klanggeruest_Erfurt_30.11.12_002.jpg"
-      ]
-    },
-    {
-      "caption": "Jena, Schallspielnacht",
-      "folder": "26.10.12_jena_schallspielnacht",
-      "date": "2012-10-26T18:00:00.000Z",
-      "imageList": ["HD_SOJUS3000_Schallspielnacht_Jena_26.10.14_001.jpg"]
     }
   ]
 }
