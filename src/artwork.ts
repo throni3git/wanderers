@@ -209,31 +209,24 @@ export class Artwork {
 			this._matLandscape = new THREE.ShaderMaterial({
 				uniforms: {
 					time: {
-						type: "f",
 						value: 0.0
 					},
 					vpw: {
-						type: "f",
 						value: 100.0
 					},
 					vph: {
-						type: "f",
 						value: 100.0
 					},
 					offset: {
-						type: "v2",
 						value: new THREE.Vector2(0, 0.0)
 					},
 					pitch: {
-						type: "v2",
 						value: new THREE.Vector2(50, 50)
 					},
 					lineWidth: {
-						type: "f",
 						value: 0.02
 					},
 					lineDistance: {
-						type: "f",
 						value: 0.1
 					}
 				},
