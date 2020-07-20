@@ -202,27 +202,13 @@ export class Artwork {
 		// first, try example from https://www.clicktorelease.com/blog/vertex-displacement-noise-3d-webgl-glsl-three-js/
 		this._matLandscape = new THREE.ShaderMaterial({
 			uniforms: {
-				time: {
-					value: 0.0
-				},
-				vpw: {
-					value: 100.0
-				},
-				vph: {
-					value: 100.0
-				},
-				offset: {
-					value: new THREE.Vector2(0, 0.0)
-				},
-				pitch: {
-					value: new THREE.Vector2(50, 50)
-				},
-				lineWidth: {
-					value: 0.02
-				},
-				lineDistance: {
-					value: 0.1
-				}
+				time: { value: 0.0 },
+				vpw: { value: 100.0 },
+				vph: { value: 100.0 },
+				offset: { value: new THREE.Vector2(0, 0.0) },
+				pitch: { value: new THREE.Vector2(50, 50) },
+				lineWidth: { value: 0.02 },
+				lineDistance: { value: 0.1 }
 			},
 			vertexShader: displacmentVertexShader,
 			fragmentShader: displacmentFragmentShader,
@@ -259,7 +245,7 @@ export class Artwork {
 			);
 		}
 
-		const line = new THREE.Line(geometry, material as any);
+		const line = new THREE.Line(geometry, material);
 		if (material instanceof THREE.LineDashedMaterial) {
 			line.computeLineDistances();
 		}
@@ -267,12 +253,13 @@ export class Artwork {
 	}
 
 	private async _setupLights(): Promise<void> {
-		LightSetup.loadAndReplaceLightSetup(
+		return LightSetup.loadAndReplaceLightSetup(
 			"assets/lightsetup.json",
 			this._scene,
 			this._renderer
 		);
 	}
+
 	public update(): void {
 		const now = Date.now();
 		const deltaT = now - this._lastUpdateTime;
