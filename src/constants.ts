@@ -13,7 +13,5 @@ export const Colors = {
 export const NEWS_IMAGE_FOLDER = "data/news_images/";
 export const MEDIA_FOLDER = "media/";
 
-export const ARTWORK_USE_LINES = false;
-
 export const BORDER = 1;
 export const BORDER_RADIUS = 3 * BORDER;
