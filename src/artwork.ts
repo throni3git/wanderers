@@ -17,19 +17,21 @@ const extraOrbitSize = 0.17;
 const planetSize = 0.08;
 const extraPlanetSize = 0.03;
 
+interface IOrbit {
+	speed: number;
+	lineObject: THREE.Object3D;
+}
+
 export class Artwork {
-	private _orbits: { speed: number; lineObject: THREE.Object3D }[] = [];
+	private _orbits: IOrbit[] = [];
 	private _lastUpdateTime = Date.now();
 	private _startTime = Date.now();
 	private _matLandscape: THREE.ShaderMaterial;
 	private _textures: Record<string, THREE.Texture> = {};
+	private _scene: THREE.Scene;
 
-	constructor(
-		private _scene: THREE.Scene,
-		private _renderer: THREE.WebGLRenderer
-	) {
-		this._setupLights();
-
+	constructor(scene: THREE.Scene) {
+		this._scene = scene;
 		this._loadAssets();
 	}
 

@@ -6,7 +6,6 @@ import { DBG_CAMERA, DBG_ORBITING } from "./urlParams";
 
 import * as Store from "./store";
 
-
 export class SceneManager {
 	private _renderer: THREE.WebGLRenderer;
 	private _canvas: HTMLCanvasElement;
@@ -61,7 +60,7 @@ export class SceneManager {
 
 		this.setupCamera();
 
-		this._artwork = new Artwork(this._scene, this._renderer);
+		this._artwork = new Artwork(this._scene);
 
 		if (DBG_CAMERA) {
 			this._controls = new OrbitControls(
@@ -159,7 +158,7 @@ export class SceneManager {
 		this._canvas.style.height = containerHeight + "px";
 	};
 
-	private onDocumentMouseMove = event => {
+	private onDocumentMouseMove = (event: PointerEvent): void => {
 		this._mouseX =
 			((event.clientX - this._windowHalfX) / window.innerWidth) *
 			2 *
@@ -181,18 +180,16 @@ export class SceneManager {
 		this.vY += (diffVY / magnitudeVXY) * this._cameraAcceleration;
 
 		if (DBG_ORBITING) {
-			this._velocityMarker.style.left =
-				"" +
-				((this.vX / 2 / this._cameraRotationRadius) *
-					window.innerWidth +
-					this._windowHalfX) +
-				"px";
-			this._velocityMarker.style.top =
-				"" +
-				((this.vY / 2 / this._cameraRotationRadius) *
+			const markerLeft =
+				(this.vX / 2 / this._cameraRotationRadius) * window.innerWidth +
+				this._windowHalfX;
+			this._velocityMarker.style.left = "" + markerLeft + "px";
+
+			const markerTop =
+				(this.vY / 2 / this._cameraRotationRadius) *
 					window.innerHeight +
-					this._windowHalfY) +
-				"px";
+				this._windowHalfY;
+			this._velocityMarker.style.top = "" + markerTop + "px";
 		}
 
 		this._camera.position.x +=
