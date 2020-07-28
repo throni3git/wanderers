@@ -1,6 +1,5 @@
 import * as THREE from "three";
 
-import * as LightSetup from "./LightSetup";
 import {
 	displacmentVertexShader,
 	displacmentFragmentShader
@@ -96,7 +95,7 @@ export class Artwork {
 		const texMapSun = this._textures["assets/white/sun_map.jpg"];
 		const texAlphaSun = this._textures["assets/white/sun_alpha.jpg"];
 		const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
-		const matSun = new THREE.MeshPhongMaterial({
+		const matSun = new THREE.MeshBasicMaterial({
 			map: texMapSun,
 			alphaMap: texAlphaSun,
 			transparent: true
@@ -252,14 +251,6 @@ export class Artwork {
 			line.computeLineDistances();
 		}
 		return line;
-	}
-
-	private async _setupLights(): Promise<void> {
-		return LightSetup.loadAndReplaceLightSetup(
-			"assets/lightsetup.json",
-			this._scene,
-			this._renderer
-		);
 	}
 
 	public update(): void {
