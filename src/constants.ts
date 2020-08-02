@@ -1,4 +1,5 @@
 export let Colors = {
+	Background: "#ffffffdd",
 	DefaultTextColor: "#333333",
 	LightTextColor: "#666666",
 	LinkColor: "#000000",
@@ -11,7 +12,23 @@ export let Colors = {
 	ShadowColor: "#444444"
 };
 
+// dark theme
+Colors = {
+	Background: "#00000070",
+	DefaultTextColor: "#bbbbbb",
+	LightTextColor: "#666666",
+	LinkColor: "#000000",
+	LinkHoverColor: "#ab854f",
+	HighlightColor: "#ab854f",
+	ActiveMenuColor: "#8c6c40",
+	CaptionUnderlineColor: "#888888",
+	RulerColor: "#666666",
+	GalleryArrayColor: "#cccccc",
+	ShadowColor: "#444444"
+};
+
 // Colors = {
+	// Background: "yellow",
 // 	DefaultTextColor: "red",
 // 	LightTextColor: "pink",
 // 	LinkColor: "purple",

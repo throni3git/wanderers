@@ -24,7 +24,7 @@ const ArtworkContainer = styled.div<{ backgroundUrl: string }>(
 const SiteContainer = styled.div`
 	width: 900px;
 	height: 95vh;
-	background: rgba(255, 255, 255, 0.9);
+	background: ${Colors.Background};
 	overflow: hidden;
 	box-shadow: ${Colors.ShadowColor} 0 0 10px;
 	position: absolute;
