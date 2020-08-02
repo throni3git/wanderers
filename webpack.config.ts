@@ -6,6 +6,7 @@ import * as htmlPlugin from "html-webpack-plugin";
 import * as path from "path";
 
 const isProduction = process.env.NODE_ENV === "production";
+const timestamp = JSON.stringify(new Date().toISOString());
 
 const config: webpack.Configuration = {
 	entry: "./src/index.ts",
@@ -21,6 +22,10 @@ const config: webpack.Configuration = {
 		]
 	},
 	plugins: [
+		new webpack.DefinePlugin({
+			BUILD_TIMESTAMP: timestamp,
+			IS_PRODUCTION: isProduction
+		}),
 		new htmlPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
 		new cleanPlugin(isProduction ? ["dist/**/*"] : []),
 		new copyPlugin([

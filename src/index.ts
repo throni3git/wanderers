@@ -11,6 +11,14 @@ library.add(fas);
 
 import { Container } from "./container";
 
+declare var BUILD_TIMESTAMP: string;
+console.log("SOJUS3000 Wanderers Homepage " + BUILD_TIMESTAMP);
+
+declare var IS_PRODUCTION: boolean;
+if (!IS_PRODUCTION) {
+	console.log("Development mode");
+}
+
 const body = document.getElementsByTagName("body")[0];
 
 const content = document.createElement("div");
