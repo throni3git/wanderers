@@ -42,7 +42,7 @@ export const DarkTheme: IColorTheme = {
 	CaptionUnderlineColor: "#888888",
 	RulerColor: "#999999",
 	GalleryArrayColor: "#cccccc",
-	ShadowColor: "#444444"
+	ShadowColor: "#333333"
 };
 
 export const DebugTheme: IColorTheme = {
