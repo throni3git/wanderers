@@ -34,9 +34,10 @@ export interface State {
 
 const isWebGLAvailable = detectWebGL();
 // const isWebGLAvailable = false;
-const show3DArtwork =
+let show3DArtwork =
 	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-// const show3DArtwork = false
+// show3DArtwork = false;
+// show3DArtwork = true;
 
 const url = new URL(window.location.href);
 const debugCamera = url.searchParams.get("debugCamera") != null;
@@ -63,8 +64,9 @@ if (debugContact && !IS_PRODUCTION) {
 }
 
 const now = new Date();
-// const useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
-const useLightTheme = true;
+let useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
+useLightTheme = true;
+// useLightTheme = false;
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
