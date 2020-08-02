@@ -70,7 +70,7 @@ export class Artwork {
 	private async _loadAssets(): Promise<void> {
 		const texturePromises = [
 			loadTexture(this._colorTheme.sunUrl),
-			loadTexture("assets/sun/sun_alpha.jpg")
+			loadTexture("assets/sun_alpha.jpg")
 		];
 		const textureRessources = await Promise.all(texturePromises);
 		for (const tr of textureRessources) {
@@ -83,7 +83,7 @@ export class Artwork {
 	private async _setupScene(): Promise<void> {
 		// add sun
 		const texMapSun = this._textures[this._colorTheme.sunUrl];
-		const texAlphaSun = this._textures["assets/sun/sun_alpha.jpg"];
+		const texAlphaSun = this._textures["assets/sun_alpha.jpg"];
 		const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
 		const matSun = new THREE.MeshBasicMaterial({
 			map: texMapSun,
