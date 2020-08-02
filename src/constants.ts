@@ -1,7 +1,8 @@
 export let Colors = {
 	Background: "#ffffffdd",
+	HeadingLogoUrl: "assets/logo_light.svg",
 	DefaultTextColor: "#333333",
-	LightTextColor: "#666666",
+	LightTextColor: "#333333bb",
 	LinkColor: "#000000",
 	LinkHoverColor: "#ab854f",
 	HighlightColor: "#ab854f",
@@ -14,21 +15,22 @@ export let Colors = {
 
 // dark theme
 Colors = {
-	Background: "#00000070",
-	DefaultTextColor: "#bbbbbb",
-	LightTextColor: "#666666",
-	LinkColor: "#000000",
+	Background: "#00000099",
+	HeadingLogoUrl: "assets/logo_dark.svg",
+	DefaultTextColor: "#cccccc",
+	LightTextColor: "#ccccccbb",
+	LinkColor: "#cccccc",
 	LinkHoverColor: "#ab854f",
 	HighlightColor: "#ab854f",
 	ActiveMenuColor: "#8c6c40",
 	CaptionUnderlineColor: "#888888",
-	RulerColor: "#666666",
+	RulerColor: "#999999",
 	GalleryArrayColor: "#cccccc",
 	ShadowColor: "#444444"
 };
 
 // Colors = {
-	// Background: "yellow",
+// Background: "yellow",
 // 	DefaultTextColor: "red",
 // 	LightTextColor: "pink",
 // 	LinkColor: "purple",

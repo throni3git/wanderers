@@ -36,14 +36,16 @@ const SiteContainer = styled.div`
 	border-radius: ${BORDER_RADIUS};
 `;
 
-const SiteHeading = styled.div`
-	background: url(assets/logo_heading.svg);
+const SiteHeading = styled.div<{ logoUrl: string }>(
+	(props) => `
+	background: url(${props.logoUrl});
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 8vh;
 	background-size: contain;
 	margin: 3vh 3vw;
-`;
+`
+);
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -132,7 +134,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 				)}
 				{!this._hideSite && (
 					<SiteContainer>
-						<SiteHeading />
+						<SiteHeading logoUrl={Colors.HeadingLogoUrl}/>
 						<SiteContent initialPage={this.state.initialPage} />
 					</SiteContainer>
 				)}
