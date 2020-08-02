@@ -35,7 +35,7 @@ export class SceneManager {
 	private _maxFPS = 60;
 
 	constructor(containerElement: HTMLDivElement) {
-		const isWebGLAvailable = Store.getState().isWebGLAvailable;
+		const isWebGLAvailable = Store.getState().artwork.isWebGLAvailable;
 		if (!isWebGLAvailable) {
 			return;
 		}

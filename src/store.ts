@@ -11,6 +11,12 @@ export interface IContact {
 	sendCopy: boolean;
 }
 
+export interface IArtwork {
+	isWebGLAvailable: boolean;
+	show3DArtwork: boolean;
+	timesWebGLContextLost: number;
+}
+
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
 	name: "",
@@ -30,8 +36,7 @@ if (DBG_CONTACT_TILE) {
 
 export interface State {
 	contact: IContact;
-	isWebGLAvailable: boolean;
-	show3DArtwork: boolean;
+	artwork: IArtwork;
 }
 
 export type Subscriber = () => void;
@@ -44,8 +49,11 @@ const show3DArtwork =
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
-	isWebGLAvailable,
-	show3DArtwork
+	artwork: {
+		isWebGLAvailable,
+		show3DArtwork,
+		timesWebGLContextLost: 0
+	}
 };
 
 const subscribers: Subscriber[] = [];

@@ -108,13 +108,13 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	}
 
 	public componentDidMount() {
-		if (Store.getState().show3DArtwork) {
+		if (Store.getState().artwork.show3DArtwork) {
 			this._sceneManager = new SceneManager(this._baseElement);
 		}
 	}
 
 	public render() {
-		const show3DArtwork = Store.getState().show3DArtwork;
+		const show3DArtwork = Store.getState().artwork.show3DArtwork;
 		return (
 			<div style={{ width: "100%" }}>
 				{show3DArtwork && (
