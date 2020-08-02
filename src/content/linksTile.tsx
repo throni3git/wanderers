@@ -15,6 +15,8 @@ import {
 import { allTsxLogos } from "./logos";
 import { Colors } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 const LinkPatchTwoColumns = styled.div`
 	width: 50%;
 	height: 80px;
@@ -90,7 +92,7 @@ interface ILinksSection {
 let linksFilePromise: Promise<IJsonFile<ILinksSection>>;
 try {
 	linksFilePromise = loadJsonFile<IJsonFile<ILinksSection>>(
-		"data/links.json"
+		IS_PRODUCTION ? "data/links.json" : "data/dev/links.json"
 	);
 } catch (e) {
 	console.log(e);

@@ -16,6 +16,8 @@ import { SingleImage } from "./SingleImage";
 import { ActiveImage } from "./ActiveImage";
 import { MEDIA_FOLDER } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 const GalleryImageSection = styled.div`
 	padding: 10px 0;
 	display: flex;
@@ -33,7 +35,7 @@ interface IImageSection {
 let imagesFilePromise: Promise<IJsonFile<IImageSection>>;
 try {
 	imagesFilePromise = loadJsonFile<IJsonFile<IImageSection>>(
-		"data/images.json"
+		IS_PRODUCTION ? "data/gallery.json" : "data/dev/gallery.json"
 	);
 } catch (e) {
 	console.log(e);

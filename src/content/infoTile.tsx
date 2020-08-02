@@ -17,10 +17,12 @@ import {
 } from "./tileComponents";
 import { MEDIA_FOLDER } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 let infoFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
 try {
 	infoFilePromise = loadJsonFile<IJsonFile<IHeadedParagraphSection>>(
-		"data/info.json"
+		IS_PRODUCTION ? "data/info.json" : "data/dev/info.json"
 	);
 } catch (e) {
 	console.log(e);

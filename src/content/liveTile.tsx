@@ -11,6 +11,8 @@ import {
 
 import { Colors, BORDER } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 const GigEntryCityText = styled.div`
 	flex: 1;
 	font-size: 1.5em;
@@ -83,7 +85,7 @@ interface ILiveGigMetaData {
 let liveGigMetaDataFilePromise: Promise<IJsonFile<ILiveGigMetaData>>;
 try {
 	liveGigMetaDataFilePromise = loadJsonFile<IJsonFile<ILiveGigMetaData>>(
-		"data/live.json"
+		IS_PRODUCTION ? "data/live.json" : "data/dev/live.json"
 	);
 } catch (e) {
 	console.log(e);

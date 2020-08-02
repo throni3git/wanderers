@@ -18,6 +18,8 @@ import {
 
 import { Colors } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 const ImpressumEntryCaption = styled.div`
 	display: flex;
 	justify-content: center;
@@ -36,7 +38,7 @@ const ImpressumCaptionText = styled.div`
 let impressumFilePromise: Promise<IJsonFile<IHeadedParagraphSection>>;
 try {
 	impressumFilePromise = loadJsonFile<IJsonFile<IHeadedParagraphSection>>(
-		"data/impressum.json"
+		IS_PRODUCTION ? "data/impressum.json" : "data/dev/impressum.json"
 	);
 } catch (e) {
 	console.log(e);

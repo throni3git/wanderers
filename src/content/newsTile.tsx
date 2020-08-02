@@ -18,6 +18,8 @@ import {
 } from "./tileComponents";
 import { NEWS_IMAGE_FOLDER } from "../constants";
 
+declare var IS_PRODUCTION: boolean;
+
 interface INewsSection extends IHeadedParagraphSection {
 	date: string;
 	imageUrl?: string;
@@ -25,7 +27,9 @@ interface INewsSection extends IHeadedParagraphSection {
 
 let newsFilePromise: Promise<IJsonFile<INewsSection>>;
 try {
-	newsFilePromise = loadJsonFile<IJsonFile<INewsSection>>("data/news.json");
+	newsFilePromise = loadJsonFile<IJsonFile<INewsSection>>(
+		IS_PRODUCTION ? "data/news.json" : "data/dev/news.json"
+	);
 } catch (e) {
 	console.log(e);
 }
