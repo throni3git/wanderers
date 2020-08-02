@@ -49,7 +49,7 @@ const LinkIcon = styled.a<{ tooltip?: string }>`
 		height: 50px;
 	}
 	& > svg {
-		fill: ${Colors.DefaultTextColor};
+		fill: ${Colors.LinkColor};
 	}
 	&:hover > svg {
 		fill: ${Colors.LinkHoverColor};
