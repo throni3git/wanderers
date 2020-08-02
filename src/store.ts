@@ -65,8 +65,8 @@ if (debugContact && !IS_PRODUCTION) {
 
 const now = new Date();
 let useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
-useLightTheme = true;
-useLightTheme = false;
+// useLightTheme = true;
+// useLightTheme = false;
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,

@@ -56,7 +56,7 @@ export class Artwork {
 	private _matLandscape: THREE.ShaderMaterial;
 	private _textures: Record<string, THREE.Texture> = {};
 	private _scene: THREE.Scene;
-	private _colorTheme: IArtworkTheme = ArtworkDebugColorTheme;
+	private _colorTheme: IArtworkTheme = ArtworkLightColorTheme;
 
 	constructor(scene: THREE.Scene) {
 		this._scene = scene;

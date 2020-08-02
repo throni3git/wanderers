@@ -1,4 +1,21 @@
-export let Colors = {
+import * as Store from "./store";
+
+interface IColorTheme {
+	Background: string;
+	HeadingLogoUrl: string;
+	DefaultTextColor: string;
+	LightTextColor: string;
+	LinkColor: string;
+	LinkHoverColor: string;
+	HighlightColor: string;
+	ActiveMenuColor: string;
+	CaptionUnderlineColor: string;
+	RulerColor: string;
+	GalleryArrayColor: string;
+	ShadowColor: string;
+}
+
+export const LightTheme: IColorTheme = {
 	Background: "#ffffffdd",
 	HeadingLogoUrl: "assets/logo_light.svg",
 	DefaultTextColor: "#333333",
@@ -13,8 +30,7 @@ export let Colors = {
 	ShadowColor: "#444444"
 };
 
-// dark theme
-Colors = {
+export const DarkTheme: IColorTheme = {
 	Background: "#00000099",
 	HeadingLogoUrl: "assets/logo_dark.svg",
 	DefaultTextColor: "#cccccc",
@@ -29,19 +45,25 @@ Colors = {
 	ShadowColor: "#444444"
 };
 
-// Colors = {
-// Background: "yellow",
-// 	DefaultTextColor: "red",
-// 	LightTextColor: "pink",
-// 	LinkColor: "purple",
-// 	LinkHoverColor: "orange",
-// 	HighlightColor: "green",
-// 	ActiveMenuColor: "gold",
-// 	CaptionUnderlineColor: "blue",
-// 	RulerColor: "aquamarine",
-// 	GalleryArrayColor: "yellow",
-// 	ShadowColor: "cyan"
-// };
+export const DebugTheme: IColorTheme = {
+	Background: "yellow",
+	HeadingLogoUrl: "assets/logo_dark.svg",
+	DefaultTextColor: "red",
+	LightTextColor: "pink",
+	LinkColor: "purple",
+	LinkHoverColor: "orange",
+	HighlightColor: "green",
+	ActiveMenuColor: "gold",
+	CaptionUnderlineColor: "blue",
+	RulerColor: "aquamarine",
+	GalleryArrayColor: "yellow",
+	ShadowColor: "cyan"
+};
+
+export let Colors: IColorTheme = LightTheme;
+if (!Store.getState().artwork.useLightTheme) {
+	Colors = DarkTheme;
+}
 
 export const NEWS_IMAGE_FOLDER = "data/news_images/";
 export const MEDIA_FOLDER = "media/";
