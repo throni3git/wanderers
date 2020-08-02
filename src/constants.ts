@@ -7,7 +7,8 @@ export const Colors = {
 	ActiveMenuColor: "#8c6c40",
 	CaptionUnderlineColor: "#888888",
 	RulerColor: "#444444",
-	GalleryArrayColor: "#cccccc"
+	GalleryArrayColor: "#cccccc",
+	ShadowColor: "#444444"
 };
 
 export const NEWS_IMAGE_FOLDER = "data/news_images/";

@@ -24,7 +24,7 @@ const SiteContainer = styled.div`
 	height: 95vh;
 	background: rgba(255, 255, 255, 0.9);
 	overflow: hidden;
-	box-shadow: #444444 0 0 10px;
+	box-shadow: ${Colors.ShadowColor} 0 0 10px;
 	position: absolute;
 	margin: auto;
 	left: 0;

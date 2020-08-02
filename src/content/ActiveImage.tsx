@@ -27,7 +27,7 @@ const MainImageContainer = styled.div`
 const MainImage = styled.img`
 	max-width: 100%;
 	max-height: 100%;
-	box-shadow: ${Colors.DefaultTextColor} 0 0 3px;
+	box-shadow: ${Colors.ShadowColor} 0 0 3px;
 `;
 
 const MainImageCenter = styled.div`
