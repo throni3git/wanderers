@@ -69,11 +69,21 @@ export const setState = <K extends keyof State>(key: K, value: State[K]) => {
 	update();
 };
 
-// export const changeState = (cb: (currentState: State) => void) => {
-// 	currentState = produce(currentState, cb);
+export const setContactState = <K extends keyof IContact>(
+	key: K,
+	value: IContact[K]
+) => {
+	const currentContactState = getState().contact;
+	setState("contact", { ...currentContactState, [key]: value });
+};
 
-// 	update();
-// };
+export const setArtworkState = <K extends keyof IArtwork>(
+	key: K,
+	value: IArtwork[K]
+) => {
+	const currentArtworkState = getState().artwork;
+	setState("artwork", { ...currentArtworkState, [key]: value });
+};
 
 export const subscribe = (cb: Subscriber) => {
 	subscribers.push(cb);
