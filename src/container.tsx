@@ -9,15 +9,17 @@ import { Colors, BORDER_RADIUS } from "./constants";
 
 import * as Store from "./store";
 
-const ArtworkContainer = styled.div`
+const ArtworkContainer = styled.div<{ backgroundUrl: string }>(
+	(props) => `
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: url(assets/white/grain.jpg);
+	background: url(${props.backgroundUrl});
 	background-size: cover;
 	background-position: center;
 	overflow: hidden;
-`;
+`
+);
 
 const SiteContainer = styled.div`
 	width: 900px;
@@ -75,15 +77,17 @@ li {
 }
 `;
 
-const ArtworkImage = styled.div`
+const ArtworkImage = styled.div<{ backgroundUrl: string }>(
+	(props) => `
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: url(assets/bg_white_cover.jpg);
+	background: url(${props.backgroundUrl});
 	background-size: cover;
 	background-position: center;
 	overflow: hidden;
-`;
+`
+);
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	private _baseElement: HTMLDivElement;
@@ -108,14 +112,24 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 
 	public render() {
 		const show3DArtwork = Store.getState().artwork.show3DArtwork;
+		const backgroundUrlFallback = Store.getState().artwork.useLightTheme
+			? "assets/bg_fallback_light.jpg"
+			: "assets/bg_fallback_dark.jpg";
+		const backgroundUrl3D = Store.getState().artwork.useLightTheme
+			? "assets/bg_grain_light.jpg"
+			: "assets/bg_grain_dark.jpg";
+
 		return (
 			<div style={{ width: "100%" }}>
 				{show3DArtwork && (
 					<ArtworkContainer
 						ref={(ref) => (this._baseElement = ref)}
+						backgroundUrl={backgroundUrl3D}
 					/>
 				)}
-				{!show3DArtwork && <ArtworkImage />}
+				{!show3DArtwork && (
+					<ArtworkImage backgroundUrl={backgroundUrlFallback} />
+				)}
 				{!this._hideSite && (
 					<SiteContainer>
 						<SiteHeading />
