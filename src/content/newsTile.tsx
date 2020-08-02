@@ -42,7 +42,10 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 		};
 
 		newsFilePromise.then((newsFile) => {
-			console.log(newsFile);
+			if (IS_PRODUCTION) {
+				console.log(newsFile);
+			}
+
 			this.setState({ content: newsFile.entries });
 		});
 	}

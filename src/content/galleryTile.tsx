@@ -54,8 +54,10 @@ export class GalleryTile extends React.Component<
 		};
 
 		imagesFilePromise.then((jsonFile) => {
-			console.log("images");
-			console.log(jsonFile.entries);
+			if (IS_PRODUCTION) {
+				console.log("images");
+				console.log(jsonFile.entries);
+			}
 
 			this.imageMapping = new Map<number, Map<number, string>>();
 			jsonFile.entries.map(

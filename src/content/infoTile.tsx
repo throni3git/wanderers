@@ -45,7 +45,10 @@ export class InfoTile extends React.Component<IInfoTileProps, IInfoTileState> {
 		};
 
 		infoFilePromise.then((jsonFile) => {
-			console.log(jsonFile);
+			if (IS_PRODUCTION) {
+				console.log(jsonFile);
+			}
+
 			this.setState({ content: jsonFile.entries });
 		});
 	}

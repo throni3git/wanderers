@@ -109,7 +109,10 @@ export class LinksTile extends React.Component<
 		};
 
 		linksFilePromise.then((jsonFile) => {
-			console.log(jsonFile);
+			if (IS_PRODUCTION) {
+				console.log(jsonFile);
+			}
+
 			this.setState({ content: jsonFile.entries });
 		});
 	}

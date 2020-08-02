@@ -98,7 +98,10 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 		};
 
 		liveGigMetaDataFilePromise.then((jsonFile) => {
-			console.log(jsonFile);
+			if (IS_PRODUCTION) {
+				console.log(jsonFile);
+			}
+
 			this.setState({ content: jsonFile.entries });
 		});
 	}
