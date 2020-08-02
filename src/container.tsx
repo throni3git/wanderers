@@ -105,6 +105,8 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 		this._hideSite = HIDE_SITE;
 
 		this.state = { initialPage: STARTUP_TILE };
+
+		Store.subscribe(() => this.setState({}));
 	}
 
 	public componentDidMount() {

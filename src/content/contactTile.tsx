@@ -119,8 +119,6 @@ export class ContactTile extends React.Component<
 	constructor(props: ContactTile["props"]) {
 		super(props);
 		this.state = INITIAL_STATE;
-
-		Store.subscribe(() => this.setState({}));
 	}
 
 	private checkName(): boolean {
