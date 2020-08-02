@@ -51,18 +51,12 @@ const GlobalStyle = createGlobalStyle`
 	font-family: sans-serif;
 }
 
-/* @font-face {
-	font-family: 'genome';
-	src: url("data/genome.woff") format("woff");
-} */
-
 html, body {
 	// color: ${Colors.DefaultTextColor};
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	/* font-family: 'genome', sans-serif; */
 }
 
 div, span {
