@@ -14,7 +14,7 @@ export interface IContact {
 export interface IArtwork {
 	isWebGLAvailable: boolean;
 	show3DArtwork: boolean;
-	timesWebGLContextLost: number;
+	timesContextLost: number;
 }
 
 export const INITIAL_CONTACT: IContact = {
@@ -52,7 +52,7 @@ let currentState: State = {
 	artwork: {
 		isWebGLAvailable,
 		show3DArtwork,
-		timesWebGLContextLost: 0
+		timesContextLost: 0
 	}
 };
 
