@@ -15,6 +15,7 @@ export interface IArtwork {
 	isWebGLAvailable: boolean;
 	show3DArtwork: boolean;
 	timesContextLost: number;
+	useLightTheme: boolean;
 }
 
 export interface IDebugging {
@@ -61,12 +62,17 @@ if (debugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.isHuman = true;
 }
 
+const now = new Date();
+// const useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
+const useLightTheme = true;
+
 let currentState: State = {
 	contact: INITIAL_CONTACT,
 	artwork: {
 		isWebGLAvailable,
 		show3DArtwork,
-		timesContextLost: 0
+		timesContextLost: 0,
+		useLightTheme
 	},
 	debug: {
 		debugCamera,
