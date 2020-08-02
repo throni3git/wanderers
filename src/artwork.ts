@@ -37,8 +37,8 @@ export class Artwork {
 	private async _loadAssets(): Promise<void> {
 		const texturePromises = [
 			loadTexture("assets/black/grain2.jpg"),
-			loadTexture("assets/white/sun_map.jpg"),
-			loadTexture("assets/white/sun_alpha.jpg")
+			loadTexture("assets/sun/sun_map.jpg"),
+			loadTexture("assets/sun/sun_alpha.jpg")
 		];
 		const textureRessources = await Promise.all(texturePromises);
 		for (const tr of textureRessources) {
@@ -92,8 +92,8 @@ export class Artwork {
 		}
 
 		// add sun
-		const texMapSun = this._textures["assets/white/sun_map.jpg"];
-		const texAlphaSun = this._textures["assets/white/sun_alpha.jpg"];
+		const texMapSun = this._textures["assets/sun/sun_map.jpg"];
+		const texAlphaSun = this._textures["assets/sun/sun_alpha.jpg"];
 		const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
 		const matSun = new THREE.MeshBasicMaterial({
 			map: texMapSun,
