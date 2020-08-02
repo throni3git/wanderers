@@ -51,7 +51,7 @@ export class GalleryTile extends React.Component<
 			imageContent: []
 		};
 
-		imagesFilePromise.then(jsonFile => {
+		imagesFilePromise.then((jsonFile) => {
 			console.log("images");
 			console.log(jsonFile.entries);
 

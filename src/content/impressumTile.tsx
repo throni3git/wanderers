@@ -19,10 +19,10 @@ import {
 import { Colors } from "../constants";
 
 const ImpressumEntryCaption = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 20px;
 `;
 
 const ImpressumCaptionText = styled.div`
@@ -50,7 +50,7 @@ export class ImpressumTile extends React.Component<
 		super(props);
 		this.state = { content: [] };
 
-		impressumFilePromise.then(impressumFile => {
+		impressumFilePromise.then((impressumFile) => {
 			console.log(impressumFile);
 			this.setState({ content: impressumFile.entries });
 		});

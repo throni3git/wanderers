@@ -95,7 +95,7 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 			content: []
 		};
 
-		liveGigMetaDataFilePromise.then(jsonFile => {
+		liveGigMetaDataFilePromise.then((jsonFile) => {
 			console.log(jsonFile);
 			this.setState({ content: jsonFile.entries });
 		});
@@ -139,11 +139,11 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 	public render() {
 		const sortedEntries = this.state.content.sort(this.sortLambda);
 		const futureGigsIdx = sortedEntries.findIndex(
-			entry => new Date(entry.date) < new Date()
+			(entry) => new Date(entry.date) < new Date()
 		);
 		const futureGigs = sortedEntries.slice(0, futureGigsIdx);
 		const futureGigsContainer = (
-			<>{futureGigs.map(entry => this.makeGigEntry(entry))}</>
+			<>{futureGigs.map((entry) => this.makeGigEntry(entry))}</>
 		);
 
 		const pastGigs = sortedEntries.slice(futureGigsIdx);
@@ -165,7 +165,7 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 					{/* <UnitEntryContainer>
 						<YearCaptionText>{year}</YearCaptionText>
 					</UnitEntryContainer> */}
-					{gigEntries.map(entry => this.makeGigEntry(entry))}
+					{gigEntries.map((entry) => this.makeGigEntry(entry))}
 				</div>
 			);
 			pastGigContainers.push(result);

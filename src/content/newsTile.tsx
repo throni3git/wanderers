@@ -37,7 +37,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 			content: []
 		};
 
-		newsFilePromise.then(newsFile => {
+		newsFilePromise.then((newsFile) => {
 			console.log(newsFile);
 			this.setState({ content: newsFile.entries });
 		});

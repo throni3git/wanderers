@@ -67,9 +67,7 @@ html, body {
 }
 
 div, span {
-
-	// color: ${Colors.DefaultTextColor};
-
+	/* color: ${Colors.DefaultTextColor}; */
 }
 
 a {

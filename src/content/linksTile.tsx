@@ -56,7 +56,7 @@ const LinkIcon = styled.a<{ tooltip?: string }>`
 	content: "";
 	&:hover::after {
 		position: absolute;
-		content: "${props => props.tooltip}";
+		content: "${(props) => props.tooltip}";
 		/* background: ${Colors.DefaultTextColor}; */
 		border-radius: 4px;
 		color: ${Colors.HighlightColor};
@@ -106,7 +106,7 @@ export class LinksTile extends React.Component<
 			content: []
 		};
 
-		linksFilePromise.then(jsonFile => {
+		linksFilePromise.then((jsonFile) => {
 			console.log(jsonFile);
 			this.setState({ content: jsonFile.entries });
 		});
