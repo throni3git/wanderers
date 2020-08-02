@@ -36,7 +36,6 @@ export class Artwork {
 
 	private async _loadAssets(): Promise<void> {
 		const texturePromises = [
-			loadTexture("assets/black/grain2.jpg"),
 			loadTexture("assets/sun/sun_map.jpg"),
 			loadTexture("assets/sun/sun_alpha.jpg")
 		];
@@ -49,48 +48,6 @@ export class Artwork {
 	}
 
 	private async _setupScene(): Promise<void> {
-		const matWireframe = new THREE.MeshBasicMaterial({
-			color: 0x444444,
-			wireframe: true
-		});
-
-		// add background of white grain
-		const texWhiteGrain = this._textures["assets/black/grain2.jpg"];
-		texWhiteGrain.repeat.set(3, 3);
-		texWhiteGrain.wrapS = texWhiteGrain.wrapT = THREE.RepeatWrapping;
-		const geoGrain = new THREE.PlaneGeometry(32, 32);
-		const matWhiteGrain = new THREE.MeshBasicMaterial({
-			color: 0x000000,
-			alphaMap: texWhiteGrain,
-			transparent: true
-		});
-		const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
-		// this._scene.add(meshWhiteGrain);
-		meshWhiteGrain.position.z = -4;
-		if (Store.getState().debug.debugCamera) {
-			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
-			meshWhiteGrain.add(meshSurrounding);
-		}
-
-		// add second background of white grain
-		const texWhiteGrain2 = texWhiteGrain.clone();
-		texWhiteGrain2.repeat.set(3, 3);
-		texWhiteGrain2.rotation = 1; // avoid correlation between noise textures
-		texWhiteGrain2.wrapS = texWhiteGrain2.wrapT = THREE.RepeatWrapping;
-		texWhiteGrain2.needsUpdate = true;
-		const matWhiteGrain2 = new THREE.MeshBasicMaterial({
-			color: 0x000000,
-			alphaMap: texWhiteGrain2,
-			transparent: true
-		});
-		const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
-		// this._scene.add(meshWhiteGrain2);
-		meshWhiteGrain2.position.z = -7;
-		if (Store.getState().debug.debugCamera) {
-			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
-			meshWhiteGrain2.add(meshSurrounding);
-		}
-
 		// add sun
 		const texMapSun = this._textures["assets/sun/sun_map.jpg"];
 		const texAlphaSun = this._textures["assets/sun/sun_alpha.jpg"];
