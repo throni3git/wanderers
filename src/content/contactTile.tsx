@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { ScrollComponent, ITileComponentProps } from "./tileComponents";
 import { Colors, BORDER, BORDER_RADIUS } from "../constants";
-import { DBG_CONTACT_TILE } from "../urlParams";
 
 import * as Store from "../store";
 
@@ -158,7 +157,9 @@ export class ContactTile extends React.Component<
 		return contact.isHuman;
 	}
 
-	private handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	private handleInputChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
 		const target = event.target;
 		const changedValue =
 			target.type === "checkbox" ? target.checked : target.value;
@@ -168,8 +169,9 @@ export class ContactTile extends React.Component<
 		Store.setState("contact", { ...contact, [changedEntry]: changedValue });
 	};
 
-
-	private handleTextAreaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+	private handleTextAreaChange = (
+		event: React.ChangeEvent<HTMLTextAreaElement>
+	) => {
 		const target = event.target;
 		const changedValue = target.value;
 		const changedEntry = target.name;
@@ -270,13 +272,13 @@ export class ContactTile extends React.Component<
 			mail_content: message,
 			mail_from: returnMail,
 			send_copy_to_sender: sendCopy,
-			DBG_CONTACT_TILE: DBG_CONTACT_TILE
+			DBG_CONTACT_TILE: Store.getState().debug.debugContact
 		};
 
 		return fetch("./mail_api_send.php", {
 			method: "POST",
 			body: JSON.stringify(publishingJson)
-		}).then(res => res.text());
+		}).then((res) => res.text());
 	}
 
 	public render() {

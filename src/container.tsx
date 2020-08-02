@@ -6,7 +6,6 @@ import { SceneManager } from "./sceneManager";
 import { SiteContent } from "./siteContent";
 
 import { Colors, BORDER_RADIUS } from "./constants";
-import { HIDE_SITE, STARTUP_TILE } from "./urlParams";
 
 import * as Store from "./store";
 
@@ -100,9 +99,9 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	constructor(props: Container["props"]) {
 		super(props);
 
-		this._hideSite = HIDE_SITE;
+		this._hideSite = Store.getState().debug.hideSite;
 
-		this.state = { initialPage: STARTUP_TILE };
+		this.state = { initialPage: Store.getState().debug.startupTile };
 
 		Store.subscribe(() => this.setState({}));
 	}

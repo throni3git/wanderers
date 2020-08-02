@@ -162,7 +162,7 @@ export class GalleryTile extends React.Component<
 								dateInCaption = date.toLocaleDateString();
 							}
 							const imageSectionFolder =
-							MEDIA_FOLDER + imageSection.folder + "/";
+								MEDIA_FOLDER + imageSection.folder + "/";
 							return (
 								<UnitEntryContainer key={imageSectionIdx}>
 									<UnitEntryCaption>

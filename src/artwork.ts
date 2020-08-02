@@ -5,8 +5,8 @@ import {
 	displacmentFragmentShader
 } from "./shaders/landscapeShader";
 
-import { DBG_CAMERA } from "./urlParams";
 import { loadTexture } from "./utils";
+import * as Store from "./store"
 
 const sunSize = 1.5;
 const orbitSize = sunSize * 0.98;
@@ -67,7 +67,7 @@ export class Artwork {
 		const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
 		// this._scene.add(meshWhiteGrain);
 		meshWhiteGrain.position.z = -4;
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
 			meshWhiteGrain.add(meshSurrounding);
 		}
@@ -86,7 +86,7 @@ export class Artwork {
 		const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
 		// this._scene.add(meshWhiteGrain2);
 		meshWhiteGrain2.position.z = -7;
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
 			meshWhiteGrain2.add(meshSurrounding);
 		}

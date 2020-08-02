@@ -1,5 +1,3 @@
-import { DBG_CONTACT_TILE } from "./urlParams";
-
 import { detectWebGL } from "./utils";
 
 export interface IContact {
@@ -26,6 +24,54 @@ export const INITIAL_CONTACT: IContact = {
 	sendCopy: true
 };
 
+export interface State {
+	contact: IContact;
+	artwork: IArtwork;
+}
+
+const isWebGLAvailable = detectWebGL();
+// const isWebGLAvailable = false;
+const show3DArtwork =
+	isWebGLAvailable && screen.width > 640 && screen.height > 640;
+// const show3DArtwork = false
+
+export let DBG_CAMERA = false;
+export let DBG_ORBITING = false;
+export let DBG_CONTACT_TILE = false;
+export let HIDE_SITE = false;
+export let STARTUP_TILE = "News";
+
+const url = new URL(window.location.href);
+const dbgCamera = url.searchParams.get("debugCamera");
+if (dbgCamera != null) {
+	DBG_CAMERA = true;
+	console.log("DBG_CAMERA active");
+}
+
+const dbgOrbiting = url.searchParams.get("debugOrbiting");
+if (dbgOrbiting != null) {
+	DBG_ORBITING = true;
+	console.log("DBG_ORBITING active");
+}
+
+const dbgContact = url.searchParams.get("debugContact");
+if (dbgContact != null) {
+	DBG_CONTACT_TILE = true;
+	console.log("DBG_CONTACT_TILE active");
+}
+
+const hideSite = url.searchParams.get("hideSite");
+if (hideSite != null) {
+	HIDE_SITE = true;
+	console.log("HIDE_SITE active");
+}
+
+const tileToBeActivated = url.searchParams.get("tile");
+if (tileToBeActivated != null) {
+	STARTUP_TILE = tileToBeActivated;
+	console.log("STARTUP_TILE active");
+}
+
 if (DBG_CONTACT_TILE) {
 	INITIAL_CONTACT.name = "Test";
 	INITIAL_CONTACT.mail = "throni3@gmx.de";
@@ -33,19 +79,6 @@ if (DBG_CONTACT_TILE) {
 	INITIAL_CONTACT.acceptsDSGVO = true;
 	INITIAL_CONTACT.isHuman = true;
 }
-
-export interface State {
-	contact: IContact;
-	artwork: IArtwork;
-}
-
-export type Subscriber = () => void;
-
-const isWebGLAvailable = detectWebGL();
-// const isWebGLAvailable = false;
-const show3DArtwork =
-	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-// const show3DArtwork = false
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
@@ -56,8 +89,34 @@ let currentState: State = {
 	}
 };
 
+/**
+ * Subscription
+ */
+export type Subscriber = () => void;
+
 const subscribers: Subscriber[] = [];
 
+export const subscribe = (cb: Subscriber) => {
+	subscribers.push(cb);
+
+	return () => {
+		const index = subscribers.indexOf(cb);
+
+		if (index > -1) {
+			subscribers.splice(index, 1);
+		}
+	};
+};
+
+const update = () => {
+	for (const subscription of subscribers) {
+		subscription();
+	}
+};
+
+/**
+ * Getter and Setters
+ */
 export const getState = () => currentState;
 
 export const setState = <K extends keyof State>(key: K, value: State[K]) => {
@@ -83,22 +142,4 @@ export const setArtworkState = <K extends keyof IArtwork>(
 ) => {
 	const currentArtworkState = getState().artwork;
 	setState("artwork", { ...currentArtworkState, [key]: value });
-};
-
-export const subscribe = (cb: Subscriber) => {
-	subscribers.push(cb);
-
-	return () => {
-		const index = subscribers.indexOf(cb);
-
-		if (index > -1) {
-			subscribers.splice(index, 1);
-		}
-	};
-};
-
-const update = () => {
-	for (const subscription of subscribers) {
-		subscription();
-	}
 };

@@ -2,7 +2,6 @@ import * as THREE from "three";
 
 import { OrbitControls } from "./orbitControls/";
 import { Artwork } from "./artwork";
-import { DBG_CAMERA, DBG_ORBITING } from "./urlParams";
 
 import * as Store from "./store";
 
@@ -62,14 +61,14 @@ export class SceneManager {
 
 		this._artwork = new Artwork(this._scene);
 
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			this._controls = new OrbitControls(
 				this._cameraDBG,
 				this._renderer.domElement
 			) as any;
 		}
 
-		if (DBG_ORBITING) {
+		if (Store.getState().debug.debugOrbiting) {
 			const marker = document.createElement("div");
 			containerElement.appendChild(marker);
 			marker.style.position = "absolute";
@@ -104,7 +103,7 @@ export class SceneManager {
 		this._camera = new THREE.PerspectiveCamera(45, 1, 0.1, 20);
 		this._camera.position.set(0, 0, 10);
 
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			this._cameraHelper = new THREE.CameraHelper(this._camera);
 			this._scene.add(this._camera);
 			this._scene.add(this._cameraHelper);
@@ -163,7 +162,7 @@ export class SceneManager {
 
 		this._camera.updateProjectionMatrix();
 
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			this._cameraDBG.aspect = newAR;
 			this._cameraDBG.updateProjectionMatrix();
 		}
@@ -194,7 +193,7 @@ export class SceneManager {
 		this.vX += (diffVX / magnitudeVXY) * this._cameraAcceleration;
 		this.vY += (diffVY / magnitudeVXY) * this._cameraAcceleration;
 
-		if (DBG_ORBITING) {
+		if (Store.getState().debug.debugOrbiting) {
 			const markerLeft =
 				(this.vX / 2 / this._cameraRotationRadius) * window.innerWidth +
 				this._windowHalfX;
@@ -241,7 +240,7 @@ export class SceneManager {
 	};
 
 	private render = (): void => {
-		if (DBG_CAMERA) {
+		if (Store.getState().debug.debugCamera) {
 			this._controls.update();
 			this._cameraHelper.update();
 			this._renderer.render(this._scene, this._cameraDBG);
