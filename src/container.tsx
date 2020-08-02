@@ -9,17 +9,12 @@ import { Colors, BORDER_RADIUS } from "./constants";
 
 import * as Store from "./store";
 
-const ArtworkContainer = styled.div<{ backgroundUrl: string }>(
-	(props) => `
+const ArtworkContainer = styled.div`
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: url(${props.backgroundUrl});
-	background-size: cover;
-	background-position: center;
 	overflow: hidden;
-`
-);
+`;
 
 const SiteContainer = styled.div`
 	width: 900px;
@@ -36,16 +31,20 @@ const SiteContainer = styled.div`
 	border-radius: ${BORDER_RADIUS};
 `;
 
-const SiteHeading = styled.div<{ logoUrl: string }>(
-	(props) => `
-	background: url(${props.logoUrl});
+const SiteHeading = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 8vh;
 	background-size: contain;
 	margin: 3vh 3vw;
-`
-);
+`;
+
+const AllContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+`;
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -79,18 +78,6 @@ li {
 }
 `;
 
-const ArtworkImage = styled.div<{ backgroundUrl: string }>(
-	(props) => `
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: url(${props.backgroundUrl});
-	background-size: cover;
-	background-position: center;
-	overflow: hidden;
-`
-);
-
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	private _baseElement: HTMLDivElement;
 	private _sceneManager: SceneManager;
@@ -114,32 +101,32 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 
 	public render() {
 		const show3DArtwork = Store.getState().artwork.show3DArtwork;
-		const backgroundUrlFallback = Store.getState().artwork.useLightTheme
-			? "assets/bg_fallback_light.jpg"
-			: "assets/bg_fallback_dark.jpg";
-		const backgroundUrl3D = Store.getState().artwork.useLightTheme
-			? "assets/bg_grain_light.jpg"
-			: "assets/bg_grain_dark.jpg";
+		const useLightTheme = Store.getState().artwork.useLightTheme;
+		const backgroundUrlFallback = useLightTheme
+			? "bg_fallback_light.jpg"
+			: "bg_fallback_dark.jpg";
+		const backgroundUrl3D = useLightTheme
+			? "bg_grain_light.jpg"
+			: "bg_grain_dark.jpg";
+		const bgImage = show3DArtwork ? backgroundUrl3D : backgroundUrlFallback;
+		const bgUrl = "url(assets/" + bgImage + ")";
+		const logoUrl = "url(" + Colors.HeadingLogoUrl + ")";
 
 		return (
-			<div style={{ width: "100%" }}>
+			<AllContainer style={{ backgroundImage: bgUrl }}>
 				{show3DArtwork && (
 					<ArtworkContainer
 						ref={(ref) => (this._baseElement = ref)}
-						backgroundUrl={backgroundUrl3D}
 					/>
-				)}
-				{!show3DArtwork && (
-					<ArtworkImage backgroundUrl={backgroundUrlFallback} />
 				)}
 				{!this._hideSite && (
 					<SiteContainer>
-						<SiteHeading logoUrl={Colors.HeadingLogoUrl}/>
+						<SiteHeading style={{ backgroundImage: logoUrl }} />
 						<SiteContent initialPage={this.state.initialPage} />
 					</SiteContainer>
 				)}
 				<GlobalStyle />
-			</div>
+			</AllContainer>
 		);
 	}
 }
