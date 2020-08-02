@@ -80,6 +80,7 @@ export class Artwork {
 		const geoInnerPlanet = new THREE.CircleBufferGeometry(planetSize, 20);
 		const meshInnerPlanet = new THREE.Mesh(geoInnerPlanet, matPlanet);
 		meshInnerPlanet.position.y = orbitSize * orbitFactor;
+		meshInnerPlanet.position.z = 0.01;
 		innerOrbit.add(meshInnerPlanet);
 
 		// middle orbit
@@ -98,6 +99,7 @@ export class Artwork {
 		);
 		const meshMiddlePlanet = new THREE.Mesh(geoMiddlePlanet, matPlanet);
 		meshMiddlePlanet.position.y = orbitSize * orbitFactor * orbitFactor;
+		meshMiddlePlanet.position.z = 0.01;
 		middleOrbit.add(meshMiddlePlanet);
 
 		// outer orbit
@@ -118,6 +120,7 @@ export class Artwork {
 		const meshOuterPlanet = new THREE.Mesh(geoOuterPlanet, matPlanet);
 		meshOuterPlanet.position.y =
 			orbitSize * orbitFactor * orbitFactor * orbitFactor;
+		meshOuterPlanet.position.z = 0.01;
 		outerOrbit.add(meshOuterPlanet);
 
 		// extra orbit in outer orbit
@@ -132,16 +135,18 @@ export class Artwork {
 			matMoonOrbit
 		);
 		outerMoonOrbit.rotation.z = Math.random();
-		outerMoonOrbit.position.y = meshOuterPlanet.position.y;
+		// outerMoonOrbit.position.y = meshOuterPlanet.position.y;
+		// outerMoonOrbit.position.z = 0.01;
 		this._orbits.push({
 			speed: -outerOrbitSpeed,
 			lineObject: outerMoonOrbit
 		});
-		outerOrbit.add(outerMoonOrbit);
+		meshOuterPlanet.add(outerMoonOrbit);
 
 		const outerMoonSupport = new THREE.Object3D();
 		outerMoonSupport.rotation.z = Math.random();
 		outerMoonSupport.position.y = meshOuterPlanet.position.y;
+		outerMoonSupport.position.z = 0.01;
 		this._orbits.push({ speed: 1 / 5, lineObject: outerMoonSupport });
 		outerOrbit.add(outerMoonSupport);
 
@@ -154,6 +159,7 @@ export class Artwork {
 			matPlanet
 		);
 		meshOuterExtraPlanet.position.y = extraOrbitSize;
+		meshOuterExtraPlanet.position.z = 0.01;
 		outerMoonSupport.add(meshOuterExtraPlanet);
 
 		// create wobbling landscape
