@@ -33,7 +33,7 @@ const MenuEntry = styled.span<{ active: boolean }>`
 		background-size: 100% 2px, auto;
 	}
 
-	${props =>
+	${(props) =>
 		props.active &&
 		`
 	color: ${AMC};
@@ -62,7 +62,7 @@ export class SiteMenu extends React.Component<ISiteMenuProps, ISiteMenuState> {
 
 		return (
 			<MenuContainer>
-				{allContentNames.map(name => (
+				{allContentNames.map((name) => (
 					<MenuEntry
 						onClick={() => this.props.setActiveContent(name)}
 						key={name}

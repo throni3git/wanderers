@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html, body {
-	// color: ${Colors.DefaultTextColor};
+	color: ${Colors.DefaultTextColor};
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -64,7 +64,7 @@ div, span {
 }
 
 a {
-	color: ${Colors.DefaultTextColor};
+	color: ${Colors.LinkColor};
 	&:hover {
 		color: ${Colors.LinkHoverColor};
 	}

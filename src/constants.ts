@@ -1,4 +1,4 @@
-export const Colors = {
+export let Colors = {
 	DefaultTextColor: "#333333",
 	LightTextColor: "#666666",
 	LinkColor: "#000000",
@@ -10,6 +10,19 @@ export const Colors = {
 	GalleryArrayColor: "#cccccc",
 	ShadowColor: "#444444"
 };
+
+// Colors = {
+// 	DefaultTextColor: "red",
+// 	LightTextColor: "pink",
+// 	LinkColor: "purple",
+// 	LinkHoverColor: "orange",
+// 	HighlightColor: "green",
+// 	ActiveMenuColor: "gold",
+// 	CaptionUnderlineColor: "blue",
+// 	RulerColor: "aquamarine",
+// 	GalleryArrayColor: "yellow",
+// 	ShadowColor: "cyan"
+// };
 
 export const NEWS_IMAGE_FOLDER = "data/news_images/";
 export const MEDIA_FOLDER = "media/";
