@@ -83,6 +83,21 @@ export class SceneManager {
 
 		this.framedRedraw();
 		window["sceneManager"] = this;
+
+		this._canvas.addEventListener(
+			"webglcontextlost",
+			(e: WebGLContextEvent) => {
+				const timesContextLost =
+					Store.getState().artwork.timesContextLost + 1;
+
+				if (timesContextLost > 5) {
+					Store.setArtworkState("show3DArtwork", false);
+				} else {
+					Store.setArtworkState("timesContextLost", timesContextLost);
+				}
+			},
+			false
+		);
 	}
 
 	private setupCamera(): void {
