@@ -1,5 +1,7 @@
 import { detectWebGL } from "./utils";
 
+declare var IS_PRODUCTION: boolean;
+
 export interface IContact {
 	mail: string;
 	name: string;
@@ -15,6 +17,33 @@ export interface IArtwork {
 	timesContextLost: number;
 }
 
+export interface IDebugging {
+	debugCamera: boolean;
+	debugOrbiting: boolean;
+	debugContact: boolean;
+	hideSite: boolean;
+	startupTile: string;
+}
+
+export interface State {
+	contact: IContact;
+	artwork: IArtwork;
+	debug: IDebugging;
+}
+
+const isWebGLAvailable = detectWebGL();
+// const isWebGLAvailable = false;
+const show3DArtwork =
+	isWebGLAvailable && screen.width > 640 && screen.height > 640;
+// const show3DArtwork = false
+
+const url = new URL(window.location.href);
+const debugCamera = url.searchParams.get("debugCamera") != null;
+const debugOrbiting = url.searchParams.get("debugOrbiting") != null;
+const debugContact = url.searchParams.get("debugContact") != null;
+const hideSite = url.searchParams.get("hideSite") != null;
+const startupTile = url.searchParams.get("startupTile") || "News";
+
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
 	name: "",
@@ -24,55 +53,7 @@ export const INITIAL_CONTACT: IContact = {
 	sendCopy: true
 };
 
-export interface State {
-	contact: IContact;
-	artwork: IArtwork;
-}
-
-const isWebGLAvailable = detectWebGL();
-// const isWebGLAvailable = false;
-const show3DArtwork =
-	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-// const show3DArtwork = false
-
-export let DBG_CAMERA = false;
-export let DBG_ORBITING = false;
-export let DBG_CONTACT_TILE = false;
-export let HIDE_SITE = false;
-export let STARTUP_TILE = "News";
-
-const url = new URL(window.location.href);
-const dbgCamera = url.searchParams.get("debugCamera");
-if (dbgCamera != null) {
-	DBG_CAMERA = true;
-	console.log("DBG_CAMERA active");
-}
-
-const dbgOrbiting = url.searchParams.get("debugOrbiting");
-if (dbgOrbiting != null) {
-	DBG_ORBITING = true;
-	console.log("DBG_ORBITING active");
-}
-
-const dbgContact = url.searchParams.get("debugContact");
-if (dbgContact != null) {
-	DBG_CONTACT_TILE = true;
-	console.log("DBG_CONTACT_TILE active");
-}
-
-const hideSite = url.searchParams.get("hideSite");
-if (hideSite != null) {
-	HIDE_SITE = true;
-	console.log("HIDE_SITE active");
-}
-
-const tileToBeActivated = url.searchParams.get("tile");
-if (tileToBeActivated != null) {
-	STARTUP_TILE = tileToBeActivated;
-	console.log("STARTUP_TILE active");
-}
-
-if (DBG_CONTACT_TILE) {
+if (debugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.name = "Test";
 	INITIAL_CONTACT.mail = "throni3@gmx.de";
 	INITIAL_CONTACT.message = "Wir testen und wir testen";
@@ -86,6 +67,13 @@ let currentState: State = {
 		isWebGLAvailable,
 		show3DArtwork,
 		timesContextLost: 0
+	},
+	debug: {
+		debugCamera,
+		debugOrbiting,
+		debugContact,
+		hideSite,
+		startupTile
 	}
 };
 
