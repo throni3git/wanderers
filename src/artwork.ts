@@ -6,7 +6,7 @@ import {
 } from "./shaders/landscapeShader";
 
 import { loadTexture } from "./utils";
-import * as Store from "./store"
+import * as Store from "./store";
 
 const sunSize = 1.5;
 const orbitSize = sunSize * 0.98;
@@ -21,6 +21,34 @@ interface IOrbit {
 	lineObject: THREE.Object3D;
 }
 
+interface IArtworkTheme {
+	orbitColor: THREE.Color;
+	planetColor: THREE.Color;
+	backgroundColor: THREE.Color;
+	sunUrl: string;
+}
+
+const ArtworkLightColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0x000000),
+	planetColor: new THREE.Color(0x000000),
+	backgroundColor: new THREE.Color(0xffffff),
+	sunUrl: "assets/sun_light.jpg"
+};
+
+const ArtworkDarkColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0xbbbbbb),
+	planetColor: new THREE.Color(0xbbbbbb),
+	backgroundColor: new THREE.Color(0x000000),
+	sunUrl: "assets/sun_dark.jpg"
+};
+
+const ArtworkDebugColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0xff0000),
+	planetColor: new THREE.Color(0x00ff00),
+	backgroundColor: new THREE.Color(0x0000ff),
+	sunUrl: "assets/sun_dark.jpg"
+};
+
 export class Artwork {
 	private _orbits: IOrbit[] = [];
 	private _lastUpdateTime = Date.now();
@@ -28,15 +56,20 @@ export class Artwork {
 	private _matLandscape: THREE.ShaderMaterial;
 	private _textures: Record<string, THREE.Texture> = {};
 	private _scene: THREE.Scene;
+	private _colorTheme: IArtworkTheme = ArtworkDebugColorTheme;
 
 	constructor(scene: THREE.Scene) {
 		this._scene = scene;
+		if (!Store.getState().artwork.useLightTheme) {
+			this._colorTheme = ArtworkDarkColorTheme;
+		}
+
 		this._loadAssets();
 	}
 
 	private async _loadAssets(): Promise<void> {
 		const texturePromises = [
-			loadTexture("assets/sun/sun_map.jpg"),
+			loadTexture(this._colorTheme.sunUrl),
 			loadTexture("assets/sun/sun_alpha.jpg")
 		];
 		const textureRessources = await Promise.all(texturePromises);
@@ -49,7 +82,7 @@ export class Artwork {
 
 	private async _setupScene(): Promise<void> {
 		// add sun
-		const texMapSun = this._textures["assets/sun/sun_map.jpg"];
+		const texMapSun = this._textures[this._colorTheme.sunUrl];
 		const texAlphaSun = this._textures["assets/sun/sun_alpha.jpg"];
 		const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
 		const matSun = new THREE.MeshBasicMaterial({
@@ -63,7 +96,9 @@ export class Artwork {
 		this._lastUpdateTime = Date.now();
 
 		// inner orbit
-		const matOrbit = new THREE.LineBasicMaterial({ color: 0x000000 });
+		const matOrbit = new THREE.LineBasicMaterial({
+			color: this._colorTheme.orbitColor
+		});
 		const innerOrbit = this.createOrbitLine(
 			orbitSize * orbitFactor,
 			orbitResolution,
@@ -74,7 +109,7 @@ export class Artwork {
 		this._scene.add(innerOrbit);
 
 		const matPlanet = new THREE.MeshBasicMaterial({
-			color: 0x000000,
+			color: this._colorTheme.planetColor,
 			side: THREE.DoubleSide
 		});
 		const geoInnerPlanet = new THREE.CircleBufferGeometry(planetSize, 20);
@@ -125,7 +160,7 @@ export class Artwork {
 
 		// extra orbit in outer orbit
 		const matMoonOrbit = new THREE.LineDashedMaterial({
-			color: 0x000000,
+			color: this._colorTheme.orbitColor,
 			gapSize: 0.02,
 			dashSize: 0.03
 		});
