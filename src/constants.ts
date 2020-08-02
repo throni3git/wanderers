@@ -6,7 +6,7 @@ export const Colors = {
 	HighlightColor: "#ab854f",
 	ActiveMenuColor: "#8c6c40",
 	CaptionUnderlineColor: "#888888",
-	RulerColor: "#444444",
+	RulerColor: "#666666",
 	GalleryArrayColor: "#cccccc",
 	ShadowColor: "#444444"
 };
