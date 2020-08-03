@@ -41,6 +41,7 @@ const paramHideSite = url.searchParams.get("hideSite") != null;
 const paramStartupTile = url.searchParams.get("startupTile") || "News";
 const paramDarkTheme = url.searchParams.get("dark") != null;
 const paramLightTheme = url.searchParams.get("light") != null;
+const param2DBackground = url.searchParams.get("2d") != null;
 
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
@@ -63,6 +64,7 @@ const isWebGLAvailable = detectWebGL();
 // const isWebGLAvailable = false;
 let show3DArtwork =
 	isWebGLAvailable && screen.width > 640 && screen.height > 640;
+show3DArtwork = show3DArtwork && !param2DBackground;
 // show3DArtwork = false;
 // show3DArtwork = true;
 
