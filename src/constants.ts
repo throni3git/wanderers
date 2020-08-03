@@ -13,6 +13,7 @@ interface IColorTheme {
 	RulerColor: string;
 	GalleryArrayColor: string;
 	ShadowColor: string;
+	ScrollThumbColor: string;
 }
 
 export const LightTheme: IColorTheme = {
@@ -27,7 +28,8 @@ export const LightTheme: IColorTheme = {
 	CaptionUnderlineColor: "#888888",
 	RulerColor: "#666666",
 	GalleryArrayColor: "#cccccc",
-	ShadowColor: "#444444"
+	ShadowColor: "#444444",
+	ScrollThumbColor: "#ccccccaa"
 };
 
 export const DarkTheme: IColorTheme = {
@@ -42,7 +44,8 @@ export const DarkTheme: IColorTheme = {
 	CaptionUnderlineColor: "#888888",
 	RulerColor: "#999999",
 	GalleryArrayColor: "#cccccc",
-	ShadowColor: "#333333"
+	ShadowColor: "#333333",
+	ScrollThumbColor: "#444444aa"
 };
 
 export const DebugTheme: IColorTheme = {
@@ -57,7 +60,8 @@ export const DebugTheme: IColorTheme = {
 	CaptionUnderlineColor: "blue",
 	RulerColor: "aquamarine",
 	GalleryArrayColor: "yellow",
-	ShadowColor: "cyan"
+	ShadowColor: "cyan",
+	ScrollThumbColor: "black"
 };
 
 export let Colors: IColorTheme = LightTheme;
