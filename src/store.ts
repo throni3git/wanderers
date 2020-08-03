@@ -32,21 +32,15 @@ export interface State {
 	debug: IDebugging;
 }
 
-const isWebGLAvailable = detectWebGL();
-// const isWebGLAvailable = false;
-let show3DArtwork =
-	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-// show3DArtwork = false;
-// show3DArtwork = true;
-
+// Url Parameter handling
 const url = new URL(window.location.href);
-const debugCamera = url.searchParams.get("debugCamera") != null;
-const debugOrbiting = url.searchParams.get("debugOrbiting") != null;
-const debugContact = url.searchParams.get("debugContact") != null;
-const hideSite = url.searchParams.get("hideSite") != null;
-const startupTile = url.searchParams.get("startupTile") || "News";
-const urlParamDarkTheme = url.searchParams.get("dark") != null;
-const urlParamLightTheme = url.searchParams.get("light") != null;
+const paramDebugCamera = url.searchParams.get("debugCamera") != null;
+const paramDebugOrbiting = url.searchParams.get("debugOrbiting") != null;
+const paramDebugContact = url.searchParams.get("debugContact") != null;
+const paramHideSite = url.searchParams.get("hideSite") != null;
+const paramStartupTile = url.searchParams.get("startupTile") || "News";
+const paramDarkTheme = url.searchParams.get("dark") != null;
+const paramLightTheme = url.searchParams.get("light") != null;
 
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
@@ -57,7 +51,7 @@ export const INITIAL_CONTACT: IContact = {
 	sendCopy: true
 };
 
-if (debugContact && !IS_PRODUCTION) {
+if (paramDebugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.name = "Test";
 	INITIAL_CONTACT.mail = "throni3@gmx.de";
 	INITIAL_CONTACT.message = "Wir testen und wir testen";
@@ -65,10 +59,17 @@ if (debugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.isHuman = true;
 }
 
-const now = new Date();
-let useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
-useLightTheme = useLightTheme && !urlParamDarkTheme;
-useLightTheme = useLightTheme || urlParamLightTheme;
+const isWebGLAvailable = detectWebGL();
+// const isWebGLAvailable = false;
+let show3DArtwork =
+	isWebGLAvailable && screen.width > 640 && screen.height > 640;
+// show3DArtwork = false;
+// show3DArtwork = true;
+
+const hours = new Date().getHours();
+let isDayTime = hours >= 8 && hours <= 20;
+let useLightTheme = isDayTime && !paramDarkTheme;
+useLightTheme = useLightTheme || paramLightTheme;
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
@@ -79,17 +80,15 @@ let currentState: State = {
 		useLightTheme
 	},
 	debug: {
-		debugCamera,
-		debugOrbiting,
-		debugContact,
-		hideSite,
-		startupTile
+		debugCamera: paramDebugCamera,
+		debugOrbiting: paramDebugOrbiting,
+		debugContact: paramDebugContact,
+		hideSite: paramHideSite,
+		startupTile: paramStartupTile
 	}
 };
 
-/**
- * Subscription
- */
+// Subscription
 export type Subscriber = () => void;
 
 const subscribers: Subscriber[] = [];
@@ -112,9 +111,7 @@ const update = () => {
 	}
 };
 
-/**
- * Getter and Setters
- */
+// Getter and Setters
 export const getState = () => currentState;
 
 export const setState = <K extends keyof State>(key: K, value: State[K]) => {
