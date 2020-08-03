@@ -61,7 +61,7 @@ export const ScrollComponent: React.SFC<IScrollComponentProps> = (props) => (
 	<Scrollbars
 		style={{
 			padding: "20px",
-			height: "calc(100% - 57px - 100px)",
+			height: "calc(100% - 57px - 82px)",
 			width: "100%"
 		}}
 		renderThumbHorizontal={(props) => (

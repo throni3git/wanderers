@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ActiveContentTypes } from "./SiteMenu";
 
 const FooterContainer = styled.div`
-	height: 100px;
+	height: 82px;
 	width: 100%;
 	border-top: ${BORDER + "px"} solid ${Colors.RulerColor};
 	display: flex;
@@ -19,11 +19,11 @@ const FooterContainer = styled.div`
 
 const FooterIcon = styled.a`
 	font-size: 40px;
-	line-height: 50px;
+	line-height: 40px;
 	text-align: center;
-	height: 50px;
-	width: 50px;
-	margin: auto 20px;
+	/* height: 50px; */
+	/* width: 50px; */
+	margin: 20px;
 	cursor: pointer;
 `;
 
@@ -46,7 +46,6 @@ export const SiteFooter: React.SFC<ISiteFooterProps> = props => (
 		>
 			<FontAwesomeIcon icon={["fab", "youtube"]} />
 		</FooterIcon>
-		{/* <FooterIcon href="https://soundcloud.com/sojus3000/" target="_blank" ><FontAwesomeIcon icon={['fab', "soundcloud"]} /></FooterIcon> */}
 		<FooterIcon
 			href="https://open.spotify.com/artist/29i6nmTanReeRZDPwUayI6"
 			target="_blank"
