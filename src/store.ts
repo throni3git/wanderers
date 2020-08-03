@@ -1,5 +1,7 @@
 import { detectWebGL } from "./utils";
 
+import * as urlParams from "./urlParameters";
+
 declare var IS_PRODUCTION: boolean;
 
 export interface IContact {
@@ -32,17 +34,6 @@ export interface State {
 	debug: IDebugging;
 }
 
-// Url Parameter handling
-const url = new URL(window.location.href);
-const paramDebugCamera = url.searchParams.get("debugCamera") != null;
-const paramDebugOrbiting = url.searchParams.get("debugOrbiting") != null;
-const paramDebugContact = url.searchParams.get("debugContact") != null;
-const paramHideSite = url.searchParams.get("hideSite") != null;
-const paramStartupTile = url.searchParams.get("startupTile") || "News";
-const paramDarkTheme = url.searchParams.get("dark") != null;
-const paramLightTheme = url.searchParams.get("light") != null;
-const param2DBackground = url.searchParams.get("2d") != null;
-
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
 	name: "",
@@ -52,7 +43,7 @@ export const INITIAL_CONTACT: IContact = {
 	sendCopy: true
 };
 
-if (paramDebugContact && !IS_PRODUCTION) {
+if (urlParams.debugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.name = "Test";
 	INITIAL_CONTACT.mail = "throni3@gmx.de";
 	INITIAL_CONTACT.message = "Wir testen und wir testen";
@@ -64,14 +55,14 @@ const isWebGLAvailable = detectWebGL();
 // const isWebGLAvailable = false;
 let show3DArtwork =
 	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-show3DArtwork = show3DArtwork && !param2DBackground;
+show3DArtwork = show3DArtwork && !urlParams.background2D;
 // show3DArtwork = false;
 // show3DArtwork = true;
 
 const hours = new Date().getHours();
 let isDayTime = hours >= 8 && hours <= 20;
-let useLightTheme = isDayTime && !paramDarkTheme;
-useLightTheme = useLightTheme || paramLightTheme;
+let useLightTheme = isDayTime && !urlParams.darkTheme;
+useLightTheme = useLightTheme || urlParams.lightTheme;
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
@@ -82,11 +73,11 @@ let currentState: State = {
 		useLightTheme
 	},
 	debug: {
-		debugCamera: paramDebugCamera,
-		debugOrbiting: paramDebugOrbiting,
-		debugContact: paramDebugContact,
-		hideSite: paramHideSite,
-		startupTile: paramStartupTile
+		debugCamera: urlParams.debugCamera,
+		debugOrbiting: urlParams.debugOrbiting,
+		debugContact: urlParams.debugContact,
+		hideSite: urlParams.hideSite,
+		startupTile: urlParams.startupTile
 	}
 };
 
