@@ -45,6 +45,8 @@ const debugOrbiting = url.searchParams.get("debugOrbiting") != null;
 const debugContact = url.searchParams.get("debugContact") != null;
 const hideSite = url.searchParams.get("hideSite") != null;
 const startupTile = url.searchParams.get("startupTile") || "News";
+const urlParamDarkTheme = url.searchParams.get("dark") != null;
+const urlParamLightTheme = url.searchParams.get("light") != null;
 
 export const INITIAL_CONTACT: IContact = {
 	mail: "",
@@ -65,8 +67,8 @@ if (debugContact && !IS_PRODUCTION) {
 
 const now = new Date();
 let useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
-// useLightTheme = true;
-// useLightTheme = false;
+useLightTheme = useLightTheme && !urlParamDarkTheme;
+useLightTheme = useLightTheme || urlParamLightTheme;
 
 let currentState: State = {
 	contact: INITIAL_CONTACT,
