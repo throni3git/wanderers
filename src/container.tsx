@@ -13,16 +13,13 @@ const ArtworkContainer = styled.div`
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background: url(assets/white/grain.jpg);
-	background-size: cover;
-	background-position: center;
 	overflow: hidden;
 `;
 
 const SiteContainer = styled.div`
 	width: 900px;
 	height: 95vh;
-	background: rgba(255, 255, 255, 0.9);
+	background: ${Colors.Background};
 	overflow: hidden;
 	box-shadow: ${Colors.ShadowColor} 0 0 10px;
 	position: absolute;
@@ -35,12 +32,18 @@ const SiteContainer = styled.div`
 `;
 
 const SiteHeading = styled.div`
-	background: url(assets/logo_heading.svg);
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 8vh;
 	background-size: contain;
 	margin: 3vh 3vw;
+`;
+
+const AllContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -75,16 +78,6 @@ li {
 }
 `;
 
-const ArtworkImage = styled.div`
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: url(assets/bg_white_cover.jpg);
-	background-size: cover;
-	background-position: center;
-	overflow: hidden;
-`;
-
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
 	private _baseElement: HTMLDivElement;
 	private _sceneManager: SceneManager;
@@ -108,22 +101,32 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 
 	public render() {
 		const show3DArtwork = Store.getState().artwork.show3DArtwork;
+		const useLightTheme = Store.getState().artwork.useLightTheme;
+		const backgroundUrlFallback = useLightTheme
+			? "bg_fallback_light.jpg"
+			: "bg_fallback_dark.jpg";
+		const backgroundUrl3D = useLightTheme
+			? "bg_grain_light.jpg"
+			: "bg_grain_dark.jpg";
+		const bgImage = show3DArtwork ? backgroundUrl3D : backgroundUrlFallback;
+		const bgUrl = "url(assets/" + bgImage + ")";
+		const logoUrl = "url(" + Colors.HeadingLogoUrl + ")";
+
 		return (
-			<div style={{ width: "100%" }}>
+			<AllContainer style={{ backgroundImage: bgUrl }}>
 				{show3DArtwork && (
 					<ArtworkContainer
 						ref={(ref) => (this._baseElement = ref)}
 					/>
 				)}
-				{!show3DArtwork && <ArtworkImage />}
 				{!this._hideSite && (
 					<SiteContainer>
-						<SiteHeading />
+						<SiteHeading style={{ backgroundImage: logoUrl }} />
 						<SiteContent initialPage={this.state.initialPage} />
 					</SiteContainer>
 				)}
 				<GlobalStyle />
-			</div>
+			</AllContainer>
 		);
 	}
 }

@@ -8,8 +8,7 @@ const SingleImageContainer = styled.div`
 	height: 160px;
 `;
 
-const Thumbnail = styled.div<{ url: string }>`
-	background: url(${props => props.url});
+const Thumbnail = styled.div`
 	background-size: cover;
 	background-position: center;
 	transition: 0.1s ease-in-out;
@@ -29,6 +28,9 @@ export class SingleImage extends React.Component<
 	}
 
 	public render() {
+		const bgUrl =
+			"url(" + this.props.folder + "thumbs/" + this.props.imageUrl + ")";
+
 		return (
 			<SingleImageContainer
 				// onClick={data-attribute auswerten}
@@ -37,7 +39,9 @@ export class SingleImage extends React.Component<
 				// data-image-idx={this.props.imageIdx}
 			>
 				<Thumbnail
-					url={this.props.folder + "thumbs/" + this.props.imageUrl}
+					style={{
+						backgroundImage: bgUrl
+					}}
 				/>
 			</SingleImageContainer>
 		);

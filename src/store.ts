@@ -15,6 +15,7 @@ export interface IArtwork {
 	isWebGLAvailable: boolean;
 	show3DArtwork: boolean;
 	timesContextLost: number;
+	useLightTheme: boolean;
 }
 
 export interface IDebugging {
@@ -33,9 +34,10 @@ export interface State {
 
 const isWebGLAvailable = detectWebGL();
 // const isWebGLAvailable = false;
-const show3DArtwork =
+let show3DArtwork =
 	isWebGLAvailable && screen.width > 640 && screen.height > 640;
-// const show3DArtwork = false
+// show3DArtwork = false;
+// show3DArtwork = true;
 
 const url = new URL(window.location.href);
 const debugCamera = url.searchParams.get("debugCamera") != null;
@@ -61,12 +63,18 @@ if (debugContact && !IS_PRODUCTION) {
 	INITIAL_CONTACT.isHuman = true;
 }
 
+const now = new Date();
+let useLightTheme = now.getHours() >= 8 && now.getHours() <= 20;
+// useLightTheme = true;
+// useLightTheme = false;
+
 let currentState: State = {
 	contact: INITIAL_CONTACT,
 	artwork: {
 		isWebGLAvailable,
 		show3DArtwork,
-		timesContextLost: 0
+		timesContextLost: 0,
+		useLightTheme
 	},
 	debug: {
 		debugCamera,

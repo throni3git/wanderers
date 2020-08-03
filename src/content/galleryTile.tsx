@@ -54,7 +54,7 @@ export class GalleryTile extends React.Component<
 		};
 
 		imagesFilePromise.then((jsonFile) => {
-			if (IS_PRODUCTION) {
+			if (!IS_PRODUCTION) {
 				console.log("images");
 				console.log(jsonFile.entries);
 			}
@@ -88,7 +88,6 @@ export class GalleryTile extends React.Component<
 		});
 	};
 	private gotoNextImage = () => {
-		console.log("gotoNextImage");
 		const activeImage = this.state.activeImage;
 
 		let newImageIdx: number;
@@ -117,7 +116,6 @@ export class GalleryTile extends React.Component<
 		});
 	};
 	private gotoPreviousImage = () => {
-		console.log("gotoPreviousImage");
 		const activeImage = this.state.activeImage;
 
 		let newImageIdx: number;

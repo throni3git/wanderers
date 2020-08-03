@@ -39,7 +39,8 @@ const ContactFormInputText = styled.input`
 	width: 100%;
 	border: ${BORDER + "px"} solid ${Colors.RulerColor};
 	border-radius: ${BORDER_RADIUS + "px"};
-	background: rgba(255, 255, 255, 0.6);
+	background: ${Colors.Background};
+	color: ${Colors.DefaultTextColor};
 	-webkit-appearance: none;
 `;
 
@@ -47,7 +48,8 @@ const ContactFormInputSubmit = styled.input`
 	width: 100%;
 	border: ${BORDER + "px"} solid ${Colors.RulerColor};
 	border-radius: ${BORDER_RADIUS + "px"};
-	background: rgba(255, 255, 255, 0.6);
+	background: ${Colors.Background};
+	color: ${Colors.DefaultTextColor};
 	-webkit-appearance: none;
 `;
 
@@ -59,12 +61,13 @@ const ContactFormInputCheckbox = styled.input`
 `;
 
 const ContactFormInputTextarea = styled.textarea`
-	width: 100%;
-	min-height: 200px;
-	resize: vertical;
 	border: ${BORDER + "px"} solid ${Colors.RulerColor};
 	border-radius: ${BORDER_RADIUS + "px"};
-	background: rgba(255, 255, 255, 0.6);
+	background: ${Colors.Background};
+	color: ${Colors.DefaultTextColor};
+	min-height: 200px;
+	resize: vertical;
+	width: 100%;
 	-webkit-appearance: none;
 `;
 

@@ -42,7 +42,7 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 		};
 
 		newsFilePromise.then((newsFile) => {
-			if (IS_PRODUCTION) {
+			if (!IS_PRODUCTION) {
 				console.log(newsFile);
 			}
 

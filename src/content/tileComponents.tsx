@@ -57,13 +57,27 @@ export const UnitEntryCaptionDate = styled.div`
 	font-size: 0.9em;
 `;
 
-export const ScrollComponent: React.SFC<IScrollComponentProps> = props => (
+export const ScrollComponent: React.SFC<IScrollComponentProps> = (props) => (
 	<Scrollbars
 		style={{
 			padding: "20px",
 			height: "calc(100% - 57px - 100px)",
 			width: "100%"
 		}}
+		renderThumbHorizontal={(props) => (
+			<div
+				{...props}
+				style={{ backgroundColor: Colors.ScrollThumbColor, borderRadius: "3px" }}
+				className="thumb-horizontal"
+			/>
+		)}
+		renderThumbVertical={(props) => (
+			<div
+				{...props}
+				style={{ backgroundColor: Colors.ScrollThumbColor, borderRadius: "3px" }}
+				className="thumb-vertical"
+			/>
+		)}
 	>
 		{props.children}
 	</Scrollbars>

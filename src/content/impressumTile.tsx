@@ -53,7 +53,7 @@ export class ImpressumTile extends React.Component<
 		this.state = { content: [] };
 
 		impressumFilePromise.then((impressumFile) => {
-			if (IS_PRODUCTION) {
+			if (!IS_PRODUCTION) {
 				console.log(impressumFile);
 			}
 

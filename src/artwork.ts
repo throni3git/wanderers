@@ -6,7 +6,7 @@ import {
 } from "./shaders/landscapeShader";
 
 import { loadTexture } from "./utils";
-import * as Store from "./store"
+import * as Store from "./store";
 
 const sunSize = 1.5;
 const orbitSize = sunSize * 0.98;
@@ -21,6 +21,34 @@ interface IOrbit {
 	lineObject: THREE.Object3D;
 }
 
+interface IArtworkTheme {
+	orbitColor: THREE.Color;
+	planetColor: THREE.Color;
+	backgroundColor: THREE.Color;
+	sunUrl: string;
+}
+
+const ArtworkLightColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0x000000),
+	planetColor: new THREE.Color(0x000000),
+	backgroundColor: new THREE.Color(0xffffff),
+	sunUrl: "assets/sun_light.jpg"
+};
+
+const ArtworkDarkColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0xbbbbbb),
+	planetColor: new THREE.Color(0xbbbbbb),
+	backgroundColor: new THREE.Color(0x000000),
+	sunUrl: "assets/sun_dark.jpg"
+};
+
+const ArtworkDebugColorTheme: IArtworkTheme = {
+	orbitColor: new THREE.Color(0xff0000),
+	planetColor: new THREE.Color(0x00ff00),
+	backgroundColor: new THREE.Color(0x0000ff),
+	sunUrl: "assets/sun_dark.jpg"
+};
+
 export class Artwork {
 	private _orbits: IOrbit[] = [];
 	private _lastUpdateTime = Date.now();
@@ -28,17 +56,21 @@ export class Artwork {
 	private _matLandscape: THREE.ShaderMaterial;
 	private _textures: Record<string, THREE.Texture> = {};
 	private _scene: THREE.Scene;
+	private _colorTheme: IArtworkTheme = ArtworkLightColorTheme;
 
 	constructor(scene: THREE.Scene) {
 		this._scene = scene;
+		if (!Store.getState().artwork.useLightTheme) {
+			this._colorTheme = ArtworkDarkColorTheme;
+		}
+
 		this._loadAssets();
 	}
 
 	private async _loadAssets(): Promise<void> {
 		const texturePromises = [
-			loadTexture("assets/black/grain2.jpg"),
-			loadTexture("assets/sun/sun_map.jpg"),
-			loadTexture("assets/sun/sun_alpha.jpg")
+			loadTexture(this._colorTheme.sunUrl),
+			loadTexture("assets/sun_alpha.jpg")
 		];
 		const textureRessources = await Promise.all(texturePromises);
 		for (const tr of textureRessources) {
@@ -49,51 +81,9 @@ export class Artwork {
 	}
 
 	private async _setupScene(): Promise<void> {
-		const matWireframe = new THREE.MeshBasicMaterial({
-			color: 0x444444,
-			wireframe: true
-		});
-
-		// add background of white grain
-		const texWhiteGrain = this._textures["assets/black/grain2.jpg"];
-		texWhiteGrain.repeat.set(3, 3);
-		texWhiteGrain.wrapS = texWhiteGrain.wrapT = THREE.RepeatWrapping;
-		const geoGrain = new THREE.PlaneGeometry(32, 32);
-		const matWhiteGrain = new THREE.MeshBasicMaterial({
-			color: 0x000000,
-			alphaMap: texWhiteGrain,
-			transparent: true
-		});
-		const meshWhiteGrain = new THREE.Mesh(geoGrain, matWhiteGrain);
-		// this._scene.add(meshWhiteGrain);
-		meshWhiteGrain.position.z = -4;
-		if (Store.getState().debug.debugCamera) {
-			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
-			meshWhiteGrain.add(meshSurrounding);
-		}
-
-		// add second background of white grain
-		const texWhiteGrain2 = texWhiteGrain.clone();
-		texWhiteGrain2.repeat.set(3, 3);
-		texWhiteGrain2.rotation = 1; // avoid correlation between noise textures
-		texWhiteGrain2.wrapS = texWhiteGrain2.wrapT = THREE.RepeatWrapping;
-		texWhiteGrain2.needsUpdate = true;
-		const matWhiteGrain2 = new THREE.MeshBasicMaterial({
-			color: 0x000000,
-			alphaMap: texWhiteGrain2,
-			transparent: true
-		});
-		const meshWhiteGrain2 = new THREE.Mesh(geoGrain, matWhiteGrain2);
-		// this._scene.add(meshWhiteGrain2);
-		meshWhiteGrain2.position.z = -7;
-		if (Store.getState().debug.debugCamera) {
-			const meshSurrounding = new THREE.Mesh(geoGrain, matWireframe);
-			meshWhiteGrain2.add(meshSurrounding);
-		}
-
 		// add sun
-		const texMapSun = this._textures["assets/sun/sun_map.jpg"];
-		const texAlphaSun = this._textures["assets/sun/sun_alpha.jpg"];
+		const texMapSun = this._textures[this._colorTheme.sunUrl];
+		const texAlphaSun = this._textures["assets/sun_alpha.jpg"];
 		const geoSun = new THREE.PlaneGeometry(2 * sunSize, 2 * sunSize);
 		const matSun = new THREE.MeshBasicMaterial({
 			map: texMapSun,
@@ -106,7 +96,9 @@ export class Artwork {
 		this._lastUpdateTime = Date.now();
 
 		// inner orbit
-		const matOrbit = new THREE.LineBasicMaterial({ color: 0x000000 });
+		const matOrbit = new THREE.LineBasicMaterial({
+			color: this._colorTheme.orbitColor
+		});
 		const innerOrbit = this.createOrbitLine(
 			orbitSize * orbitFactor,
 			orbitResolution,
@@ -117,12 +109,13 @@ export class Artwork {
 		this._scene.add(innerOrbit);
 
 		const matPlanet = new THREE.MeshBasicMaterial({
-			color: 0x000000,
+			color: this._colorTheme.planetColor,
 			side: THREE.DoubleSide
 		});
 		const geoInnerPlanet = new THREE.CircleBufferGeometry(planetSize, 20);
 		const meshInnerPlanet = new THREE.Mesh(geoInnerPlanet, matPlanet);
 		meshInnerPlanet.position.y = orbitSize * orbitFactor;
+		meshInnerPlanet.position.z = 0.01;
 		innerOrbit.add(meshInnerPlanet);
 
 		// middle orbit
@@ -141,6 +134,7 @@ export class Artwork {
 		);
 		const meshMiddlePlanet = new THREE.Mesh(geoMiddlePlanet, matPlanet);
 		meshMiddlePlanet.position.y = orbitSize * orbitFactor * orbitFactor;
+		meshMiddlePlanet.position.z = 0.01;
 		middleOrbit.add(meshMiddlePlanet);
 
 		// outer orbit
@@ -161,11 +155,12 @@ export class Artwork {
 		const meshOuterPlanet = new THREE.Mesh(geoOuterPlanet, matPlanet);
 		meshOuterPlanet.position.y =
 			orbitSize * orbitFactor * orbitFactor * orbitFactor;
+		meshOuterPlanet.position.z = 0.01;
 		outerOrbit.add(meshOuterPlanet);
 
 		// extra orbit in outer orbit
 		const matMoonOrbit = new THREE.LineDashedMaterial({
-			color: 0x000000,
+			color: this._colorTheme.orbitColor,
 			gapSize: 0.02,
 			dashSize: 0.03
 		});
@@ -175,16 +170,18 @@ export class Artwork {
 			matMoonOrbit
 		);
 		outerMoonOrbit.rotation.z = Math.random();
-		outerMoonOrbit.position.y = meshOuterPlanet.position.y;
+		// outerMoonOrbit.position.y = meshOuterPlanet.position.y;
+		// outerMoonOrbit.position.z = 0.01;
 		this._orbits.push({
 			speed: -outerOrbitSpeed,
 			lineObject: outerMoonOrbit
 		});
-		outerOrbit.add(outerMoonOrbit);
+		meshOuterPlanet.add(outerMoonOrbit);
 
 		const outerMoonSupport = new THREE.Object3D();
 		outerMoonSupport.rotation.z = Math.random();
 		outerMoonSupport.position.y = meshOuterPlanet.position.y;
+		outerMoonSupport.position.z = 0.01;
 		this._orbits.push({ speed: 1 / 5, lineObject: outerMoonSupport });
 		outerOrbit.add(outerMoonSupport);
 
@@ -197,6 +194,7 @@ export class Artwork {
 			matPlanet
 		);
 		meshOuterExtraPlanet.position.y = extraOrbitSize;
+		meshOuterExtraPlanet.position.z = 0.01;
 		outerMoonSupport.add(meshOuterExtraPlanet);
 
 		// create wobbling landscape
