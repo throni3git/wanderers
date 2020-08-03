@@ -49,8 +49,6 @@ const AllContainer = styled.div`
 const GlobalStyle = createGlobalStyle`
 * {
 	box-sizing: border-box;
-	// TODO this overwrites too much (arrows in gallery)
-	// color: ${Colors.DefaultTextColor};
 	font-family: sans-serif;
 }
 
@@ -60,10 +58,6 @@ html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-}
-
-div, span {
-	/* color: ${Colors.DefaultTextColor}; */
 }
 
 a {
