@@ -33,7 +33,7 @@ export const LightTheme: IColorTheme = {
 };
 
 export const DarkTheme: IColorTheme = {
-	Background: "rgba(0,0,0,0.6)", // "#00000099",
+	Background: "rgba(23, 18, 18, 0.6)", // "#17121299",
 	HeadingLogoUrl: "assets/logo_dark.svg",
 	DefaultTextColor: "#cccccc",
 	LightTextColor: "#ccccccbb",
