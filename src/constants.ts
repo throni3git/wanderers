@@ -17,7 +17,7 @@ interface IColorTheme {
 }
 
 export const LightTheme: IColorTheme = {
-	Background: "#ffffffdd",
+	Background: "rgba(255,255,255,0.86)", // "#ffffffdd"
 	HeadingLogoUrl: "assets/logo_light.svg",
 	DefaultTextColor: "#333333",
 	LightTextColor: "#333333bb",
@@ -33,7 +33,7 @@ export const LightTheme: IColorTheme = {
 };
 
 export const DarkTheme: IColorTheme = {
-	Background: "#00000099",
+	Background: "rgba(0,0,0,0.6)", // "#00000099",
 	HeadingLogoUrl: "assets/logo_dark.svg",
 	DefaultTextColor: "#cccccc",
 	LightTextColor: "#ccccccbb",
