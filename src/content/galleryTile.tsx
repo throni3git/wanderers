@@ -161,7 +161,14 @@ export class GalleryTile extends React.Component<
 							let dateInCaption: string;
 							if (imageSection.date) {
 								const date = new Date(imageSection.date);
-								dateInCaption = date.toLocaleDateString();
+								dateInCaption = date.toLocaleDateString(
+									undefined,
+									{
+										day: "2-digit",
+										month: "2-digit",
+										year: "numeric"
+									}
+								);
 							}
 							const imageSectionFolder =
 								MEDIA_FOLDER + imageSection.folder + "/";

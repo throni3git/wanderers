@@ -69,7 +69,11 @@ export class NewsTile extends React.Component<INewsTileProps, INewsTileState> {
 				{sortedEntries.map((entry, idx) => {
 					// parse date info
 					const date = new Date(entry.date);
-					const dateInCaption = date.toLocaleDateString();
+					const dateInCaption = date.toLocaleDateString(undefined, {
+						day: "2-digit",
+						month: "2-digit",
+						year: "numeric"
+					});
 					const img = entry.imageUrl && (
 						<UnitEntryImageContainer>
 							<UnitEntryImage
