@@ -54,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
 
 html, body {
 	color: ${Colors.DefaultTextColor};
+	background-color: ${Colors.LoadingBackground};
 	width: 100%;
 	height: 100%;
 	margin: 0;

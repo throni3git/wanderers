@@ -1,6 +1,7 @@
 import * as Store from "./store";
 
 interface IColorTheme {
+	LoadingBackground: string;
 	Background: string;
 	HeadingLogoUrl: string;
 	DefaultTextColor: string;
@@ -17,6 +18,7 @@ interface IColorTheme {
 }
 
 export const LightTheme: IColorTheme = {
+	LoadingBackground: "#ededed",
 	Background: "rgba(255,255,255,0.86)", // "#ffffffdd"
 	HeadingLogoUrl: "assets/logo_light.svg",
 	DefaultTextColor: "#333333",
@@ -33,6 +35,7 @@ export const LightTheme: IColorTheme = {
 };
 
 export const DarkTheme: IColorTheme = {
+	LoadingBackground: "#251e1e",
 	Background: "rgba(23, 18, 18, 0.6)", // "#17121299",
 	HeadingLogoUrl: "assets/logo_dark.svg",
 	DefaultTextColor: "#cccccc",
@@ -49,6 +52,7 @@ export const DarkTheme: IColorTheme = {
 };
 
 export const DebugTheme: IColorTheme = {
+	LoadingBackground: "lime",
 	Background: "yellow",
 	HeadingLogoUrl: "assets/logo_dark.svg",
 	DefaultTextColor: "red",
