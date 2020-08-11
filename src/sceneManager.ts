@@ -6,16 +6,16 @@ import { Artwork } from "./artwork";
 import * as Store from "./store";
 
 export class SceneManager {
-	private _renderer: THREE.WebGLRenderer;
-	private _canvas: HTMLCanvasElement;
-	private _containerElement: HTMLDivElement;
-	private _camera: THREE.OrthographicCamera | THREE.PerspectiveCamera;
-	private _cameraHelper: THREE.CameraHelper;
-	private _cameraDBG: THREE.PerspectiveCamera;
+	private _renderer!: THREE.WebGLRenderer;
+	private _canvas!: HTMLCanvasElement;
+	private _containerElement!: HTMLDivElement;
+	private _camera!: THREE.OrthographicCamera | THREE.PerspectiveCamera;
+	private _cameraHelper!: THREE.CameraHelper;
+	private _cameraDBG!: THREE.PerspectiveCamera;
 
-	private _controls: OrbitControls;
-	private _scene: THREE.Scene;
-	private _artwork: Artwork;
+	private _controls!: OrbitControls;
+	private _scene!: THREE.Scene;
+	private _artwork!: Artwork;
 
 	private _mouseX = 0;
 	private _mouseY = 0;
@@ -28,7 +28,7 @@ export class SceneManager {
 	private vX = 0;
 	private vY = 0;
 
-	private _velocityMarker: HTMLDivElement;
+	private _velocityMarker!: HTMLDivElement;
 
 	private _lastRender = Date.now();
 	private _maxFPS = 60;
@@ -85,7 +85,7 @@ export class SceneManager {
 
 		this._canvas.addEventListener(
 			"webglcontextlost",
-			(e: WebGLContextEvent) => {
+			(e: Event) => {
 				const timesContextLost =
 					Store.getState().artwork.timesContextLost + 1;
 
@@ -172,7 +172,7 @@ export class SceneManager {
 		this._canvas.style.height = containerHeight + "px";
 	};
 
-	private onDocumentMouseMove = (event: PointerEvent): void => {
+	private onDocumentMouseMove = (event: MouseEvent): void => {
 		this._mouseX =
 			((event.clientX - this._windowHalfX) / window.innerWidth) *
 			2 *

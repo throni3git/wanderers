@@ -74,8 +74,8 @@ li {
 `;
 
 export class Container extends React.Component<ICanvasProps, ICanvasState> {
-	private _baseElement: HTMLDivElement;
-	private _sceneManager: SceneManager;
+	private _baseElement?: HTMLDivElement;
+	private _sceneManager?: SceneManager;
 	private _hideSite = false;
 
 	constructor(props: Container["props"]) {
@@ -90,7 +90,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 
 	public componentDidMount() {
 		if (Store.getState().artwork.show3DArtwork) {
-			this._sceneManager = new SceneManager(this._baseElement);
+			this._sceneManager = new SceneManager(this._baseElement!);
 		}
 	}
 
@@ -111,7 +111,7 @@ export class Container extends React.Component<ICanvasProps, ICanvasState> {
 			<AllContainer style={{ backgroundImage: bgUrl }}>
 				{show3DArtwork && (
 					<ArtworkContainer
-						ref={(ref) => (this._baseElement = ref)}
+						ref={(ref) => (this._baseElement = ref!)}
 					/>
 				)}
 				{!this._hideSite && (

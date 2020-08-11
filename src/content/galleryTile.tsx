@@ -45,7 +45,7 @@ export class GalleryTile extends React.Component<
 	IGalleryTileProps,
 	IGalleryTileState
 > {
-	private imageMapping: Map<number, Map<number, string>>;
+	private imageMapping = new Map<number, Map<number, string>>();
 
 	constructor(props: GalleryTile["props"]) {
 		super(props);
@@ -59,7 +59,6 @@ export class GalleryTile extends React.Component<
 				console.log(jsonFile.entries);
 			}
 
-			this.imageMapping = new Map<number, Map<number, string>>();
 			jsonFile.entries.map(
 				(imageSection: IImageSection, imageSectionIdx: number) => {
 					const imageSectionMap = new Map();
@@ -87,14 +86,16 @@ export class GalleryTile extends React.Component<
 			}
 		});
 	};
+
 	private gotoNextImage = () => {
-		const activeImage = this.state.activeImage;
+		const activeImage = this.state.activeImage!;
 
 		let newImageIdx: number;
 		let newSectionIdx: number;
 		const currentSection = this.imageMapping.get(
 			activeImage.imageSectionIdx
-		);
+		)!;
+
 		if (currentSection.has(activeImage.imageIdx + 1)) {
 			newImageIdx = activeImage.imageIdx + 1;
 			newSectionIdx = activeImage.imageSectionIdx;
@@ -116,13 +117,14 @@ export class GalleryTile extends React.Component<
 		});
 	};
 	private gotoPreviousImage = () => {
-		const activeImage = this.state.activeImage;
+		const activeImage = this.state.activeImage!;
 
 		let newImageIdx: number;
 		let newSectionIdx: number;
 		const currentSection = this.imageMapping.get(
 			activeImage.imageSectionIdx
-		);
+		)!;
+
 		if (currentSection.has(activeImage.imageIdx - 1)) {
 			newImageIdx = activeImage.imageIdx - 1;
 			newSectionIdx = activeImage.imageSectionIdx;
@@ -132,7 +134,7 @@ export class GalleryTile extends React.Component<
 			} else {
 				newSectionIdx = this.imageMapping.size - 1;
 			}
-			newImageIdx = this.imageMapping.get(newSectionIdx).size - 1;
+			newImageIdx = this.imageMapping.get(newSectionIdx)!.size - 1;
 		}
 
 		this.setState({
@@ -149,6 +151,21 @@ export class GalleryTile extends React.Component<
 
 	public render() {
 		const activeImage = this.state.activeImage;
+		let activeImageUrl = "";
+		if (activeImage) {
+			const imageSectionIdx = this.imageMapping.get(
+				activeImage.imageSectionIdx
+			);
+
+			if (imageSectionIdx) {
+				activeImageUrl =
+					MEDIA_FOLDER +
+					this.state.imageContent[activeImage.imageSectionIdx]
+						.folder +
+					"/" +
+					imageSectionIdx.get(activeImage.imageIdx);
+			}
+		}
 
 		return (
 			<>
@@ -158,7 +175,7 @@ export class GalleryTile extends React.Component<
 							imageSection: IImageSection,
 							imageSectionIdx: number
 						) => {
-							let dateInCaption: string;
+							let dateInCaption: string = "";
 							if (imageSection.date) {
 								const date = new Date(imageSection.date);
 								dateInCaption = date.toLocaleDateString(
@@ -197,10 +214,6 @@ export class GalleryTile extends React.Component<
 															imageSectionFolder
 														}
 														imageUrl={imgUrl}
-														// imageSectionIdx={
-														// 	imageSectionIdx
-														// }
-														// imageIdx={imageIdx}
 														clickHandler={() =>
 															this.clickSingleImage(
 																imageSectionIdx,
@@ -219,15 +232,7 @@ export class GalleryTile extends React.Component<
 				</ScrollComponent>
 				{activeImage && (
 					<ActiveImage
-						url={
-							MEDIA_FOLDER +
-							this.state.imageContent[activeImage.imageSectionIdx]
-								.folder +
-							"/" +
-							this.imageMapping
-								.get(activeImage.imageSectionIdx)
-								.get(activeImage.imageIdx)
-						}
+						url={activeImageUrl}
 						nextImageClickHandler={this.gotoNextImage}
 						previousImageClickHandler={this.gotoPreviousImage}
 						exitClickHandler={this.exitActiveImage}
@@ -243,7 +248,7 @@ export default GalleryTile;
 export interface IGalleryTileProps {}
 
 interface IGalleryTileState {
-	imageContent?: IImageSection[];
+	imageContent: IImageSection[];
 	activeImage?: {
 		imageSectionIdx: number;
 		imageIdx: number;

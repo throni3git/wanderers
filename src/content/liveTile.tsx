@@ -164,7 +164,7 @@ export class LiveTile extends React.Component<ILiveTileProps, ILiveTileState> {
 			if (!yearMapping.has(year)) {
 				yearMapping.set(year, []);
 			}
-			yearMapping.get(year).push(gigEntry);
+			yearMapping.get(year)!.push(gigEntry);
 		}
 
 		const pastGigContainers = new Array<JSX.Element>();
