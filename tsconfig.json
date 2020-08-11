@@ -2,7 +2,15 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+
+    // Search under node_modules for non-relative imports.
     "moduleResolution": "node",
+
+    // Process & infer types from .js files.
+    // "allowJs": true,
+
+    // Don't emit; allow Babel to transform files.
+    // "noEmit": true,
     "lib": ["dom", "es2015"],
     "jsx": "react",
     "sourceMap": true,
