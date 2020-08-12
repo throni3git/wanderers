@@ -35,7 +35,7 @@ const config: webpack.Configuration = {
 			BUILD_TIMESTAMP: timestamp,
 			IS_PRODUCTION: isProduction
 		}),
-		new htmlPlugin({
+		new HtmlWebpackPlugin({
 			title: "SOJUS3000",
 			template: "src/index.html",
 			favicon: "favicon.png"
