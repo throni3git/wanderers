@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <meta name="viewport" content="width=device-width, user-scalable=no" /> -->
+		<title>SOJUS3000</title>
+		<!-- <link rel="preload" href="assets/landing/dark-s.svg" as="image" />
+		<link rel="preload" href="assets/landing/dark-o.svg" as="image" />
+		<link rel="preload" href="assets/landing/dark-ju.svg" as="image" />
+		<link rel="preload" href="assets/landing/dark-3.svg" as="image" /> -->
+		<style>
+			.spinner-container {
+				width: 160px;
+				height: 160px;
+				position: absolute;
+				top: 20px;
+				left: 20px;
+				/* top: calc(50% - 50px);
+				left: calc(50% - 50px); */
+				/* background: green; */
+				/* background-size: contain; */
+				/* background-image: url(assets/landing/dark-all.svg); */
+				animation: spin 8s infinite linear;
+				/* changeBG 8s infinite linear; */
+			}
+			.htmlrect {
+				width: 160px;
+				height: 160px;
+				position: absolute;
+				/* top: 20px; */
+				/* left: 20px; */
+				top: calc(50% - 80px);
+				left: calc(50% - 80px);
+        z-index: 10;
+				/* background: green; */
+				/* transition: background-image 0.01s ease-in-out; */
+				background-size: auto 100%;
+				background-repeat: no-repeat;
+				/* background-image: url(assets/landing/dark_landing.svg); */
+				background-image: url(assets/landing/dark-animation.svg);
+				animation: spin infinite 20s linear;
+				/* animation: spin infinite 20s linear,
+					changeBG infinite 2s ease; */
+				/* changeBackgroundPosition infinite step-end; */
+				/* background-position:0 50%; */
+				/* animation-duration: 2s; */
+			}
+
+			@keyframes spin {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
+			@keyframes changeBackgroundPosition {
+				0% {
+					background-position: 0% 50%;
+				}
+				25% {
+					background-position: 33.33% 50%;
+				}
+				50% {
+					background-position: 66.66% 50%;
+				}
+				75% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+
+			@keyframes changeBG {
+				0% {
+					background-image: url(assets/landing/dark-s.svg);
+				}
+				25% {
+					background-image: url(assets/landing/dark-o.svg);
+				}
+				50% {
+					background-image: url(assets/landing/dark-ju.svg);
+				}
+				75% {
+					background-image: url(assets/landing/dark-3.svg);
+				}
+				100% {
+					background-image: url(assets/landing/dark-s.svg);
+				}
+			}
+
+			.group_S {
+				animation: group_S_anim 8s infinite linear;
+			}
+
+			@keyframes group_S_anim {
+				0% {
+					opacity: 100%;
+				}
+				25% {
+					opacity: 0%;
+				}
+				50% {
+					opacity: 0%;
+				}
+				75% {
+					opacity: 0%;
+				}
+				100% {
+					opacity: 100%;
+				}
+			}
+
+			.group_O {
+				animation: group_O_anim 8s infinite linear;
+			}
+
+			@keyframes group_O_anim {
+				0% {
+					opacity: 0%;
+				}
+				25% {
+					opacity: 100%;
+				}
+				50% {
+					opacity: 0%;
+				}
+				75% {
+					opacity: 0%;
+				}
+				100% {
+					opacity: 0%;
+				}
+			}
+
+			.group_JU {
+				opacity: 0.5;
+				animation: group_JU_anim 8s infinite linear;
+			}
+
+			@keyframes group_JU_anim {
+				0% {
+					opacity: 0%;
+				}
+				25% {
+					opacity: 0%;
+				}
+				50% {
+					opacity: 100%;
+				}
+				75% {
+					opacity: 0%;
+				}
+				100% {
+					opacity: 0%;
+				}
+			}
+
+			.group_3 {
+				animation: group_3_anim 8s infinite linear;
+			}
+
+			@keyframes group_3_anim {
+				0% {
+					opacity: 0%;
+				}
+				25% {
+					opacity: 0%;
+				}
+				50% {
+					opacity: 0%;
+				}
+				75% {
+					opacity: 100%;
+				}
+				100% {
+					opacity: 0%;
+				}
+			}
+		</style>
+		<!-- <script>
+			window.onload = function () {
+				// Get the Object by ID
+				var a = document.getElementById("svgObject");
+				console.log(a);
+				// Get the SVG document inside the Object tag
+				var svgDoc = a.contentDocument;
+				// Get one of the SVG items by ID;
+				var svgItem = svgDoc.getElementById("group_S");
+				// Set the colour to something else
+				svgItem.setAttribute("fill", "lime");
+
+				var group_S = svgDoc.getElementById("group_S");
+
+				svgDoc.getElementById("group_S").classList.add("group_S");
+				svgDoc.getElementById("group_O").classList.add("group_O");
+				svgDoc.getElementById("group_JU").classList.add("group_JU");
+				svgDoc.getElementById("group_3").classList.add("group_3");
+			};
+		</script> -->
+	</head>
+	<body>
+		<!-- <div class="spinner-container">
+			<object
+				id="svgObject"
+				data="assets/landing/dark-all.svg"
+				type="image/svg+xml"
+				height="100%"
+				width="100%"
+			>
+				Für Browser ohne SVG-Unterstützung
+				<img src="fruity-icons.png" width="600" height="193" alt="Alternatives PNG-Bild">
+			</object>
+			<img src="assets/landing/dark-all.svg" />
+		</div> -->
+
+		<div class="htmlrect"></div>
+		<!-- <div>
+			<img src="assets/landing/dark-s.svg" />
+			<img src="assets/landing/dark-o.svg" />
+			<img src="assets/landing/dark-ju.svg" />
+			<img src="assets/landing/dark-3.svg" />
+		</div> -->
+	</body>
+</html>
