@@ -3,10 +3,7 @@
 		[
 			"@babel/preset-env",
 			{
-				"targets": {
-					"browsers": ["IE >= 11"]
-				},
-				"useBuiltIns": "entry"
+				"targets": "last 2 versions, ie 11"
 			}
 		],
 		"@babel/preset-typescript",
