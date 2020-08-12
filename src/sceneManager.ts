@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { OrbitControls } from "./orbitControls/";
+import { OrbitControls } from "./orbitcontrols/";
 import { Artwork } from "./artwork";
 
 import * as Store from "./store";

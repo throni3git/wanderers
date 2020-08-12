@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Colors, BORDER } from "./constants";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ActiveContentTypes } from "./SiteMenu";
+import { ActiveContentTypes } from "./siteMenu";
 
 const FooterContainer = styled.div`
 	height: 82px;

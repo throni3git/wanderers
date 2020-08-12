@@ -5,7 +5,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import styled from "styled-components";
 
 import { Colors, BORDER } from "../constants";
-import { ActiveContentTypes } from "../SiteMenu";
+import { ActiveContentTypes } from "../siteMenu";
 
 export const UnitEntryContainer = styled.div`
 	padding: 10px 20px;
