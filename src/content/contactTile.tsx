@@ -84,7 +84,7 @@ const ValidationSpan = styled.span`
  */
 export const required = (
 	values: IContactTileState,
-	fieldName: string
+	fieldName: keyof IContactTileState
 ): string =>
 	values[fieldName] === undefined ||
 	values[fieldName] === null ||
@@ -101,12 +101,14 @@ export const required = (
  */
 export const maxLength = (
 	values: IContactTileState,
-	fieldName: string,
+	fieldName: keyof IContactTileState,
 	length: number
-): string =>
-	values[fieldName] && values[fieldName].length > length
-		? `This can not exceed ${length} characters`
-		: "";
+): string => {
+	const value = values[fieldName];
+	if (value && typeof value === "string" && value.length > length)
+		return `This can not exceed ${length} characters`;
+	else return "";
+};
 
 const MESSAGE_MAX_LENGTH = 1000;
 const MESSAGE_MIN_LENGTH = 3;

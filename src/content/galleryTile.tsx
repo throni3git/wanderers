@@ -76,7 +76,7 @@ export class GalleryTile extends React.Component<
 		});
 	}
 
-	private clickSingleImage = (imageSectionIdx, imageIdx) => {
+	private clickSingleImage = (imageSectionIdx: number, imageIdx: number) => {
 		console.log(imageSectionIdx);
 		console.log(imageIdx);
 		this.setState({

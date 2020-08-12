@@ -19,8 +19,8 @@ export class SceneManager {
 
 	private _mouseX = 0;
 	private _mouseY = 0;
-	private _windowHalfX;
-	private _windowHalfY;
+	private _windowHalfX=0;
+	private _windowHalfY=0;
 
 	private _cameraVelocity = 0.02;
 	private _cameraAcceleration = 0.005;
@@ -81,7 +81,6 @@ export class SceneManager {
 		}
 
 		this.framedRedraw();
-		window["sceneManager"] = this;
 
 		this._canvas.addEventListener(
 			"webglcontextlost",
