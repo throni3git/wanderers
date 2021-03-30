@@ -232,17 +232,21 @@ export class Artwork {
 		resolution: number,
 		material: THREE.LineBasicMaterial | THREE.LineDashedMaterial
 	): THREE.Line {
-		const geometry = new THREE.Geometry();
+		const geometry = new THREE.BufferGeometry();
+		const verticesRaw = new Array();
 		for (let i = 0; i <= resolution; i++) {
 			const radian = (i / resolution) * Math.PI * 2;
-			geometry.vertices.push(
-				new THREE.Vector3(
-					radius * Math.cos(radian),
-					radius * Math.sin(radian),
-					0
-				)
+			verticesRaw.push(
+				radius * Math.cos(radian),
+				radius * Math.sin(radian),
+				0
 			);
 		}
+		const vertices = new Float32Array(verticesRaw);
+		geometry.setAttribute(
+			"position",
+			new THREE.BufferAttribute(vertices, 3)
+		);
 
 		const line = new THREE.Line(geometry, material);
 		if (material instanceof THREE.LineDashedMaterial) {
