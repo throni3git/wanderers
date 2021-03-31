@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { OrbitControls } from "./orbitcontrols/";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Artwork } from "./artwork";
 
 import * as Store from "./store";
