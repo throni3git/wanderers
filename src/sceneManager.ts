@@ -9,7 +9,7 @@ export class SceneManager {
 	private _renderer!: THREE.WebGLRenderer;
 	private _canvas!: HTMLCanvasElement;
 	private _containerElement!: HTMLDivElement;
-	private _camera!: THREE.OrthographicCamera | THREE.PerspectiveCamera;
+	private _camera!: THREE.PerspectiveCamera;
 	private _cameraHelper!: THREE.CameraHelper;
 	private _cameraDBG!: THREE.PerspectiveCamera;
 
@@ -19,8 +19,8 @@ export class SceneManager {
 
 	private _mouseX = 0;
 	private _mouseY = 0;
-	private _windowHalfX=0;
-	private _windowHalfY=0;
+	private _windowHalfX = 0;
+	private _windowHalfY = 0;
 
 	private _cameraVelocity = 0.02;
 	private _cameraAcceleration = 0.005;
@@ -84,7 +84,7 @@ export class SceneManager {
 
 		this._canvas.addEventListener(
 			"webglcontextlost",
-			(e: Event) => {
+			() => {
 				const timesContextLost =
 					Store.getState().artwork.timesContextLost + 1;
 
@@ -107,7 +107,7 @@ export class SceneManager {
 			this._scene.add(this._camera);
 			this._scene.add(this._cameraHelper);
 
-			this._cameraDBG = this._camera.clone();
+			this._cameraDBG = this._camera.clone() as THREE.PerspectiveCamera;
 			this._cameraDBG.far = 1000;
 			this._cameraDBG.updateProjectionMatrix();
 		}
@@ -146,18 +146,7 @@ export class SceneManager {
 		this._windowHalfY = height / 2;
 
 		const newAR = width / height;
-
-		if (this._camera instanceof THREE.PerspectiveCamera) {
-			this._camera.aspect = newAR;
-		} else if (this._camera instanceof THREE.OrthographicCamera) {
-			let oldWidthWorldSpace = this._camera.right - this._camera.left;
-			let oldHeightWorldSpace = this._camera.top - this._camera.bottom;
-
-			let newWidthWorldSpace = oldHeightWorldSpace * newAR;
-			let widthDiff = newWidthWorldSpace - oldWidthWorldSpace;
-			this._camera.left -= widthDiff / 2;
-			this._camera.right += widthDiff / 2;
-		}
+		this._camera.aspect = newAR;
 
 		this._camera.updateProjectionMatrix();
 
