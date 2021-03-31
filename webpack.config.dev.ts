@@ -1,11 +1,14 @@
-import * as path from "path";
 import * as webpack from "webpack";
+import * as webpackDevServer from "webpack-dev-server";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 const copyWebpackPlugin = require("copy-webpack-plugin");
+import * as path from "path";
 
 const timestamp = JSON.stringify(new Date().toISOString());
 
-const config: webpack.Configuration = {
+const config: webpack.Configuration & {
+	devServer?: webpackDevServer.Configuration;
+} = {
 	// webpack will take the files from ./src/index
 	entry: "./src/index.ts",
 
@@ -30,12 +33,12 @@ const config: webpack.Configuration = {
 	plugins: [
 		new webpack.DefinePlugin({
 			BUILD_TIMESTAMP: timestamp,
-			IS_PRODUCTION: true
+			IS_PRODUCTION: false
 		}),
 		new HtmlWebpackPlugin({ title: "SOJUS3000", favicon: "favicon.png" }),
 		new copyWebpackPlugin({
 			patterns: [
-				{ from: "src/mail_api_send.php", to: "." },
+				{ from: "src/mail_api_send.php", to: "./" },
 				{ from: "assets/", to: "assets/" },
 				{ from: "data/", to: "data/" },
 				{ from: "media/", to: "media/" }
@@ -50,9 +53,14 @@ const config: webpack.Configuration = {
 		clean: true
 	},
 
-	mode: "production",
+	mode: "development",
 
-	devtool: false
+	devtool: "source-map",
+
+	devServer: {
+		port: 9000,
+		stats: "errors-warnings"
+	} as webpackDevServer.Configuration
 };
 
-export default config;
+module.exports = config;
