@@ -1,7 +1,7 @@
 import * as path from "path";
 import * as webpack from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-const copyWebpackPlugin = require("copy-webpack-plugin");
+import copyWebpackPlugin from "copy-webpack-plugin";
 
 const timestamp = JSON.stringify(new Date().toISOString());
 
