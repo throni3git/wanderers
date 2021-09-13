@@ -26,7 +26,7 @@ const LinkPatchTwoColumns = styled.div`
 `;
 
 const LinkPatchAllInARow = styled.div`
-	width: 80px;
+	/* width: 80px; */
 	height: 80px;
 	display: flex;
 	justify-content: center;
