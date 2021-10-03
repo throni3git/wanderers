@@ -58,9 +58,8 @@ const config: webpack.Configuration & {
 	devtool: "source-map",
 
 	devServer: {
-		port: 9000,
-		stats: "errors-warnings"
-	} as webpackDevServer.Configuration
+		port: 9000
+	}
 };
 
 module.exports = config;
