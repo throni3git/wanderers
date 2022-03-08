@@ -32,7 +32,7 @@
         {
           "url": "https://www.deezer.com/artist/7109499",
           "name": "SOJUS3000 @ deezer",
-          "logoTsxName": "deezer"
+          "logoFontawesomeTag": ["fab", "deezer"]
         }
       ]
     },
@@ -64,11 +64,6 @@
           "url": "https://erikswiatloch.de/coldskinstudio",
           "name": "Cold Skin Tonstudio",
           "logoTsxName": "coldSkinStudio"
-        },
-        {
-          "url": "https://www.ponkpictures.de",
-          "name": "Ponk Pictures",
-          "logoTsxName": "ponk"
         }
       ]
     },
