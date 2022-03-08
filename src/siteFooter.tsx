@@ -35,7 +35,7 @@ const ImpressumLink = styled.a`
 	cursor: pointer;
 `;
 
-export const SiteFooter: React.SFC<ISiteFooterProps> = props => (
+export const SiteFooter: React.FunctionComponent<ISiteFooterProps> = props => (
 	<FooterContainer>
 		<FooterIcon href="https://www.facebook.com/sojus3000" target="_blank">
 			<FontAwesomeIcon icon={["fab", "facebook"]} />

@@ -57,7 +57,7 @@ export const UnitEntryCaptionDate = styled.div`
 	font-size: 0.9em;
 `;
 
-export const ScrollComponent: React.SFC<IScrollComponentProps> = (
+export const ScrollComponent: React.FunctionComponent<IScrollComponentProps> = (
 	props: React.PropsWithChildren<IScrollComponentProps>
 ) => (
 	<Scrollbars
