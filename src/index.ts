@@ -2,12 +2,29 @@ import * as ReactDOM from "react-dom";
 import * as React from "react";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStroopwafel, fas } from "@fortawesome/free-solid-svg-icons";
-import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+	faArrowLeft,
+	faArrowRight,
+	faTimes
+} from "@fortawesome/free-solid-svg-icons";
+import {
+	faBandcamp,
+	faDeezer,
+	faFacebook,
+	faInstagram,
+	faSpotify,
+	faYoutube
+} from "@fortawesome/free-brands-svg-icons";
 
-library.add(faStroopwafel);
-library.add(fab);
-library.add(fas);
+library.add(
+	faBandcamp,
+	faDeezer,
+	faFacebook,
+	faInstagram,
+	faSpotify,
+	faYoutube
+);
+library.add(faArrowLeft, faArrowRight, faTimes);
 
 import { Container } from "./container";
 
