@@ -36,13 +36,12 @@ if (!IS_PRODUCTION) {
 	console.log("Development mode");
 }
 
-const body = document.getElementsByTagName("body")[0];
-
 const content = document.createElement("div");
 content.style.width = "100%";
 content.style.height = "100%";
 content.style.overflow = "hidden";
 
+const body = document.getElementsByTagName("body")[0];
 body.appendChild(content);
 
 ReactDOM.render(React.createElement(Container), content);

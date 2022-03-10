@@ -26,7 +26,6 @@ const LinkPatchTwoColumns = styled.div`
 `;
 
 const LinkPatchAllInARow = styled.div`
-	/* width: 80px; */
 	height: 80px;
 	display: flex;
 	justify-content: center;
@@ -71,7 +70,6 @@ const LinkIcon = styled.a<{ tooltip?: string }>`
 		padding: 5px;
 		left: 50%;
 		white-space: nowrap;
-		/* margin-top: 10px; */
 	}
 `;
 

@@ -33,10 +33,7 @@ export class SingleImage extends React.Component<
 
 		return (
 			<SingleImageContainer
-				// onClick={data-attribute auswerten}
 				onClick={this.props.clickHandler}
-				// data-image-section-idx={this.props.imageSectionIdx}
-				// data-image-idx={this.props.imageIdx}
 			>
 				<Thumbnail
 					style={{
@@ -51,8 +48,6 @@ export class SingleImage extends React.Component<
 export interface ISingleImageProps {
 	imageUrl: string;
 	folder: string;
-	// imageSectionIdx: number;
-	// imageIdx: number;
 	clickHandler: () => void;
 }
 
