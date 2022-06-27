@@ -194,13 +194,13 @@ export class SceneManager {
 			this._velocityMarker.style.top = "" + markerTop + "px";
 		}
 
-		this._camera.position.x +=
-			(this.vX - this._camera.position.x) * this._cameraVelocity;
-		this._camera.position.y +=
-			(-this.vY - this._camera.position.y) * this._cameraVelocity;
+		let deltaX = this.vX - this._camera.position.x;
+		this._camera.position.x += deltaX * this._cameraVelocity;
+		let deltaY = -this.vY - this._camera.position.y;
+		this._camera.position.y += deltaY * this._cameraVelocity;
 
 		const MAX_CAM_OFFSET_WIDTH = 4;
-		const MAX_CAM_OFFSET_HEIGHT = 2;
+		const MAX_CAM_OFFSET_HEIGHT = 3;
 		this._camera.position.x = Math.min(
 			MAX_CAM_OFFSET_WIDTH,
 			Math.max(-MAX_CAM_OFFSET_WIDTH, this._camera.position.x)
